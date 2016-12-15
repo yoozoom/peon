@@ -1,0 +1,21 @@
+/bin/
+
+#project ignore
+.settings
+target
+.classpath
+.project
+
+Baas
+Baas.net
+Baas.php
+
+demo
+fac
+OA
+portal
+SA
+system
+takeout
+third
+.jshintrc

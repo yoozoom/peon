@@ -1,0 +1,15 @@
+/bin/
+
+#project ignore
+.settings
+target
+.classpath
+.project
+
+Baas
+Baas.net
+Baas.php
+
+#if you need these project folder, remove them from the ignore list
+BIZ
+Native
