@@ -1,7 +1,12 @@
 # peon
-a peon todo
+Welcome to peon, and we have a peon todo!
 
-## context
-this project base on wex5.
+## intruduction
+This project base on wex5.
 
-include UI2, BIZ, Native or other folder in HOME/model/
+Include UI2, BIZ, Native or other folder in HOME/model/
+
+Clone project to a empty folder and change name to model. Then move the model folder to wex5Home folder to add this project's content.
+
+## report
+total -> year -> project -> month
