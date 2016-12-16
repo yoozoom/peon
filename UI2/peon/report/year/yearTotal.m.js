@@ -11,7 +11,7 @@ define(function(require){
 	};
 	
 	//alert(1);
-	// 强制横屏幕
+	// 强制横屏幕。手机设备上才可支持。开发时候先注释掉
 	//cordova.plugins.screenorientation.setOrientation('landscape');
 	//alert(2);
 	
