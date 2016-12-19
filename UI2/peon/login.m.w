@@ -15,7 +15,7 @@
   </div>
   <div xid="div3" class="list-group-item"><div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup2">
    <span class="input-group-addon" xid="span4"><![CDATA[密码]]></span>
-  <input component="$UI/system/components/justep/input/password" class="form-control" xid="passwordInput" placeHolder="请输入密码"></input></div></div><div xid="div5" class="list-group-item"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="登录" xid="loginBtn">
+  <input component="$UI/system/components/justep/input/password" class="form-control" xid="passwordInput" placeHolder="请输入密码"></input></div></div><div xid="div5" class="list-group-item"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="登录" xid="loginBtn" onClick="loginBtnClick">
    <i xid="i1"></i>
    <span xid="span6">登录</span></a>
   </div><div xid="div6" class="list-group-item" align="center"><a component="$UI/system/components/justep/button/button" class="btn btn-link" label="注册账号" xid="registerBtn">

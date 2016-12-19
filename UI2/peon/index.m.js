@@ -8,11 +8,11 @@ define(function(require){
 		var shellImpl = new ShellImpl(this, {
 			"contentsXid" : "pages",
 			"pageMappings" : {
-				"yearTotal" : {
-					url : require.toUrl('./year/yearTotal.m.w')
+				"login" : {
+					url : require.toUrl('login.m.w')
 				},
-				"yearDetail" : {
-					url : require.toUrl('./year/yearDetail.m.w')
+				"reportIndex" : {
+					url : require.toUrl('./report/index.m.w')
 				},
 				"class" : {
 					url : require.toUrl('./class.w')
@@ -39,7 +39,7 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
-		justep.Shell.showPage("yearTotal");
+		justep.Shell.showPage("login");
 	};
 
 	return Model;
