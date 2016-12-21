@@ -10,7 +10,7 @@ define(function(require){
 	
 	var doLogin = function(name, password) {
 		if (name == "admin" && password == "1") {
-			var indexUrl = "./report/main.m.w";
+			var indexUrl = "./main.m.w";
 			justep.Shell.showPage(require.toUrl(indexUrl));
 		} else {
 			alert("用户名密码错误！");
