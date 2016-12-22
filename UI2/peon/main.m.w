@@ -36,7 +36,11 @@
    <span xid="span9"></span></a></div>
    <div class="x-titlebar-title" xid="title2">报表查询</div>
    <div class="x-titlebar-right reverse" xid="right2"></div></div></div>
-   <div class="x-panel-content" xid="content3"></div>
+   <div class="x-panel-content" xid="content3"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row3">
+   <div class="x-col" xid="col1"><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="测试报表查询链接1" xid="button7">
+   <i xid="i10"></i>
+   <span xid="span10">测试报表查询链接1</span></a></div>
+   </div></div>
    </div></div>
   <div class="x-contents-content" xid="pwdContent"><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel4">
    <div class="x-panel-top" xid="top4"><div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" xid="titleBar3" title="修改密码">
