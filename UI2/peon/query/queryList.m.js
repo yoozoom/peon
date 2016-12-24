@@ -6,9 +6,9 @@ define(function(require){
 		this.callParent();
 	};
 
-	Model.prototype.button1Click = function(event){
-		var indexUrl = "./buy.m.w";
-		justep.Shell.showPage(require.toUrl(indexUrl));
+	Model.prototype.li2Click = function(event){
+		var url = "./queryCondition.m.w";
+		justep.Shell.showPage(require.toUrl(url));
 	};
 
 	return Model;

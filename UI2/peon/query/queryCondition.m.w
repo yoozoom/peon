@@ -20,16 +20,19 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit1">
-   <label class="x-label" xid="label1"><![CDATA[条件1]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input1"></input></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
-   <label class="x-label" xid="label2"><![CDATA[条件2]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input2"></input></div>
-  <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
-   <div class="x-col" xid="col2"><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="查询" xid="button1">
-   <i xid="i1"></i>
-   <span xid="span1">查询</span></a></div>
+    <div class="x-panel-content" xid="content1"><div class="list-group" xid="listGroup2">
+   <div xid="div1" class="list-group-item">
+   <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup2">
+    <span class="input-group-addon" xid="span1"><![CDATA[条件111111]]></span>
+    <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input2" placeHolder="请输入账号"></input></div> </div><div xid="div2" class="list-group-item">
+    <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup1">
+     <span class="input-group-addon" xid="span3"><![CDATA[条件22222]]></span>
+     <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="nameInput" placeHolder="请输入账号"></input></div> </div> 
+   
+   <div xid="div5" class="list-group-item">
+    <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="查询" xid="queryBtn" onClick="queryBtnClick">
+     <i xid="i1"></i>
+     <span xid="span6">查询</span></a> </div> 
    </div></div>
   </div> 
 </div>

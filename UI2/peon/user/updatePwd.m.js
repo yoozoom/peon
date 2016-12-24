@@ -6,10 +6,13 @@ define(function(require){
 		this.callParent();
 	};
 
-	Model.prototype.button1Click = function(event){
-		var indexUrl = "./buy.m.w";
-		justep.Shell.showPage(require.toUrl(indexUrl));
+	Model.prototype.updatePwdBtnClick = function(event){
+		alert("修改密码！");
 	};
 
+	Model.prototype.logoutBtnClick = function(event){
+		alert("退出登录！");
+	};
+	
 	return Model;
 });

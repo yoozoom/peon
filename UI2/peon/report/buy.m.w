@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"> 
+  </div>  
+  <div component="$UI/system/components/justep/panel/panel" 
+    class="x-panel x-full" xid="panel1"> 
+      <div class="x-panel-top" xid="top1"> 
+        <div component="$UI/system/components/justep/titleBar/titleBar" title="收购量图表"
+          class="x-titlebar">
+          <div class="x-titlebar-left"> 
+            <a component="$UI/system/components/justep/button/button"
+              label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
+              onClick="{operation:'window.close'}" xid="backBtn"> 
+              <i class="icon-chevron-left"/>  
+              <span></span> 
+            </a> 
+          </div>  
+          <div class="x-titlebar-title">收购量图表</div>  
+          <div class="x-titlebar-right reverse"> 
+          </div>
+        </div> 
+      </div>  
+    <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
+   <div class="x-col" xid="col1">
+  <select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select1" optionsAutoLoad="false"></select></div>
+   <div class="x-col" xid="col2"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select4" optionsAutoLoad="false"></select></div>
+   <div class="x-col" xid="col3"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select5" optionsAutoLoad="false"></select></div>
+  <div class="x-col" xid="col4"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select6" optionsAutoLoad="false"></select></div></div>
+  <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion1">
+   <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel2">
+    <div class="panel-heading" xid="heading1">
+     <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> </div> 
+    <div class="panel-collapse collapse in" xid="div1">
+     <div class="panel-body" xid="div2"><h4 xid="h43"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div> 
+  <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">
+   <div class="panel-heading" xid="heading2">
+    <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> </div> 
+   <div class="panel-collapse collapse" xid="div3">
+    <div class="panel-body" xid="div4"><h4 xid="h44"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div></div></div>
+  </div> 
+</div>

@@ -6,5 +6,9 @@ define(function(require){
 		this.callParent();
 	};
 
+	Model.prototype.queryBtnClick = function(event){
+
+	};
+
 	return Model;
 });

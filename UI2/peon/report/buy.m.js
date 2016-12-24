@@ -6,10 +6,5 @@ define(function(require){
 		this.callParent();
 	};
 
-	Model.prototype.button1Click = function(event){
-		var indexUrl = "./buy.m.w";
-		justep.Shell.showPage(require.toUrl(indexUrl));
-	};
-
 	return Model;
 });
