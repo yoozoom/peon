@@ -11,6 +11,9 @@ define(function(require){
 				"login" : {
 					url : require.toUrl('login.m.w')
 				},
+				"main" : {
+					url : require.toUrl('main.m.w')
+				},
 				"reportIndex" : {
 					url : require.toUrl('./report/index.m.w')
 				},
@@ -39,7 +42,19 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
-		justep.Shell.showPage("login");
+		// 页面加载，获取保存用户名密码
+		// 如果没有账号和密码则跳转至登录页面
+		var logined = function() {
+			var sessionUc = null;
+			return sessionUc != null;
+		}
+		var logined = logined();
+		if (logined) {
+			justep.Shell.showPage("main");
+		} else {
+			justep.Shell.showPage("login");
+		}
+		
 	};
 
 	return Model;

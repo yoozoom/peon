@@ -11,7 +11,8 @@ define(function(require){
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
-		alert("退出登录！");
+		// clear sessionUc
+		justep.Shell.showPage("login");
 	};
 	
 	return Model;
