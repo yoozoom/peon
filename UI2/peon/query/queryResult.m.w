@@ -24,11 +24,11 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C759CBEF16E00001D0FEB67064A015E6" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1">
+    <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C759CBEF16E00001D0FEB67064A015E6" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1" onPullUp="scrollView1PullUp">
    <div class="x-content-center x-pull-down container" xid="div1">
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
-   <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="4">
+   <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="20">
    <ul class="x-list-template" xid="listTemplateUl1">
     <li xid="li1"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
    <div class="x-col" xid="col1"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("id")'></div></div>

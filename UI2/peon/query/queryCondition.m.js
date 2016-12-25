@@ -7,7 +7,8 @@ define(function(require){
 	};
 
 	Model.prototype.queryBtnClick = function(event){
-		var url = "./queryResult.m.w";
+		//var url = "./queryResult.m.w";
+		var url = "./queryResultTable.m.w";
 		justep.Shell.showPage(require.toUrl(url));
 	};
 
