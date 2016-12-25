@@ -22,7 +22,7 @@
   	<div xid="div6" class="list-group-item" align="center">
   	<span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox1" label="记住账户" checkedValue="1" value="1"></span>
   <i xid="i3"></i>
-  <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox2" label="记住账户及密码" value="1" checkedValue="1"></span></div>
+  </div>
   </div>
   
   </div>

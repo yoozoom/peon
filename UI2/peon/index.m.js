@@ -2,6 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
+	var login = require("$UI/peon/js/login");
+	
 	var Model = function(){
 		this.callParent();
 		
@@ -37,18 +39,13 @@ define(function(require){
 				}
 			}
 		});
-		//shellImpl.setIsSinglePage(true);
 		shellImpl.useDefaultExitHandler = false;
 	};
 	
 	Model.prototype.modelLoad = function(event){
 		// 页面加载，获取保存用户名密码
 		// 如果没有账号和密码则跳转至登录页面
-		var logined = function() {
-			var sessionUc = null;
-			return sessionUc != null;
-		}
-		var logined = logined();
+		var logined = login.checkLogin();
 		if (logined) {
 			justep.Shell.showPage("main");
 		} else {

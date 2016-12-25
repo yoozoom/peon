@@ -1,7 +1,8 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-
+	var login = require("$UI/peon/js/login");
+	
 	var Model = function(){
 		this.callParent();
 	};
@@ -11,8 +12,7 @@ define(function(require){
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
-		// clear sessionUc
-		justep.Shell.showPage("login");
+		login.doLogout();
 	};
 	
 	return Model;
