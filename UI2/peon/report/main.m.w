@@ -62,4 +62,5 @@
     <h4 xid="h42">本月收购排行榜TOP10</h4>
     <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1">
      <ul class="x-list-template" xid="listTemplateUl1">
-      <li xid="li1"></li></ul> </div> </div> </div></div>
+      <li xid="li1"></li></ul> </div> 
+  </div> </div></div>
