@@ -32,7 +32,9 @@
      <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> </div> 
     <div class="panel-collapse collapse in" xid="div1">
      <div class="panel-body" xid="div2"><h4 xid="h43"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div> 
-  <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">
+  </div>
+  <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion2">
+   <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">
    <div class="panel-heading" xid="heading2">
     <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> </div> 
    <div class="panel-collapse collapse" xid="div3">
