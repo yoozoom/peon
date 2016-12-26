@@ -8,10 +8,10 @@
      <div class="x-col" xid="col2">
       <img src="$UI/peon/img/logo.png" alt="" xid="image1" height="133px;"></img></div> </div> 
     <div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
-     <div class="x-col" xid="col4">
+      <div class="x-col" xid="col4">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="收购量" xid="button1" style="height:100%;width:100%;" onClick="button1Click">
-   <i xid="i1"></i>
-   <span xid="span1">收购量</span></a></div> 
+       <i xid="i4"></i>
+       <span xid="span4"></span></a> </div>
      <div class="x-col" xid="col5">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="销售" xid="button2" style="height:100%;width:100%;">
        <i xid="i5"></i>
@@ -24,10 +24,11 @@
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="破碎" xid="button4" style="height:100%;width:100%;">
        <i xid="i7"></i>
        <span xid="span7"></span></a> </div> 
-     <div class="x-col" xid="col8">
+      
+  <div class="x-col" xid="col8">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="盘存" xid="button5" style="height:100%;width:100%;">
        <i xid="i8"></i>
-       <span xid="span8"></span></a> </div> </div> 
+       <span xid="span8"></span></a> </div></div> 
     <h4 xid="h41">总汇信息</h4>
     <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
      <tbody class="x-list-template" xid="listTemplate2">
