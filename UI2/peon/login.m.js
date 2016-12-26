@@ -24,7 +24,7 @@ define(function(require){
 	Model.prototype.modelLoad = function(event){
 		// 页面加载，获取保存用户名密码
 		// 如果只记录了账号则填充账号
-		var un = localStorage.getItem("zpzk_login_user_name");
+		var un = localStorage.getItem(login.unk);
 		if (un) {
 			this.comp('nameInput').val(un);
 			this.comp('nameInput').val('');

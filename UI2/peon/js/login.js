@@ -4,8 +4,11 @@ define(function(require){
 	
 	return {
 		
+		uk:"zpzk_login_user",
+		unk:"zpzk_login_user_name",
+		
 		checkLogin:function() {
-			var su = localStorage.getItem("zpzk_login_user");
+			var su = localStorage.getItem(this.uk);
 			if(!su) return false;
 			
 			try {
@@ -28,20 +31,23 @@ define(function(require){
 			var user = {};
 			user.userName = uname;
 			user.password = pwd;
-			localStorage.setItem("zpzk_login_user", JSON.stringify(user));
+			localStorage.setItem(this.uk, JSON.stringify(user));
 			
 			// 账户，退出登录后根据此来填充默认
 			if (sn == 1) {
-				localStorage.setItem("zpzk_login_user_name", name);
+				localStorage.setItem(this.unk, uname);
+			} else {
+				localStorage.removeItem(this.unk);
 			}
 			
 			if(returnUrl) {
+				//justep.Shell.closePage("login");
 				justep.Shell.showPage(require.toUrl(returnUrl));
 			}
 		},
 		
 		doLogout:function() {
-			localStorage.removeItem("zpzk_login_user");
+			localStorage.removeItem(this.uk);
 			justep.Shell.closePage("main");
 			justep.Shell.showPage("login");
 		}
