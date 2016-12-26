@@ -10,8 +10,8 @@
     <div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
      <div class="x-col" xid="col4">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="收购量" xid="button1" style="height:100%;width:100%;" onClick="button1Click">
-       <i xid="i4"></i>
-       <span xid="span4">收购量</span></a> </div> 
+   <i xid="i1"></i>
+   <span xid="span1">收购量</span></a></div> 
      <div class="x-col" xid="col5">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="销售" xid="button2" style="height:100%;width:100%;">
        <i xid="i5"></i>
