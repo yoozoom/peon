@@ -48,7 +48,7 @@ define(function(require){
 		
 		doLogout:function() {
 			localStorage.removeItem(this.uk);
-			justep.Shell.closePage("main");
+//			justep.Shell.closePage("main");
 			justep.Shell.showPage("login");
 		}
 	}

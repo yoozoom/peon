@@ -48,6 +48,7 @@ define(function(require){
 		var logined = login.checkLogin();
 		if (logined) {
 			justep.Shell.showPage("main");
+			console.log("jump to main!");
 		} else {
 			justep.Shell.showPage("login");
 		}
