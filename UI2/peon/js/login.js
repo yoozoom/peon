@@ -7,48 +7,45 @@ define(function(require){
 		uk:"zpzk_login_user",
 		unk:"zpzk_login_user_name",
 		
-		checkLogin:function() {
+		checkLogin:function(sCallback, fCallback) {
 			var su = localStorage.getItem(this.uk);
-			if(!su) return false;
-			
-			try {
-				var sur = JSON.parse(su);
-				return this.validateUser(sur['userName'], sur['password']);
-			} catch (e) {
+			if(!su) {
+				if (fCallback && typeof fCallback == 'function') fCallback();
 				return false;
 			}
+		
+			try {
+				var sur = JSON.parse(su);
+				var ld = this.validateUser(sur['userName'], sur['password']);
+				if (ld) {
+					if (sCallback && typeof sCallback == 'function') sCallback();
+					return true;
+				}
+			} catch (e) {
+			}
+			if (fCallback && typeof fCallback == 'function') fCallback();
+			return false;
 		},
 		
 		validateUser : function(uname, pwd) {
 			return uname == "admin" && pwd == '1';
 		},
 		
-		doLogin:function(uname, pwd, sn, returnUrl) {
+		doLogin:function(uname, pwd, sCallback) {
 			if(!this.validateUser(uname, pwd)) {
 				alert('错误！用户名或密码有误');
-				return;
-			}
-			var user = {};
-			user.userName = uname;
-			user.password = pwd;
-			localStorage.setItem(this.uk, JSON.stringify(user));
-			
-			// 账户，退出登录后根据此来填充默认
-			if (sn == 1) {
-				localStorage.setItem(this.unk, uname);
-			} else {
-				localStorage.removeItem(this.unk);
+				return false;
 			}
 			
-			if(returnUrl) {
-				//justep.Shell.closePage("login");
-				justep.Shell.showPage(require.toUrl(returnUrl));
+			if(sCallback && typeof sCallback == 'function') {
+				sCallback();
 			}
+			return true;
 		},
 		
 		doLogout:function() {
 			localStorage.removeItem(this.uk);
-			justep.Shell.closePage("main");
+			//justep.Shell.closePage("main");
 			justep.Shell.showPage("login");
 		}
 	}

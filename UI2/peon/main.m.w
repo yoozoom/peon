@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:113px;left:279px;"> 
-  </div>  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:113px;left:279px;" onLoad="modelLoad"> 
+  </div> 
+ 
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/contents/contents" class="x-contents x-full" active="0" xid="contents1">
@@ -16,5 +17,5 @@
    <span xid="span2">报表查询</span></a>
   <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="密码修改" xid="pwdBtn" target="pwdContent">
    <i xid="i3"></i>
-   <span xid="span3">密码修改</span></a></div></div></div> 
+   <span xid="span3">密码修改</span></a></div></div></div>
 </div>

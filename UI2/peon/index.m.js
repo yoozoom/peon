@@ -43,15 +43,14 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
+		
 		// 页面加载，获取保存用户名密码
 		// 如果没有账号和密码则跳转至登录页面
-		var logined = login.checkLogin();
-		if (logined) {
+		login.checkLogin(function() {
 			justep.Shell.showPage("main");
-		} else {
+		}, function() {
 			justep.Shell.showPage("login");
-		}
-		
+		});
 	};
 
 	return Model;

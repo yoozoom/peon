@@ -17,9 +17,24 @@ define(function(require){
 	Model.prototype.loginBtnClick = function(event){
 		var name = this.comp('nameInput').val();
 		var password = this.comp('passwordInput').val();
+		
+		this.comp('passwordInput').val('');
+		
 		var sn = this.comp('checkbox1').val();
-		var indexUrl = require.toUrl("./main.m.w");
-		login.doLogin(name, password, sn, indexUrl);
+		login.doLogin(name, password, function() {
+			var user = {};
+			user.userName = name;
+			user.password = password;
+			localStorage.setItem(this.uk, JSON.stringify(user));
+			
+			// 账户，退出登录后根据此来填充默认
+			if (sn == 1) {
+				localStorage.setItem(login.unk, name);
+			} else {
+				localStorage.removeItem(login.unk);
+			}
+			justep.Shell.showPage("main");
+		});
 	};
 	Model.prototype.modelLoad = function(event){
 		// 页面加载，获取保存用户名密码
