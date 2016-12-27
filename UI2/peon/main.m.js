@@ -6,9 +6,14 @@ define(function(require){
 		this.callParent();
 	};
 
-	Model.prototype.modelLoad = function(event){
-//		alert("main");
+	
+	Model.prototype.modelActive = function(event){
+		this.comp("mainContent").active();
 	};
-
+	
+	Model.prototype.modelLoad = function(event){
+		
+	};
+	
 	return Model;
 });

@@ -12,7 +12,10 @@ define(function(require){
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
-		login.doLogout();
+		var ck = confirm("确认要退出吗？");
+		if (ck) {
+			login.doLogout();
+		}
 	};
 	
 	return Model;

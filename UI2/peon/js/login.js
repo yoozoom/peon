@@ -43,9 +43,9 @@ define(function(require){
 			return true;
 		},
 		
-		doLogout:function() {
+		doLogout:function(callback) {
 			localStorage.removeItem(this.uk);
-			//justep.Shell.closePage("main");
+			if (callback && typeof callback == 'function') callback();
 			justep.Shell.showPage("login");
 		}
 	}
