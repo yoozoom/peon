@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onLoad="modelLoad"> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
@@ -31,7 +31,7 @@
     <div class="panel-heading" xid="heading1">
      <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> </div> 
     <div class="panel-collapse collapse in" xid="div1">
-     <div class="panel-body" xid="div2"><h4 xid="h43"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div> 
+     <div class="panel-body" xid="div2" style="height:400px;"></div></div> </div> 
   </div>
   <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion2">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">
