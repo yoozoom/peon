@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"> 
-  </div>  
+  </div>
+
+<!--需要赋值的组件mainData -->
+<div component="$UI/system/components/justep/data/data"
+    xid="projectData"
+    idColumn="fID" autoLoad="true" onCustomRefresh="projectDataCustomRefresh">
+    <column label="ID" name="fID" type="String" xid="default4"/>
+    <column label="项目ID" name="fValue" type="String" xid="default5"/>
+    <column label="项目显示" name="fName" type="String" xid="default6"/>
+    <data xid="default12">
+        []
+    </data>
+</div>
+  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -21,11 +34,47 @@
         </div> 
       </div>  
     <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
-   <div class="x-col" xid="col1">
-  <select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select1" optionsAutoLoad="false"></select></div>
-   <div class="x-col" xid="col2"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select4" optionsAutoLoad="false"></select></div>
-   <div class="x-col" xid="col3"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select5" optionsAutoLoad="false"></select></div>
-  <div class="x-col" xid="col4"><select component="$UI/system/components/justep/select/select" bind-optionsCaption="请选择..." class="form-control" xid="select6" optionsAutoLoad="false"></select></div></div>
+	<div class="x-col" xid="col2">
+		<select component="$UI/system/components/justep/select/select"
+		    class="form-control"  optionsAutoLoad="true"  bind-optionsCaption="年度"
+		    xid="yearSelect"
+		    bind-optionsValue="fValue"
+		    bind-optionsLabel="fName"
+		    bind-options="$model.getItems('year')" onChange="yearSelectChange">
+		</select>
+	</div>
+	
+   <div class="x-col" xid="col2">
+	   	<select component="$UI/system/components/justep/select/select" bind-optionsCaption="月份" 
+	   		class="form-control"  xid="monthSelect"  optionsAutoLoad="true"
+	   		bind-optionsValue="fValue"
+		    bind-optionsLabel="fName"
+		    bind-options="$model.getItems('month')"
+	   		>
+	   	</select>
+   	</div>
+   	
+   <!-- 子公司下拉框 -->
+   <div class="x-col" xid="col3">
+   		<select component="$UI/system/components/justep/select/select" bind-optionsCaption="子公司" 
+   		class="form-control" xid="companySelect" optionsAutoLoad="false" onChange="companySelectChange"
+   			bind-optionsValue="fValue"
+		    bind-optionsLabel="fName"
+		    bind-options="$model.getItems('company')"
+		>
+   		</select>
+   </div>
+   <!-- 项目下拉框 -->
+  <div class="x-col" xid="col4">
+	  <select component="$UI/system/components/justep/select/select" bind-optionsCaption="项目" 
+	  class="form-control" xid="projectSelect" optionsAutoLoad="false"
+	  bind-optionsValue="fValue"
+    	bind-optionsLabel="fName"
+    	bind-options="projectData"
+	  >
+	  </select>
+	</div>
+</div>
   <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion1">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel2">
     <div class="panel-heading" xid="heading1">
