@@ -9,6 +9,16 @@ define(function(require){
 
 	Model.prototype.updatePwdBtnClick = function(event){
 		alert("修改密码！");
+
+		$.ajax({
+			url : 'http://localhost:9090/peon-server/sso/check?userName=1&password=2',
+			type : 'get',
+			dataType : 'jsonp',
+			jsonpCallback : 'success_jsonpCallback',
+			success : function(data) {
+				console.log(data);
+			}
+		})
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
