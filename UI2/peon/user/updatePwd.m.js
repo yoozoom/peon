@@ -14,7 +14,6 @@ define(function(require){
 			url : 'http://localhost:9090/peon-server/sso/check?userName=1&password=2',
 			type : 'get',
 			dataType : 'jsonp',
-			jsonpCallback : 'success_jsonpCallback',
 			success : function(data) {
 				console.log(data);
 			}
