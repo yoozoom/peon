@@ -10,7 +10,6 @@ define(function(require){
 	};
 
 	Model.prototype.updatePwdBtnClick = function(event){
-		
 		var pwdInput = this.comp("passwordInput").val();
 		if (!pwdInput) {
 			alert("请输入原密码");
