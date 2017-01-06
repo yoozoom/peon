@@ -2,6 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	
+	serverUrl = 'http://localhost:8090';
+	
 	return {
 		
 		uk:"zpzk_login_user",
@@ -11,36 +13,42 @@ define(function(require){
 			var su = localStorage.getItem(this.uk);
 			if(!su) {
 				if (fCallback && typeof fCallback == 'function') fCallback();
-				return false;
+				return;
 			}
-		
-			try {
-				var sur = JSON.parse(su);
-				var ld = this.validateUser(sur['userName'], sur['password']);
-				if (ld) {
-					if (sCallback && typeof sCallback == 'function') sCallback();
-					return true;
-				}
-			} catch (e) {
-			}
-			if (fCallback && typeof fCallback == 'function') fCallback();
-			return false;
+			
+			this.validateUser(JSON.parse(su), sCallback, fCallback);
 		},
 		
-		validateUser : function(uname, pwd) {
-			return uname == "admin" && pwd == '1';
+		validateUser : function(user, sCallback, fCallback) {
+			$.ajax({
+				  url: serverUrl + '/sso/check?userName=' + user['userName'] + '&password=' + user['password'],
+				  type:'get',
+				  dataType:'jsonp',
+				  success:function(data) {
+					  console.log(data);
+					  if(data.success) {
+						  if (sCallback && typeof sCallback == 'function')
+							  sCallback(data);
+					  } else {
+						  if (fCallback && typeof fCallback == 'function')
+							  fCallback(data);
+					  }
+				  },
+				  error:function() {
+					  console.log('系统异常');
+					  alert('系统异常, 请稍后再试');
+				  }
+				})
 		},
 		
 		doLogin:function(uname, pwd, sCallback) {
-			if(!this.validateUser(uname, pwd)) {
-				alert('错误！用户名或密码有误');
-				return false;
-			}
-			
-			if(sCallback && typeof sCallback == 'function') {
-				sCallback();
-			}
-			return true;
+			var usr = {
+				'userName':uname,
+				'password':pwd
+			};
+			this.validateUser(usr, sCallback, function(data) {
+				alert(data.message);
+			});
 		},
 		
 		doLogout:function(callback) {

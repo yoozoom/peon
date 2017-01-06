@@ -25,7 +25,7 @@ define(function(require){
 			var user = {};
 			user.userName = name;
 			user.password = password;
-			localStorage.setItem(this.uk, JSON.stringify(user));
+			localStorage.setItem(login.uk, JSON.stringify(user));
 			
 			// 账户，退出登录后根据此来填充默认
 			if (sn == 1) {
