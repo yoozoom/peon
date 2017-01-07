@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"> 
-  </div>  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:131px;left:126px;"> 
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="topListData" idColumn="gsdm"><column name="sgl" type="Double" xid="xid1"></column>
+  <column name="gsmc" type="String" xid="xid8"></column>
+  <column name="gsdm" type="String" xid="xid9"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
    <div class="x-panel-content" xid="content2">
     <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
@@ -61,7 +63,10 @@
         <span xid="span23">本月盘存总量</span>
         <span xid="span22"></span></td> </tr> </tbody> </table> 
     <h4 xid="h42">本月收购排行榜TOP10</h4>
-    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1">
+    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="topListData">
      <ul class="x-list-template" xid="listTemplateUl1">
-      <li xid="li1"></li></ul> </div> 
+      <li xid="li1"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
+   <div class="x-col" xid="col10"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output4" bind-ref='ref("gsmc")'></div></div>
+   <div class="x-col" xid="col11"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output5" bind-ref='ref("gsdm")'></div></div>
+   <div class="x-col" xid="col12"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output6" bind-ref='ref("sgl")'></div></div></div></li></ul> </div> 
   </div> </div></div>
