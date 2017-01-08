@@ -34,7 +34,7 @@ define(function(require){
 							  fCallback(data);
 					  }
 				  },
-				  error:function() {
+				  error:function(data) {
 					  console.log('系统异常');
 					  alert('系统异常, 请稍后再试');
 				  }

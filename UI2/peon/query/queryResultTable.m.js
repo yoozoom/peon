@@ -5,6 +5,7 @@ define(function(require){
 	
 	var isEnd = false;
 	var downCount = 0;
+	var total = 0;
 
 	var Model = function(){
 		this.callParent();
@@ -38,6 +39,10 @@ define(function(require){
 		}
 		
 		downCount++;
+	};
+
+	Model.prototype.modelLoad = function(event){
+		
 	};
 
 	return Model;

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
 
+<!--需要赋值的组件mainData -->
+<div component="$UI/system/components/justep/data/data"
+    xid="companyData"
+    idColumn="fID" autoLoad="true" onCustomRefresh="companyDataCustomRefresh">
+    <column label="ID" name="fID" type="String" xid="default7"/>
+    <column label="公司ID" name="fValue" type="String" xid="default8"/>
+    <column label="公司显示" name="fName" type="String" xid="default9"/>
+    <data xid="default11">
+        []
+    </data>
+</div>
 
 <!--需要赋值的组件mainData -->
 <div component="$UI/system/components/justep/data/data"
@@ -14,7 +25,7 @@
     </data>
 </div>
   
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:275px;left:15px;height:auto;" onLoad="modelLoad"> 
   </div>  
 
   <div component="$UI/system/components/justep/panel/panel" 
@@ -62,7 +73,7 @@
    		class="form-control" xid="companySelect" optionsAutoLoad="false" onChange="companySelectChange"
    			bind-optionsValue="fValue"
 		    bind-optionsLabel="fName"
-		    bind-options="$model.getItems('company')"
+		    bind-options="companyData"
 		>
    		</select>
    </div>

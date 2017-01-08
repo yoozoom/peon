@@ -3,41 +3,25 @@ define(function(require){
 	var justep = require("$UI/system/lib/justep");
 	var echarts = require("$UI/peon/echarts/dist/echarts.min");
 
+	serverUrl = 'http://localhost:8090';
+	
 	var json = {
-	    	year:[
-		        {"fValue":"2016","fName":"2016"},
-		        {"fValue":"2015","fName":"2015"},
-		        {"fValue":"2014","fName":"2014"},
-		        {"fValue":"2013","fName":"2013"},
-		        {"fValue":"2012","fName":"2012"}
-	        ],
-	        month:[
-	            {"fValue":"1","fName":"1"},
-	            {"fValue":"2","fName":"2"},
-	            {"fValue":"3","fName":"3"},
-	            {"fValue":"4","fName":"4"},
-	            {"fValue":"5","fName":"5"},
-	            {"fValue":"6","fName":"6"},
-	            {"fValue":"7","fName":"7"},
-	            {"fValue":"8","fName":"8"},
-	            {"fValue":"9","fName":"9"},
-	            {"fValue":"10","fName":"10"},
-	            {"fValue":"11","fName":"11"},
-	            {"fValue":"12","fName":"12"}
-	        ],
-	        company:[
-                {"fValue":"0001","fName":"公司1"},
-                {"fValue":"0002","fName":"公司2"},
-                {"fValue":"0003","fName":"公司3"}
-	        ],
-	        project:[
-	            {"fValue":"1001","fName":"1-项目1", fCompany:'0001'},
-	            {"fValue":"1002","fName":"1-项目2", fCompany:'0001'},
-	            {"fValue":"2001","fName":"2-项目1", fCompany:'0002'},
-	            {"fValue":"2002","fName":"2-项目2", fCompany:'0002'},
-	            {"fValue":"3001","fName":"3-项目1", fCompany:'0003'},
-	            {"fValue":"3002","fName":"3-项目2", fCompany:'0003'}
-	        ]
+	    	year:function() {
+	    		var date = new Date();
+	    		var year = date.getFullYear();
+	    		var years = [];
+	    		for (var i = 0; i < 5; i++) {
+	    			years.push({'fValue':year - i, 'fName':year - i});
+	    		}
+	    		return years;
+	    	}(),
+	        month:function() {
+	        	var months = [];
+	        	for (var i = 1; i <= 12; i++) {
+	        		months.push({'fValue':i, 'fName':i});
+	    		}
+	        	return months;
+	        }()
 	    };
 
 	var Model = function(){
@@ -53,27 +37,50 @@ define(function(require){
 	};
 	
 	Model.prototype.companySelectChange = function(event){
-		this.comp('projectData').refreshData();
 		this.comp('projectSelect').val('');
+		this.comp('projectData').refreshData();
 	};
 
 	Model.prototype.projectDataCustomRefresh = function(event){
-		var m = [];
+		var datadm = event.source;
+		var projects = [];
 		var y = this.comp("companySelect").val();
 		if (y) {
-			$.each(json.project, function(i, e) {
-				if (y == e.fCompany) {
-					m.push(e);
+			$.ajax({
+				url:serverUrl + '/project/queryProject?gsdm=' + y,
+				type:'get',
+				dataType:'jsonp',
+				success:function(data) {
+					$.each(data, function(i, c) {
+						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
+					})
+					datadm.loadData(projects);
 				}
 			})
+		}else {
+			datadm.loadData(projects);
 		}
-		var data = event.source;
-		data.loadData(m);
 	}
-
-	Model.prototype.modelLoad = function(event){
-		var totalDiv = this.getElementByXid('div2');
-		var parentDiv = this.getElementByXid('div1');
+	
+	Model.prototype.companyDataCustomRefresh = function(event){
+		$.ajax({
+			url:serverUrl + '/company/queryCompany',
+			type:'get',
+			dataType:'jsonp',
+			success:function(data) {
+				var companys = []; 
+				$.each(data, function(i, c) {
+					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
+				})
+				var data = event.source;
+				data.loadData(companys);
+			}
+		})
+	};
+	
+	var initProjectDetail = function(jqe) {
+		var totalDiv = jqe.getElementByXid('div2');
+		var parentDiv = jqe.getElementByXid('div1');
 	
 		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
 		var resizeContainer = function () {
@@ -84,7 +91,6 @@ define(function(require){
 		//设置容器高宽
 		resizeContainer();
 	
-		
 		var colors = ['#5793f3', '#d14a61', '#675bba'];
 		
 		var option = {
@@ -204,6 +210,13 @@ define(function(require){
 		    resizeContainer();
 		    myChart.resize();
 		};
+	}
+	
+	Model.prototype.modelLoad = function(event){
+		
+		this.comp('companyData').refreshData();
+		initProjectDetail(this);
+		
 	};
 
 	return Model;
