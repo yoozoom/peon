@@ -2,7 +2,7 @@
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
 
 <!--需要赋值的组件mainData -->
-<div component="$UI/system/components/justep/data/data"
+<!-- <div component="$UI/system/components/justep/data/data"
     xid="companyData"
     idColumn="fID" autoLoad="true" onCustomRefresh="companyDataCustomRefresh">
     <column label="ID" name="fID" type="String" xid="default7"/>
@@ -11,10 +11,10 @@
     <data xid="default11">
         []
     </data>
-</div>
+</div> -->
 
 <!--需要赋值的组件mainData -->
-<div component="$UI/system/components/justep/data/data"
+<!-- <div component="$UI/system/components/justep/data/data"
     xid="projectData"
     idColumn="fID" autoLoad="true" onCustomRefresh="projectDataCustomRefresh">
     <column label="ID" name="fID" type="String" xid="default4"/>
@@ -23,7 +23,7 @@
     <data xid="default12">
         []
     </data>
-</div>
+</div> -->
   
   <div component="$UI/system/components/justep/model/model" xid="model" style="top:275px;left:15px;height:auto;" onLoad="modelLoad"> 
   </div>  
@@ -63,11 +63,11 @@
 	   		bind-optionsValue="fValue"
 		    bind-optionsLabel="fName"
 		    bind-options="$model.getItems('month')"
-	   		>
+	   		onChange="monthSelectChange">
 	   	</select>
    	</div>
    	
-   <!-- 子公司下拉框 -->
+   <!-- 子公司下拉框
    <div class="x-col" xid="col3">
    		<select component="$UI/system/components/justep/select/select" bind-optionsCaption="子公司" 
    		class="form-control" xid="companySelect" optionsAutoLoad="false" onChange="companySelectChange"
@@ -77,7 +77,7 @@
 		>
    		</select>
    </div>
-   <!-- 项目下拉框 -->
+   项目下拉框
   <div class="x-col" xid="col4">
 	  <select component="$UI/system/components/justep/select/select" bind-optionsCaption="项目" 
 	  class="form-control" xid="projectSelect" optionsAutoLoad="false"
@@ -86,7 +86,7 @@
     	bind-options="projectData"
 	  >
 	  </select>
-	</div>
+	</div> -->
 </div>
   <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion1">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel2">
