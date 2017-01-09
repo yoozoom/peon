@@ -43,7 +43,9 @@
           </div>  
           <div class="x-titlebar-title">收购量图表</div>  
           <div class="x-titlebar-right reverse"> 
-          </div>
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link" label="查询" xid="searchBtn" icon="linear linear-textsize">
+   <i xid="i1" class="linear linear-textsize"></i>
+   <span xid="span1">查询</span></a></div>
         </div> 
       </div>  
     <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
