@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:131px;left:126px;"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:131px;left:126px;" onLoad="modelLoad" onModelConstructDone="modelModelConstructDone" onActive="modelActive"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="topListData" idColumn="gsdm"><column name="sgl" type="Double" xid="xid1"></column>
   <column name="gsmc" type="String" xid="xid8"></column>
   <column name="gsdm" type="String" xid="xid9"></column></div></div>  
@@ -37,7 +37,8 @@
       <tr xid="tr4">
        <td xid="td2">
         <span xid="span17">本月收购总量</span>
-        <span xid="span19"></span></td> 
+        <span xid="span1"></span>
+  </td> 
        <td xid="td3">
         <span xid="span20">本月销售总量</span>
         <span xid="span21"></span></td> </tr> 

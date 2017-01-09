@@ -4,6 +4,8 @@ define(function(require){
 	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
 	var login = require("$UI/peon/js/login");
 	
+	window.globalServerDomain = "http://localhost:8090/peon-server/";
+	
 	var Model = function(){
 		this.callParent();
 	};
