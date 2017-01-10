@@ -90,7 +90,12 @@
 	  </select>
 	</div> -->
 </div>
-  <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion1">
+  <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion3">
+   <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel5">
+    <div class="panel-heading" xid="heading3">
+     <h4 class="panel-title" xid="h43"><![CDATA[年度]]></h4></div> 
+    <div class="panel-collapse collapse in" xid="div6">
+     <div class="panel-body" xid="div5" style="height:400px;"></div></div> </div> </div><div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion1">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel2">
     <div class="panel-heading" xid="heading1">
      <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> </div> 
@@ -102,6 +107,7 @@
    <div class="panel-heading" xid="heading2">
     <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> </div> 
    <div class="panel-collapse collapse" xid="div3">
-    <div class="panel-body" xid="div4"><h4 xid="h44"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div></div></div>
+    <div class="panel-body" xid="div4"><h4 xid="h44"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div></div>
+  </div>
   </div> 
 </div>
