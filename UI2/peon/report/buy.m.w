@@ -43,7 +43,7 @@
           </div>  
           <div class="x-titlebar-title">收购量图表</div>  
           <div class="x-titlebar-right reverse"> 
-          <a component="$UI/system/components/justep/button/button" class="btn btn-link" label="查询" xid="searchBtn" icon="linear linear-textsize">
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link" label="查询" xid="searchBtn" icon="linear linear-textsize" onClick="searchBtnClick">
    <i xid="i1" class="linear linear-textsize"></i>
    <span xid="span1">查询</span></a></div>
         </div> 
@@ -100,7 +100,7 @@
     <div class="panel-heading" xid="heading1">
      <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> </div> 
     <div class="panel-collapse collapse in" xid="div1">
-     <div class="panel-body" xid="div2" style="height:400px;"></div></div> </div> 
+     <div class="panel-body" xid="div2" style="height:800px;"></div></div> </div> 
   </div>
   <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion2">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">

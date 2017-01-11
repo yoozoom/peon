@@ -6,6 +6,8 @@ define(function(require){
 
 	serverUrl = 'http://localhost:8090';
 	
+	var sglItemData = ['收购量','加权水分', '热值单价'];
+	
 	var json = {
 	    	year:function() {
 	    		var date = new Date();
@@ -78,6 +80,17 @@ define(function(require){
 //			}
 //		})
 //	};
+
+	// 获取比较大值
+	var getMax = function (item, max) {
+		if (!max) {
+			max = item;
+		} 
+		if (max < item) {
+			max = item;
+		}
+		return max;
+	}
 	
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
@@ -96,18 +109,8 @@ define(function(require){
 		})
 	};
 	
-	var getMax = function (item, max) {
-		if (!max) {
-			max = item;
-		} 
-		if (max < item) {
-			max = item;
-		}
-		return max;
-	}
-	
 	var buildYearBuyEcharts = function(data, ctx) {
-	
+		// 构建数据
 		var years = [];
 		var sjl = []; var maxsjl = null;
 		var sjsf = []; var maxsjsf = null;
@@ -127,6 +130,7 @@ define(function(require){
 		var ysjsf = (maxsjsf * 1.3);
 		var ysjrz = (maxsjrz * 1.3);
 
+		// 目标div
 		var totalDiv = ctx.getElementByXid('div5');
 		var parentDiv = ctx.getElementByXid('div6');
 	
@@ -138,11 +142,26 @@ define(function(require){
 		
 		//设置容器高宽
 		resizeContainer();
-	
-		var colors = ['#5793f3', '#d14a61', '#675bba'];
 		
+		var option = getYearBuyOption(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz);
+	    var myChart = echarts.init(totalDiv);
+	    myChart.setOption(option);
+	    
+	    //用于使chart自适应高度和宽度
+		window.onresize = function() {
+		    //重置容器高宽
+		    resizeContainer();
+		    myChart.resize();
+		};
+		
+		var myChart = echarts.init(totalDiv);
+		myChart.setOption(option);
+	};
+	
+	
+	var getYearBuyOption = function(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz) {
+		var colors = ['#5793f3', '#d14a61', '#675bba'];
 		var option = {
-		    color: colors,
 		    title: {
 		    	text:'各年度燃料收购量质价',
 		    	x:'center'
@@ -153,16 +172,9 @@ define(function(require){
 		    grid: {
 		        right: '20%'
 		    },
-		    toolbox: {
-		        feature: {
-		            dataView: {show: true, readOnly: false},
-		            restore: {show: true},
-		            saveAsImage: {show: true}
-		        }
-		    },
 		    legend: {
 		    	left:'left',
-		        data:['收购量','加权水分', '热值单价']
+		        data:sglItemData
 		    },
 		    xAxis: [
 		        {
@@ -230,24 +242,76 @@ define(function(require){
 		    ],
 		    series: [
 		        {
-		            name:'收购量',
+		            name:sglItemData[0],
 		            type:'bar',
 		            data: sjl
 		        },
 		        {
-		            name:'加权水分',
+		            name:sglItemData[1],
 		            type:'bar',
 		            yAxisIndex: 2,
 		            data:sjsf
 		        },
 		        {
-		            name:'热值单价',
+		            name:sglItemData[2],
 		            type:'bar',
 		            yAxisIndex: 1,
 		            data:sjrz
 		        }
 		    ]
 		};
+		return option;
+	};
+	
+	// 各项目线图
+	var loadProjectBuy = function(param, ctx) {
+		var date = global.getNowYearMonth();
+		date = "201609";
+		$.ajax({
+			url : global.serverDomain + 'sgl/eachProject?date=' + date,
+			type : 'get',
+			dataType : 'jsonp',
+			success : function(data) {
+				console.log(data);
+				if (data.success) {
+					buildProjectBuyEcharts(data.data, ctx);
+				} else {
+
+				}
+			}
+		})
+	};
+	
+	var buildProjectBuyEcharts = function(data, ctx) {
+		// 基础数据准备
+		var dataSize = data.length;
+		var chartsHeight = dataSize * 19;
+		
+		var projects = [];
+		var sjl = [];
+		var sjsf = []; 
+		var sjrz = []; 
+		$.each(data, function(i, c) {
+			projects.push(c.xmbmc);
+			sjl.push(c.sjl);
+			sjsf.push(c.sjsf);
+			sjrz.push(c.sjrz);
+		});
+
+		var totalDiv = ctx.getElementByXid('div2');
+		totalDiv.style.height = chartsHeight + "px";	// 动态设置div高度
+		var parentDiv = ctx.getElementByXid('div1');
+	
+		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+		var resizeContainer = function () {
+		    totalDiv.style.width = parentDiv.clientWidth+'px';
+		    totalDiv.style.height = parentDiv.clientHeight+'px';
+		};
+		
+		//设置容器高宽
+		resizeContainer();
+		
+		var option = getProjectBuyOption(projects, sjl, sjsf, sjrz);
 	    var myChart = echarts.init(totalDiv);
 	    myChart.setOption(option);
 	    
@@ -259,12 +323,65 @@ define(function(require){
 		};
 		
 		var myChart = echarts.init(totalDiv);
-		myChart.setOption(option);
-	}
+		myChart.setOption(option);	
+	};
+	
+	//
+	var getProjectBuyOption = function(projects, sjl, sjsf, sjrz) {
+		var option = {
+		    title: {
+		        text: '各项目收购量',
+		    },
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'shadow'
+		        }
+		    },
+		    legend: {
+		        data: sglItemData
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    xAxis: {
+		        type: 'value',
+		        position: 'top',
+		        boundaryGap: [0, 0.01]
+		    },
+		    yAxis: {
+		        type: 'category',
+		        data: projects
+		    },
+		    series: [
+		        {
+		            name: sglItemData[0],
+		            type: 'bar',
+		            data: sjl
+		        },
+		        {
+		            name: sglItemData[1],
+		            type: 'bar',
+		            data: sjsf
+		        },
+		        {
+		            name: sglItemData[2],
+		            type: 'bar',
+		            data: sjrz
+		        }
+		    ]
+		};
+		return option;
+	};
 	
 	Model.prototype.modelLoad = function(event){
 	
 		loadYearBuy(this);
+		var param = {};	//选择获取
+		loadProjectBuy(param, this);
 		
 //		this.comp('companyData').refreshData();
 
@@ -428,6 +545,10 @@ define(function(require){
 		// 各年度燃料收购量质价sql语句
 		
 		
+	};
+
+	Model.prototype.searchBtnClick = function(event){
+		alert("search loading.....");
 	};
 
 	return Model;
