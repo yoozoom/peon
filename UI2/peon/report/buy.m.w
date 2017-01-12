@@ -106,8 +106,11 @@
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel3">
    <div class="panel-heading" xid="heading2">
     <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> </div> 
-   <div class="panel-collapse collapse" xid="div3">
-    <div class="panel-body" xid="div4"><h4 xid="h44"><![CDATA[xxxx图-以后用图表替换掉]]></h4></div></div> </div></div>
+   	<div class="panel-collapse collapse in" xid="div3">
+    <div class="panel-body" xid="div4" style="height:200px;"></div>
+  <div class="panel-body" xid="div7"></div></div>
+    </div>
+  </div>
   </div>
   </div> 
 </div>

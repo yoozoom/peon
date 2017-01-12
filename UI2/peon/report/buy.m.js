@@ -377,11 +377,154 @@ define(function(require){
 		return option;
 	};
 	
+	// 第一个饼图
+	var loadCategoryBuy = function(param, ctx) {
+		var date = global.getNowYearMonth();
+		date = "201609";
+//		$.ajax({
+//			url : global.serverDomain + 'sgl/eachCategory?date=' + date,
+//			type : 'get',
+//			dataType : 'jsonp',
+//			success : function(data) {
+//				console.log(data);
+//				if (data.success) {
+//					buildCategoryBuyEcharts(data.data, ctx);
+//				} else {
+//
+//				}
+//			}
+//		});
+		var url = global.serverDomain + 'sgl/eachCategory?date=' + date;
+		loadAjaxData(url, param, ctx, buildCategoryBuyEcharts);
+	};
+	
+	var buildCategoryBuyEcharts = function(data, ctx) {
+		buildPieEcharts(data, ctx, "div4", "div3");	
+	};
+	
+	var getPieBuyOption = function(itemNames, items) {
+		var option = {
+		    title : {
+		        text: '饼图1',
+		        x:'left'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        //orient: 'vertical',
+		        left: 'center',
+		        data: itemNames
+		    },
+		    series : [
+		        {
+		            name: '访问来源',
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:items,
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		};
+		return option;
+	};
+	
+	// 第2个饼图
+	var loadNameBuy = function(param, ctx) {
+		var date = global.getNowYearMonth();
+		date = "201609";
+//		$.ajax({
+//			url : global.serverDomain + 'sgl/eachName?date=' + date,
+//			type : 'get',
+//			dataType : 'jsonp',
+//			success : function(data) {
+//				console.log(data);
+//				if (data.success) {
+//					buildNameBuyEcharts(data.data, ctx);
+//				} else {
+//
+//				}
+//			}
+//		});
+		var url = global.serverDomain + 'sgl/eachName?date=' + date;
+		loadAjaxData(url, param, ctx, buildNameBuyEcharts);
+	};
+	
+	// 功能ajax请求
+	var loadAjaxData = function(url, param, ctx, successCallBack) {
+		$.ajax({
+			url : url,
+			type : 'get',
+			dataType : 'jsonp',
+			success : function(data) {
+				console.log(data);
+				if (data.success) {
+					successCallBack(data.data, ctx);
+				} else {
+
+				}
+			}
+		});	
+	};
+	
+	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId) {
+		// 基础数据准备		
+		var itemNames = [];
+		var items = [];
+		$.each(data, function(i, c) {
+			itemNames.push(c.sjmc);
+			var item = {};
+			item.name = c.sjmc;
+			item.value = c.sjl;
+			items.push(item);
+		});
+
+		var totalDiv = ctx.getElementByXid(pieDivId);
+		var parentDiv = ctx.getElementByXid(parentDivId);
+	
+		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+		var resizeContainer = function () {
+		    totalDiv.style.width = parentDiv.clientWidth+'px';
+		    totalDiv.style.height = parentDiv.clientHeight+'px';
+		};
+		
+		//设置容器高宽
+		resizeContainer();
+		
+		var option = getPieBuyOption(itemNames, items);
+	    var myChart = echarts.init(totalDiv);
+	    myChart.setOption(option);
+	    
+	    //用于使chart自适应高度和宽度
+		window.onresize = function() {
+		    //重置容器高宽
+		    resizeContainer();
+		    myChart.resize();
+		};
+		
+		var myChart = echarts.init(totalDiv);
+		myChart.setOption(option);
+	}
+	
+	var buildNameBuyEcharts = function(data, ctx) {
+		buildPieEcharts(data, ctx, "div7", "div3");
+	};
+	
 	Model.prototype.modelLoad = function(event){
 	
 		loadYearBuy(this);
 		var param = {};	//选择获取
 		loadProjectBuy(param, this);
+		loadCategoryBuy(param, this);
+		loadNameBuy(param, this);
 		
 //		this.comp('companyData').refreshData();
 
