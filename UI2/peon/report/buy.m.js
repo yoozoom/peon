@@ -81,32 +81,26 @@ define(function(require){
 //		})
 //	};
 
-	// 获取比较大值
-	var getMax = function (item, max) {
-		if (!max) {
-			max = item;
-		} 
-		if (max < item) {
-			max = item;
-		}
-		return max;
-	}
 	
+	// 第1个图开始------------------------------------
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
-		$.ajax({
-			url : global.serverDomain + 'sgl/eachYear',
-			type : 'get',
-			dataType : 'jsonp',
-			success : function(data) {
-				console.log(data);
-				if (data.success) {
-					buildYearBuyEcharts(data.data, ctx);
-				} else {
-
-				}
-			}
-		})
+//		$.ajax({
+//			url : global.serverDomain + 'sgl/eachYear',
+//			type : 'get',
+//			dataType : 'jsonp',
+//			success : function(data) {
+//				console.log(data);
+//				if (data.success) {
+//					buildYearBuyEcharts(data.data, ctx);
+//				} else {
+//
+//				}
+//			}
+//		});
+		var param = {};
+		var url = global.serverDomain + 'sgl/eachYear',
+		loadAjaxData(url, param, ctx, buildYearBuyEcharts);
 	};
 	
 	var buildYearBuyEcharts = function(data, ctx) {
@@ -129,35 +123,10 @@ define(function(require){
 		var ysjl = (maxsjl * 1.3);
 		var ysjsf = (maxsjsf * 1.3);
 		var ysjrz = (maxsjrz * 1.3);
-
-		// 目标div
-		var totalDiv = ctx.getElementByXid('div5');
-		var parentDiv = ctx.getElementByXid('div6');
-	
-		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-		var resizeContainer = function () {
-		    totalDiv.style.width = parentDiv.clientWidth+'px';
-		    totalDiv.style.height = parentDiv.clientHeight+'px';
-		};
-		
-		//设置容器高宽
-		resizeContainer();
-		
 		var option = getYearBuyOption(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz);
-	    var myChart = echarts.init(totalDiv);
-	    myChart.setOption(option);
-	    
-	    //用于使chart自适应高度和宽度
-		window.onresize = function() {
-		    //重置容器高宽
-		    resizeContainer();
-		    myChart.resize();
-		};
-		
-		var myChart = echarts.init(totalDiv);
-		myChart.setOption(option);
+
+		buildBaseEcharts("div5", "div6", ctx, option);
 	};
-	
 	
 	var getYearBuyOption = function(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz) {
 		var colors = ['#5793f3', '#d14a61', '#675bba'];
@@ -262,24 +231,28 @@ define(function(require){
 		};
 		return option;
 	};
+	// 第1个图结束------------------------------------
 	
 	// 各项目线图
+	// 第2个图开始------------------------------------
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.getNowYearMonth();
 		date = "201609";
-		$.ajax({
-			url : global.serverDomain + 'sgl/eachProject?date=' + date,
-			type : 'get',
-			dataType : 'jsonp',
-			success : function(data) {
-				console.log(data);
-				if (data.success) {
-					buildProjectBuyEcharts(data.data, ctx);
-				} else {
-
-				}
-			}
-		})
+//		$.ajax({
+//			url : global.serverDomain + 'sgl/eachProject?date=' + date,
+//			type : 'get',
+//			dataType : 'jsonp',
+//			success : function(data) {
+//				console.log(data);
+//				if (data.success) {
+//					buildProjectBuyEcharts(data.data, ctx);
+//				} else {
+//
+//				}
+//			}
+//		});
+		var url = global.serverDomain + 'sgl/eachProject?date=' + date,
+		loadAjaxData(url, param, ctx, buildProjectBuyEcharts);
 	};
 	
 	var buildProjectBuyEcharts = function(data, ctx) {
@@ -297,33 +270,11 @@ define(function(require){
 			sjsf.push(c.sjsf);
 			sjrz.push(c.sjrz);
 		});
-
+		var option = getProjectBuyOption(projects, sjl, sjsf, sjrz);
+		
 		var totalDiv = ctx.getElementByXid('div2');
 		totalDiv.style.height = chartsHeight + "px";	// 动态设置div高度
-		var parentDiv = ctx.getElementByXid('div1');
-	
-		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-		var resizeContainer = function () {
-		    totalDiv.style.width = parentDiv.clientWidth+'px';
-		    totalDiv.style.height = parentDiv.clientHeight+'px';
-		};
-		
-		//设置容器高宽
-		resizeContainer();
-		
-		var option = getProjectBuyOption(projects, sjl, sjsf, sjrz);
-	    var myChart = echarts.init(totalDiv);
-	    myChart.setOption(option);
-	    
-	    //用于使chart自适应高度和宽度
-		window.onresize = function() {
-		    //重置容器高宽
-		    resizeContainer();
-		    myChart.resize();
-		};
-		
-		var myChart = echarts.init(totalDiv);
-		myChart.setOption(option);	
+		buildBaseEcharts("div2", "div1", ctx, option);
 	};
 	
 	//
@@ -376,8 +327,10 @@ define(function(require){
 		};
 		return option;
 	};
+	// 第2个图结束------------------------------------
 	
 	// 第一个饼图
+	// 第3个图开始------------------------------------
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.getNowYearMonth();
 		date = "201609";
@@ -401,6 +354,110 @@ define(function(require){
 	var buildCategoryBuyEcharts = function(data, ctx) {
 		buildPieEcharts(data, ctx, "div4", "div3");	
 	};
+	
+	// 第3个图结束------------------------------------
+	
+	// 第2个饼图
+	// 第4个图开始------------------------------------
+	var loadNameBuy = function(param, ctx) {
+		var date = global.getNowYearMonth();
+		date = "201609";
+//		$.ajax({
+//			url : global.serverDomain + 'sgl/eachName?date=' + date,
+//			type : 'get',
+//			dataType : 'jsonp',
+//			success : function(data) {
+//				console.log(data);
+//				if (data.success) {
+//					buildNameBuyEcharts(data.data, ctx);
+//				} else {
+//
+//				}
+//			}
+//		});
+		var url = global.serverDomain + 'sgl/eachName?date=' + date;
+		loadAjaxData(url, param, ctx, buildNameBuyEcharts);
+	};
+	
+	var buildNameBuyEcharts = function(data, ctx) {
+		buildPieEcharts(data, ctx, "div7", "div3");
+	};
+	// 第4个图结束------------------------------------
+	
+	// ------------- common method ------------------
+	// 获取比较大值
+	var getMax = function(item, max) {
+		if (!max) {
+			max = item;
+		} 
+		if (max < item) {
+			max = item;
+		}
+		return max;
+	}
+	
+	// 功能ajax请求
+	var loadAjaxData = function(url, param, ctx, successCallBack) {
+		$.ajax({
+			url : url,
+			type : 'get',
+			dataType : 'jsonp',
+			success : function(data) {
+				console.log(data);
+				if (data.success) {
+					successCallBack(data.data, ctx);
+				} else {
+
+				}
+			}
+		});	
+	};
+	
+	// 柱状图
+	var buildBaseEcharts = function(eid, pid, ctx, option) {
+		// 目标div
+		var totalDiv = ctx.getElementByXid(eid);
+		var parentDiv = ctx.getElementByXid(pid);
+	
+		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+		var resizeContainer = function () {
+		    totalDiv.style.width = parentDiv.clientWidth+'px';
+		    totalDiv.style.height = parentDiv.clientHeight+'px';
+		};
+		
+		//设置容器高宽
+		resizeContainer();
+		
+	    var myChart = echarts.init(totalDiv);
+	    myChart.setOption(option);
+	    
+	    //用于使chart自适应高度和宽度
+		window.onresize = function() {
+		    //重置容器高宽
+		    resizeContainer();
+		    myChart.resize();
+		};
+		
+		var myChart = echarts.init(totalDiv);
+		myChart.setOption(option);
+	};
+	
+	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId) {
+		// 基础数据准备		
+		var itemNames = [];
+		var items = [];
+		$.each(data, function(i, c) {
+			itemNames.push(c.sjmc);
+			var item = {};
+			item.name = c.sjmc;
+			item.value = c.sjl;
+			items.push(item);
+		});
+		
+		var option = getPieBuyOption(itemNames, items);
+
+		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
+	}
 	
 	var getPieBuyOption = function(itemNames, items) {
 		var option = {
@@ -437,87 +494,8 @@ define(function(require){
 		return option;
 	};
 	
-	// 第2个饼图
-	var loadNameBuy = function(param, ctx) {
-		var date = global.getNowYearMonth();
-		date = "201609";
-//		$.ajax({
-//			url : global.serverDomain + 'sgl/eachName?date=' + date,
-//			type : 'get',
-//			dataType : 'jsonp',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.success) {
-//					buildNameBuyEcharts(data.data, ctx);
-//				} else {
-//
-//				}
-//			}
-//		});
-		var url = global.serverDomain + 'sgl/eachName?date=' + date;
-		loadAjaxData(url, param, ctx, buildNameBuyEcharts);
-	};
 	
-	// 功能ajax请求
-	var loadAjaxData = function(url, param, ctx, successCallBack) {
-		$.ajax({
-			url : url,
-			type : 'get',
-			dataType : 'jsonp',
-			success : function(data) {
-				console.log(data);
-				if (data.success) {
-					successCallBack(data.data, ctx);
-				} else {
-
-				}
-			}
-		});	
-	};
-	
-	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId) {
-		// 基础数据准备		
-		var itemNames = [];
-		var items = [];
-		$.each(data, function(i, c) {
-			itemNames.push(c.sjmc);
-			var item = {};
-			item.name = c.sjmc;
-			item.value = c.sjl;
-			items.push(item);
-		});
-
-		var totalDiv = ctx.getElementByXid(pieDivId);
-		var parentDiv = ctx.getElementByXid(parentDivId);
-	
-		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-		var resizeContainer = function () {
-		    totalDiv.style.width = parentDiv.clientWidth+'px';
-		    totalDiv.style.height = parentDiv.clientHeight+'px';
-		};
-		
-		//设置容器高宽
-		resizeContainer();
-		
-		var option = getPieBuyOption(itemNames, items);
-	    var myChart = echarts.init(totalDiv);
-	    myChart.setOption(option);
-	    
-	    //用于使chart自适应高度和宽度
-		window.onresize = function() {
-		    //重置容器高宽
-		    resizeContainer();
-		    myChart.resize();
-		};
-		
-		var myChart = echarts.init(totalDiv);
-		myChart.setOption(option);
-	}
-	
-	var buildNameBuyEcharts = function(data, ctx) {
-		buildPieEcharts(data, ctx, "div7", "div3");
-	};
-	
+	// page load
 	Model.prototype.modelLoad = function(event){
 	
 		loadYearBuy(this);

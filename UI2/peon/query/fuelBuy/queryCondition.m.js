@@ -6,8 +6,9 @@ define(function(require){
 		this.callParent();
 	};
 
-	Model.prototype.li2Click = function(event){
-		var url = "./fuelBuy/queryCondition.m.w";
+	Model.prototype.queryBtnClick = function(event){
+		//var url = "./queryResult.m.w";
+		var url = "./queryResultTable.m.w";
 		justep.Shell.showPage(require.toUrl(url));
 	};
 
