@@ -33,7 +33,7 @@ define(function(require){
 	
 	Model.prototype.getItems = function(type){
 	    return json[type];
-	}
+	};
 
 	Model.prototype.yearSelectChange = function(event){
 		this.comp('monthSelect').val('');
@@ -85,21 +85,8 @@ define(function(require){
 	// 第1个图开始------------------------------------
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
-//		$.ajax({
-//			url : global.serverDomain + 'sgl/eachYear',
-//			type : 'get',
-//			dataType : 'jsonp',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.success) {
-//					buildYearBuyEcharts(data.data, ctx);
-//				} else {
-//
-//				}
-//			}
-//		});
 		var param = {};
-		var url = global.serverDomain + 'sgl/eachYear',
+		var url = global.serverDomain + 'sgl/eachYear';
 		loadAjaxData(url, param, ctx, buildYearBuyEcharts);
 	};
 	
@@ -115,9 +102,9 @@ define(function(require){
 			sjsf.push(c.sjsf);
 			sjrz.push(c.sjrz);
 			
-			maxsjl = getMax(c.sjl, maxsjl);
-			maxsjsf = getMax(c.sjsf, maxsjsf);
-			maxsjrz = getMax(c.sjrz, maxsjrz);
+			maxsjl = global.NumUtil.getMax(c.sjl, maxsjl);
+			maxsjsf = global.NumUtil.getMax(c.sjsf, maxsjsf);
+			maxsjrz = global.NumUtil.getMax(c.sjrz, maxsjrz);
 		});
 		
 		var ysjl = (maxsjl * 1.3);
@@ -238,20 +225,8 @@ define(function(require){
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.getNowYearMonth();
 		date = "201609";
-//		$.ajax({
-//			url : global.serverDomain + 'sgl/eachProject?date=' + date,
-//			type : 'get',
-//			dataType : 'jsonp',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.success) {
-//					buildProjectBuyEcharts(data.data, ctx);
-//				} else {
-//
-//				}
-//			}
-//		});
-		var url = global.serverDomain + 'sgl/eachProject?date=' + date,
+
+		var url = global.serverDomain + 'sgl/eachProject?date=' + date;
 		loadAjaxData(url, param, ctx, buildProjectBuyEcharts);
 	};
 	
@@ -334,19 +309,7 @@ define(function(require){
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.getNowYearMonth();
 		date = "201609";
-//		$.ajax({
-//			url : global.serverDomain + 'sgl/eachCategory?date=' + date,
-//			type : 'get',
-//			dataType : 'jsonp',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.success) {
-//					buildCategoryBuyEcharts(data.data, ctx);
-//				} else {
-//
-//				}
-//			}
-//		});
+
 		var url = global.serverDomain + 'sgl/eachCategory?date=' + date;
 		loadAjaxData(url, param, ctx, buildCategoryBuyEcharts);
 	};
@@ -362,19 +325,7 @@ define(function(require){
 	var loadNameBuy = function(param, ctx) {
 		var date = global.getNowYearMonth();
 		date = "201609";
-//		$.ajax({
-//			url : global.serverDomain + 'sgl/eachName?date=' + date,
-//			type : 'get',
-//			dataType : 'jsonp',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.success) {
-//					buildNameBuyEcharts(data.data, ctx);
-//				} else {
-//
-//				}
-//			}
-//		});
+
 		var url = global.serverDomain + 'sgl/eachName?date=' + date;
 		loadAjaxData(url, param, ctx, buildNameBuyEcharts);
 	};
@@ -394,16 +345,17 @@ define(function(require){
 			max = item;
 		}
 		return max;
-	}
+	};
 	
 	// 功能ajax请求
 	var loadAjaxData = function(url, param, ctx, successCallBack) {
 		$.ajax({
 			url : url,
 			type : 'get',
+			data : param,
 			dataType : 'jsonp',
 			success : function(data) {
-				console.log(data);
+				setAndCheckComplete(ctx);
 				if (data.success) {
 					successCallBack(data.data, ctx);
 				} else {
@@ -437,9 +389,6 @@ define(function(require){
 		    resizeContainer();
 		    myChart.resize();
 		};
-		
-		var myChart = echarts.init(totalDiv);
-		myChart.setOption(option);
 	};
 	
 	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId) {
@@ -457,7 +406,7 @@ define(function(require){
 		var option = getPieBuyOption(itemNames, items);
 
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
-	}
+	};
 	
 	var getPieBuyOption = function(itemNames, items) {
 		var option = {
@@ -494,15 +443,30 @@ define(function(require){
 		return option;
 	};
 	
+	var completeCount = 0;
+	var chartCount = 4;
+	
+	var setAndCheckComplete = function(ctx) {
+		completeCount++;
+		//console.log(completeCount);
+		if (completeCount >= chartCount) {
+			global.hidePopOver("popOver2", ctx);
+		}
+	};
 	
 	// page load
 	Model.prototype.modelLoad = function(event){
-	
+		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取
 		loadProjectBuy(param, this);
 		loadCategoryBuy(param, this);
 		loadNameBuy(param, this);
+		
+		//while(completeCount < chartCount){}
+		
+		//global.hidePopOver("popOver2", this);
+		
 		
 //		this.comp('companyData').refreshData();
 
@@ -669,7 +633,9 @@ define(function(require){
 	};
 
 	Model.prototype.searchBtnClick = function(event){
-		alert("search loading.....");
+		//请求数据并显示popOver组件
+		global.showPopOver("popOver2", this);
+		//popOver2.hide();//请求完成后隐藏popOver组件
 	};
 
 	return Model;

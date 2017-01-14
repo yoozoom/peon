@@ -15,6 +15,31 @@ define(function(require){
 			console.log(year + month);
 			return (year + month);
 		},
-		serverDomain: window.globalServerDomain
-	}	
+		// 全局域名
+		serverDomain: window.globalServerDomain,
+		// 打开蒙版
+		showPopOver: function(xid, ctx) {
+			var popOver2 = ctx.comp(xid);
+			popOver2.show();
+		},
+		// 关闭蒙版
+		hidePopOver: function(xid, ctx) {
+			var popOver2 = ctx.comp(xid);
+			popOver2.hide();
+		},
+		
+		// Num相关工具类
+		NumUtil : {
+			// 获取较大的值
+			getMax : function(item, max) {
+				if (!max) {
+					max = item;
+				} 
+				if (max < item) {
+					max = item;
+				}
+				return max;
+			}
+		}
+	};
 });

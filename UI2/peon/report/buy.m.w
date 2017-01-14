@@ -108,9 +108,23 @@
     <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> </div> 
    	<div class="panel-collapse collapse in" xid="div3">
     <div class="panel-body" xid="div4" style="height:200px;"></div>
-  <div class="panel-body" xid="div7"></div></div>
+  <div class="panel-body" xid="div7" style="height:200px;"></div></div>
     </div>
   </div>
   </div>
   </div> 
+	<div component="$UI/system/components/justep/popOver/popOver"
+	    class="x-popOver" xid="popOver2"
+	    opacity="0.9" dismissible="true">
+	    <div class="x-popOver-overlay" xid="div11"/>
+	    <div class="x-popOver-content text-center" xid="div12">
+	      <a component="$UI/system/components/justep/button/button"
+	        class="btn btn-link btn-only-icon"
+	        label="button" xid="button2" icon="icon-loading-a">
+	        <i xid="i2" class="icon-loading-a" style="font-size:40px;"/>
+	        <span xid="span2"/>
+	      </a>
+	      <div xid="div3" bind-text="&quot;正在加载中，请稍候...&quot;"/>
+	    </div>
+	</div>
 </div>
