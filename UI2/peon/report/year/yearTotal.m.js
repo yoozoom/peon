@@ -4,7 +4,7 @@ define(function(require){
 	require("$UI/system/lib/cordova/cordova");
 	require("cordova!cordova-plugin-screen-orientation");
 	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
-	var echarts = require("$UI/peon/echarts/dist/echarts.min");
+	var echarts = require("$UI/peon/plugin/echarts/dist/echarts.min");
 	
 	var Model = function(){
 		this.callParent();

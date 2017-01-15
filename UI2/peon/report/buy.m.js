@@ -1,7 +1,7 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var echarts = require("$UI/peon/echarts/dist/echarts.min");
+	var echarts = require("$UI/peon/plugin/echarts/dist/echarts.min");
 	var global = require("$UI/peon/js/global");
 
 	serverUrl = 'http://localhost:8090';
