@@ -33,15 +33,15 @@
     
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelInput3">
    <label class="x-label" xid="label6"><![CDATA[子公司]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input3" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input3"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
    <label class="x-label" xid="label7"><![CDATA[项目部]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input5" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input5"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
    <label class="x-label" xid="label8"><![CDATA[料场名称]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input6" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input6"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
    <label class="x-label" xid="label9"><![CDATA[客户名称]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input7" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit5">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input7" id="input7" bind-click="input7Click"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit5">
    <label class="x-label" xid="label10"><![CDATA[燃料名称]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input8" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect1">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input8"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect1">
    <label class="x-label" xid="label5"><![CDATA[燃料类别]]></label>
    <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="select4" bind-options="rlTypeData" bind-optionsValue="value" bind-optionsLabel="name"></select></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect2">
    <label class="x-label" xid="label2"><![CDATA[过磅类型]]></label>
@@ -49,7 +49,7 @@
    <label class="x-label" xid="label1"><![CDATA[开始时间]]></label>
    <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input1" bind-ref='$model.paramData.ref("startDate")'></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit1">
    <label class="x-label" xid="label4"><![CDATA[结束时间]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input4" bind-ref='$model.paramData.ref("startDate")'></input></div><div xid="div5">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input4" bind-ref='$model.paramData.ref("endDate")'></input></div><div xid="div5">
     <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="查询" xid="queryBtn" onClick="queryBtnClick">
      <i xid="i1"></i>
      <span xid="span6">查询</span></a> </div>
