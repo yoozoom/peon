@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"> 
-  </div>  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:17px;left:60px;height:auto;" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="rlTypeData" idColumn="name"><column label="" name="name" type="String" xid="xid1"></column>
+  <column name="value" type="String" xid="xid2"></column>
+  <data xid="default1">[{&quot;name&quot;:&quot;整料&quot;,&quot;value&quot;:&quot;1&quot;},{&quot;name&quot;:&quot;碎料&quot;,&quot;value&quot;:&quot;2&quot;}]</data></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="gbTypeData" idColumn="value"><column name="name" type="String" xid="xid3"></column>
+  <column name="value" type="Integer" xid="xid4"></column>
+  <data xid="default2">[{&quot;name&quot;:&quot;收购&quot;,&quot;value&quot;:1},{&quot;name&quot;:&quot;直接销售&quot;,&quot;value&quot;:2}]</data></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="paramData" idColumn="id"><column name="id" type="String" xid="xid5"></column>
+  <column name="startDate" type="Date" xid="xid6"></column>
+  <column name="endDate" type="Date" xid="xid7"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -20,26 +28,35 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1"><div class="list-group" xid="listGroup2">
-   <div xid="div1" class="list-group-item">
-   <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup2">
-    <span class="input-group-addon" xid="span1"><![CDATA[客户名称]]></span>
-    <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input2" placeHolder="请输入账号"></input></div> </div><div xid="div2" class="list-group-item">
-    <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup1">
-     <span class="input-group-addon" xid="span3"><![CDATA[燃料名称]]></span>
-     <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="nameInput" placeHolder="请输入账号"></input></div> </div> 
-   
+    <div class="x-panel-content" xid="content1">
+  <div class="list-group" xid="listGroup2">
     
-   <div xid="div3" class="list-group-item">
-   <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup3">
-    <span class="input-group-addon" xid="span2"><![CDATA[燃料类别]]></span>
-    <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input1" placeHolder="请输入账号"></input></div> </div>
-  <div xid="div4" class="list-group-item">
-   <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup4">
-    <span class="input-group-addon" xid="span4"><![CDATA[过磅类型]]></span>
-    <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input3" placeHolder="请输入账号"></input></div> </div><div xid="div5" class="list-group-item">
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelInput3">
+   <label class="x-label" xid="label6"><![CDATA[子公司]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input3" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
+   <label class="x-label" xid="label7"><![CDATA[项目部]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input5" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
+   <label class="x-label" xid="label8"><![CDATA[料场名称]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input6" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
+   <label class="x-label" xid="label9"><![CDATA[客户名称]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input7" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit5">
+   <label class="x-label" xid="label10"><![CDATA[燃料名称]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input8" placeHolder="请输入备注"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect1">
+   <label class="x-label" xid="label5"><![CDATA[燃料类别]]></label>
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="select4" bind-options="rlTypeData" bind-optionsValue="value" bind-optionsLabel="name"></select></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect2">
+   <label class="x-label" xid="label2"><![CDATA[过磅类型]]></label>
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="select2" bind-options="gbTypeData" bind-optionsValue="value" bind-optionsLabel="name"></select></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelInput1">
+   <label class="x-label" xid="label1"><![CDATA[开始时间]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input1" bind-ref='$model.paramData.ref("startDate")'></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit1">
+   <label class="x-label" xid="label4"><![CDATA[结束时间]]></label>
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input4" bind-ref='$model.paramData.ref("startDate")'></input></div><div xid="div5">
     <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="查询" xid="queryBtn" onClick="queryBtnClick">
      <i xid="i1"></i>
-     <span xid="span6">查询</span></a> </div></div></div>
+     <span xid="span6">查询</span></a> </div>
+  
+  
+  
+  
+  </div></div>
   </div> 
 </div>

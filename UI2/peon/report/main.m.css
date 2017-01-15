@@ -1,1 +1,4 @@
 .tb-nopadding{ padding:0;}
+.x-panel > .x-panel-content {
+	margin : 10px;
+}
