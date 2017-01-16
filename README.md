@@ -20,3 +20,4 @@ Clone project to a empty folder and change name to model. Then move the model fo
 total -> year -> project -> month
 
 ## test
+test from svn
