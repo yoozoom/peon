@@ -41,7 +41,7 @@
    <label class="x-label" xid="label9"><![CDATA[客户名称]]></label>
    <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input7" id="input7" bind-click="input7Click"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit5">
    <label class="x-label" xid="label10"><![CDATA[燃料名称]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input8"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect1">
+   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input8" bind-click="input8Click"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect1">
    <label class="x-label" xid="label5"><![CDATA[燃料类别]]></label>
    <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="select4" bind-options="rlTypeData" bind-optionsValue="value" bind-optionsLabel="name"></select></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelSelect2">
    <label class="x-label" xid="label2"><![CDATA[过磅类型]]></label>

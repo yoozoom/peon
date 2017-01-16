@@ -6,13 +6,28 @@ define(function(require){
 
 	var global = require("$UI/peon/js/global");
 	
+	var autoSize = 8;
+	var rlmcMap = {};
+	var rlmcComp;
+	
 	var Model = function(){
 		this.callParent();
 	};
+	
+	var buildParam = function(event, ctx) {
+		var zgs = ctx.comp("input3").val();
+		var xmb = ctx.comp("input5").val();
+		
+		console.log(zgs);
+		console.log(xmb);
+	};
 
 	Model.prototype.queryBtnClick = function(event){
-		var url = "./queryResultTable.m.w";
-		justep.Shell.showPage(require.toUrl(url));
+		var param = buildParam(event, this);
+		//var url = "./queryResultTable.m.w";
+		//justep.Shell.showPage(require.toUrl(url));
+		
+		console.log(rlmcMap);
 	};
 
 	Model.prototype.modelLoad = function(event){
@@ -25,6 +40,9 @@ define(function(require){
 				"endDate" : new Date()
 			}]
 		});
+		this.comp("input4").val("");
+		this.comp("input1").val("");
+		rlmcComp = this.comp("input8");
 	};
 
 	var customerLabelFormat = function(item) {
@@ -51,7 +69,7 @@ define(function(require){
 		});	
 	};
 	
-	var loadSelectDataCallBack = function(data, funCtx) {
+	var loadCustomerCallBack = function(data, funCtx) {
 		var response = funCtx.response;
         response($.map(data, function(item) {
             return {
@@ -60,19 +78,58 @@ define(function(require){
             };  
         }));
 	};
+	
+	var loadFuelvarietyCallBack = function(data, funCtx) {
+		var response = funCtx.response;
+		rlmcMap = {};
+        response($.map(data, function(item) {
+        	rlmcMap[item.rlmc] = item.rlbh;
+            return {
+            	value: item.rlmc,
+            	label: item.rlmc
+            };  
+        }));
+	};
 
 	Model.prototype.input7Click = function(event){
 		var url = global.serverDomain + "customer/selectCustomer?khxm=刘";
-		var param = {};
+		var param = {
+			pageSize: autoSize
+		};
 		var funCtx = {};
 		$("#input7").autocomplete({  
 		    minLength: 1, 
 		    source: function(request, response) {
 		    	funCtx.response = response;
-		    	loadAjaxData(url, param, this, loadSelectDataCallBack, funCtx);
+		    	param.pageSize = autoSize;
+	            param.khxm = request.term;
+		    	loadAjaxData(url, param, this, loadCustomerCallBack, funCtx);
 		    }  
 		});
 	};
+
+	Model.prototype.input8Click = function(event){
+		var url = global.serverDomain + "fuelvariety/selectFuelvariety";
+		var param = {
+			pageSize: autoSize
+		};
+		var funCtx = {};
+		this.comp("input8").$domNode.autocomplete({  
+		    minLength: 1, 
+		    source: function(request, response) {
+		    	funCtx.response = response;
+	            param.rlmc = request.term;
+		    	loadAjaxData(url, param, this, loadFuelvarietyCallBack, funCtx);
+		    },
+		    select: function(event, ui) {
+		    	if(ui.item) {
+		    		rlmcComp.val(ui.item.label);
+		    	}
+		    }
+		});
+	};
+	
+	
 
 	return Model;
 });
