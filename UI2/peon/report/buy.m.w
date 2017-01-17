@@ -26,7 +26,8 @@
 </div> -->
   
   <div component="$UI/system/components/justep/model/model" xid="model" style="top:275px;left:15px;height:auto;" onLoad="modelLoad"> 
-  </div>  
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="daysData" idColumn="value" onCustomRefresh="daysDataCustomRefresh"><column name="value" type="Integer" xid="xid1"></column>
+  <column name="name" type="Integer" xid="xid2"></column></div></div>  
 
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
@@ -90,7 +91,7 @@
 	  </select>
 	</div> -->
 <div class="x-col" xid="col1">
-   <select component="$UI/system/components/justep/select/select" bind-optionsCaption="日期" class="form-control" xid="daySelect" optionsAutoLoad="true" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-options="$model.getItems('month')" onChange="monthSelectChange"></select></div></div>
+   <select component="$UI/system/components/justep/select/select" bind-optionsCaption="日期" class="form-control" xid="daySelect" optionsAutoLoad="true" bind-optionsValue="value" bind-optionsLabel="name" bind-options="daysData"></select></div></div>
   <div component="$UI/system/components/bootstrap/accordion/accordion" class="panel-group" xid="accordion3">
    <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel" xid="panel5">
     <div class="panel-heading" xid="heading3">

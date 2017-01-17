@@ -630,13 +630,35 @@ define(function(require){
 		var ym = year + "" + month;
 		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
 		console.log(days);
-		
+		this.comp('daysData').refreshData();
 	};
 
 	Model.prototype.searchBtnClick = function(event){
 		//请求数据并显示popOver组件
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
+	};
+
+	Model.prototype.daysDataCustomRefresh = function(event){
+		var data = event.source;
+		var year = this.comp('yearSelect').val();
+		var month = this.comp('monthSelect').val();
+		console.log("year " + year + " month " + month);
+		if (!year || !month) {
+			return;
+		}
+		var ym = year + "" + month;
+		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
+		console.log(days);
+		var resultData = [];
+		for(var i = 1; i <= days; i++) {
+			resultData.push({
+				name: i,
+				value: i
+			});
+		}
+		
+		data.loadData(resultData);
 	};
 
 	return Model;

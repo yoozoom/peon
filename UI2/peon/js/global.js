@@ -21,7 +21,14 @@ define(function(require){
 			},
 			getDaysByYearAndMonth: function(year, month) {
 				return 32 - new Date(year,month,32).getDate();
-			}
+			},
+			getSelectCompDays: function(days) {
+	        	var data = [];
+	        	for (var i = 1; i <= days; i++) {
+	        		data.push({'fValue':i, 'fName':i});
+	    		}
+	        	return data;	
+			},
 		},
 		// 打开蒙版
 		showPopOver: function(xid, ctx) {
