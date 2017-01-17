@@ -13,7 +13,7 @@ define(function(require){
 	    		var date = new Date();
 	    		var year = date.getFullYear();
 	    		var years = [];
-	    		for (var i = 0; i < 5; i++) {
+	    		for (var i = 0; i < 8; i++) {
 	    			years.push({'fValue':year - i, 'fName':year - i});
 	    		}
 	    		return years;
@@ -223,7 +223,7 @@ define(function(require){
 	// 各项目线图
 	// 第2个图开始------------------------------------
 	var loadProjectBuy = function(param, ctx) {
-		var date = global.getNowYearMonth();
+		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
 
 		var url = global.serverDomain + 'sgl/eachProject?date=' + date;
@@ -307,7 +307,7 @@ define(function(require){
 	// 第一个饼图
 	// 第3个图开始------------------------------------
 	var loadCategoryBuy = function(param, ctx) {
-		var date = global.getNowYearMonth();
+		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
 
 		var url = global.serverDomain + 'sgl/eachCategory?date=' + date;
@@ -323,7 +323,7 @@ define(function(require){
 	// 第2个饼图
 	// 第4个图开始------------------------------------
 	var loadNameBuy = function(param, ctx) {
-		var date = global.getNowYearMonth();
+		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
 
 		var url = global.serverDomain + 'sgl/eachName?date=' + date;
@@ -444,7 +444,7 @@ define(function(require){
 	};
 	
 	var completeCount = 0;
-	var chartCount = 4;
+	var chartCount = 1;
 	
 	var setAndCheckComplete = function(ctx) {
 		completeCount++;
@@ -459,9 +459,9 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取
-		loadProjectBuy(param, this);
-		loadCategoryBuy(param, this);
-		loadNameBuy(param, this);
+		//loadProjectBuy(param, this);
+		//loadCategoryBuy(param, this);
+		//loadNameBuy(param, this);
 		
 		//while(completeCount < chartCount){}
 		
@@ -623,12 +623,13 @@ define(function(require){
 	Model.prototype.monthSelectChange = function(event){
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
+		console.log("year " + year + " month " + month);
 		if (!year || !month) {
 			return;
 		}
 		var ym = year + "" + month;
-		// 各年度燃料收购量质价sql语句
-		
+		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
+		console.log(days);
 		
 	};
 

@@ -9,6 +9,8 @@ define(function(require){
 	var autoSize = 8;
 	var rlmcMap = {};
 	var rlmcComp;
+	var khbhMap = {};
+	var khbhComp;
 	
 	var Model = function(){
 		this.callParent();
@@ -42,6 +44,7 @@ define(function(require){
 		});
 		this.comp("input4").val("");
 		this.comp("input1").val("");
+		khbhComp = this.comp("input7");
 		rlmcComp = this.comp("input8");
 	};
 
@@ -71,9 +74,11 @@ define(function(require){
 	
 	var loadCustomerCallBack = function(data, funCtx) {
 		var response = funCtx.response;
+		khbhMap = {};
         response($.map(data, function(item) {
+        	khbhMap[customerLabelFormat(item)] = item.khbh;
             return {
-            	value: item.khbh,
+            	value: customerLabelFormat(item),
             	label: customerLabelFormat(item)
             };  
         }));
@@ -92,19 +97,24 @@ define(function(require){
 	};
 
 	Model.prototype.input7Click = function(event){
-		var url = global.serverDomain + "customer/selectCustomer?khxm=刘";
+		var url = global.serverDomain + "customer/selectCustomer";
 		var param = {
 			pageSize: autoSize
 		};
 		var funCtx = {};
-		$("#input7").autocomplete({  
+		this.comp("input7").$domNode.autocomplete({  
 		    minLength: 1, 
 		    source: function(request, response) {
 		    	funCtx.response = response;
 		    	param.pageSize = autoSize;
 	            param.khxm = request.term;
 		    	loadAjaxData(url, param, this, loadCustomerCallBack, funCtx);
-		    }  
+		    },
+		    select: function(event, ui) {
+		    	if(ui.item) {
+		    		khbhComp.val(ui.item.label);
+		    	}
+		    }
 		});
 	};
 

@@ -72,7 +72,7 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
-		var nowMonth = global.getNowYearMonth();
+		var nowMonth = global.DateUtil.getNowYearMonth();
 		nowMonth = "201609";
 		loadMonthTotal(nowMonth, this);
 		loadMonthTop10(nowMonth, this);
