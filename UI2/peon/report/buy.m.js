@@ -32,7 +32,12 @@ define(function(require){
 	};
 	
 	Model.prototype.getItems = function(type){
-	    return json[type];
+		if ("year" == type) {
+			global.DateUtil.getSelectCompYearData();
+		} else if ("month" == type) {
+			global.DateUtil.getSelectCompMonthData();
+		}
+		return json[type];
 	};
 
 	Model.prototype.yearSelectChange = function(event){
@@ -462,10 +467,6 @@ define(function(require){
 		//loadProjectBuy(param, this);
 		//loadCategoryBuy(param, this);
 		//loadNameBuy(param, this);
-		
-		//while(completeCount < chartCount){}
-		
-		//global.hidePopOver("popOver2", this);
 		
 		
 //		this.comp('companyData').refreshData();

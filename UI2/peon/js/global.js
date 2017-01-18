@@ -29,6 +29,22 @@ define(function(require){
 	    		}
 	        	return data;	
 			},
+			getSelectCompYearData: function() {
+				var date = new Date();
+	    	var year = date.getFullYear();
+	    	var years = [];
+	    	for (var i = 0; i < 8; i++) {
+	    		years.push({'fValue':year - i, 'fName':year - i});
+	    	}
+	    	return years;
+			},
+			getSelectCompMonthData: function() {
+				var months = [];
+				for (var i = 1; i <= 12; i++) {
+					months.push({'fValue':i, 'fName':i});
+				}
+				return months;
+			}
 		},
 		// 打开蒙版
 		showPopOver: function(xid, ctx) {
