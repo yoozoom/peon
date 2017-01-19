@@ -44,47 +44,51 @@ define(function(require){
 		this.comp('monthSelect').val('');
 	};
 	
-//	Model.prototype.companySelectChange = function(event){
-//		this.comp('projectSelect').val('');
-//		this.comp('projectData').refreshData();
-//	};
+	Model.prototype.companySelectChange = function(event){
+		this.comp('projectSelect').val('');
+		this.comp('projectData').refreshData();
+	};
 
-//	Model.prototype.projectDataCustomRefresh = function(event){
-//		var datadm = event.source;
-//		var projects = [];
-//		var y = this.comp("companySelect").val();
-//		if (y) {
-//			$.ajax({
-//				url:serverUrl + '/project/queryProject?gsdm=' + y,
-//				type:'get',
-//				dataType:'jsonp',
-//				success:function(data) {
-//					$.each(data, function(i, c) {
-//						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
-//					})
-//					datadm.loadData(projects);
-//				}
-//			})
-//		}else {
-//			datadm.loadData(projects);
-//		}
-//	}
-//	
-//	Model.prototype.companyDataCustomRefresh = function(event){
-//		$.ajax({
-//			url:serverUrl + '/company/queryCompany',
-//			type:'get',
-//			dataType:'jsonp',
-//			success:function(data) {
-//				var companys = []; 
-//				$.each(data, function(i, c) {
-//					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
-//				})
-//				var data = event.source;
-//				data.loadData(companys);
-//			}
-//		})
-//	};
+	Model.prototype.projectDataCustomRefresh = function(event){
+		var datadm = event.source;
+		var projects = [];
+		var company = this.comp("companySelect").val();
+		var param = {
+			gsdm: company
+		};
+		if (company) {
+			$.ajax({
+				url:global.serverDomain + 'project/queryProject',
+				type:'get',
+				data: param,
+				dataType:'jsonp',
+				success:function(data) {
+					$.each(data, function(i, c) {
+						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
+					});
+					datadm.loadData(projects);
+				}
+			});
+		} else {
+			datadm.loadData(projects);
+		}
+	};
+	
+	Model.prototype.companyDataCustomRefresh = function(event){
+		$.ajax({
+			url:global.serverDomain + '/company/queryCompany',
+			type:'get',
+			dataType:'jsonp',
+			success:function(data) {
+				var companys = []; 
+				$.each(data, function(i, c) {
+					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
+				});
+				var source = event.source;
+				source.loadData(companys);
+			}
+		});
+	};
 
 	
 	// 第1个图开始------------------------------------
