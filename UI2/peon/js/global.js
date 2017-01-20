@@ -19,6 +19,12 @@ define(function(require){
 				console.log(year + month);
 				return (year + month);
 			},
+			prefixMonthStr: function(month) {
+				if (month < 10) {
+					return "0" + month;
+				}
+				return month;
+			},
 			getDaysByYearAndMonth: function(year, month) {
 				return 32 - new Date(year,month,32).getDate();
 			},

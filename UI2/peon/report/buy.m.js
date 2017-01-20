@@ -3,8 +3,6 @@ define(function(require){
 	var justep = require("$UI/system/lib/justep");
 	var echarts = require("$UI/peon/plugin/echarts/dist/echarts.min");
 	var global = require("$UI/peon/js/global");
-
-	serverUrl = 'http://localhost:8090';
 	
 	var sglItemData = ['收购量','加权水分', '热值单价'];
 	
@@ -58,11 +56,11 @@ define(function(require){
 		};
 		if (company) {
 			$.ajax({
-				url:global.serverDomain + 'project/queryProject',
-				type:'get',
+				url: global.serverDomain + 'project/queryProject',
+				type: 'get',
 				data: param,
-				dataType:'jsonp',
-				success:function(data) {
+				dataType: 'jsonp',
+				success: function(data) {
 					$.each(data, function(i, c) {
 						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
 					});
@@ -76,10 +74,10 @@ define(function(require){
 	
 	Model.prototype.companyDataCustomRefresh = function(event){
 		$.ajax({
-			url:global.serverDomain + '/company/queryCompany',
-			type:'get',
+			url: global.serverDomain + '/company/queryCompany',
+			type: 'get',
 			dataType:'jsonp',
-			success:function(data) {
+			success: function(data) {
 				var companys = []; 
 				$.each(data, function(i, c) {
 					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
@@ -389,10 +387,10 @@ define(function(require){
 		//设置容器高宽
 		resizeContainer();
 		
-	    var myChart = echarts.init(totalDiv);
-	    myChart.setOption(option);
+		var myChart = echarts.init(totalDiv);
+		myChart.setOption(option);
 	    
-	    //用于使chart自适应高度和宽度
+		//用于使chart自适应高度和宽度
 		window.onresize = function() {
 		    //重置容器高宽
 		    resizeContainer();
@@ -628,13 +626,13 @@ define(function(require){
 	Model.prototype.monthSelectChange = function(event){
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
-		console.log("year " + year + " month " + month);
+		//console.log("year " + year + " month " + month);
 		if (!year || !month) {
 			return;
 		}
 		var ym = year + "" + month;
 		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
-		console.log(days);
+		//console.log(days);
 		this.comp('daysData').refreshData();
 	};
 
@@ -642,6 +640,24 @@ define(function(require){
 		//请求数据并显示popOver组件
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
+		var param = initSearchParam(this);
+	};
+
+	// 组装查询参数
+	var initSearchParam = function(ctx) {
+		var year = ctx.comp("yearSelect").val();
+		var month = ctx.comp("monthSelect").val();
+		var day = ctx.comp("").val();
+		var company = ctx.comp("companySelect").val();
+		var project = ctx.comp("projectSelect").val();
+		
+		return {
+			year: year,
+			month: month,
+			day: day,
+			company: company,
+			project: project
+		};
 	};
 
 	Model.prototype.daysDataCustomRefresh = function(event){
