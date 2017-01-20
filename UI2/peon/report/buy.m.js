@@ -6,36 +6,17 @@ define(function(require){
 	
 	var sglItemData = ['收购量','加权水分', '热值单价'];
 	
-	var json = {
-	    	year:function() {
-	    		var date = new Date();
-	    		var year = date.getFullYear();
-	    		var years = [];
-	    		for (var i = 0; i < 8; i++) {
-	    			years.push({'fValue':year - i, 'fName':year - i});
-	    		}
-	    		return years;
-	    	}(),
-	        month:function() {
-	        	var months = [];
-	        	for (var i = 1; i <= 12; i++) {
-	        		months.push({'fValue':i, 'fName':i});
-	    		}
-	        	return months;
-	        }()
-	    };
-
 	var Model = function(){
 		this.callParent();
 	};
 	
 	Model.prototype.getItems = function(type){
 		if ("year" == type) {
-			global.DateUtil.getSelectCompYearData();
+			return global.DateUtil.getSelectCompYearData();
 		} else if ("month" == type) {
-			global.DateUtil.getSelectCompMonthData();
+			return global.DateUtil.getSelectCompMonthData();
 		}
-		return json[type];
+		return [];
 	};
 
 	Model.prototype.yearSelectChange = function(event){
@@ -48,44 +29,79 @@ define(function(require){
 	};
 
 	Model.prototype.projectDataCustomRefresh = function(event){
-		var datadm = event.source;
 		var projects = [];
+		var datadm = event.source;
 		var company = this.comp("companySelect").val();
 		var param = {
 			gsdm: company
 		};
+		
+		var url = global.serverDomain + 'project/queryProject';
+		var funCtx = {
+			event: event
+		};
+		
 		if (company) {
-			$.ajax({
-				url: global.serverDomain + 'project/queryProject',
-				type: 'get',
-				data: param,
-				dataType: 'jsonp',
-				success: function(data) {
-					$.each(data, function(i, c) {
-						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
-					});
-					datadm.loadData(projects);
-				}
-			});
+//			$.ajax({
+//				url: global.serverDomain + 'project/queryProject',
+//				type: 'get',
+//				data: param,
+//				dataType: 'jsonp',
+//				success: function(data) {
+//					$.each(data, function(i, c) {
+//						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
+//					});
+//					datadm.loadData(projects);
+//				}
+//			});
+			loadAjaxData(url, param, this, buildProjectData, funCtx);
 		} else {
 			datadm.loadData(projects);
 		}
 	};
 	
-	Model.prototype.companyDataCustomRefresh = function(event){
-		$.ajax({
-			url: global.serverDomain + '/company/queryCompany',
-			type: 'get',
-			dataType:'jsonp',
-			success: function(data) {
-				var companys = []; 
-				$.each(data, function(i, c) {
-					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
-				});
-				var source = event.source;
-				source.loadData(companys);
-			}
+	var buildProjectData = function (data, ctx, funCtx) {
+		var event = funCtx.event;
+		var datadm = event.source;
+		var projects = [];
+		$.each(data, function(i, c) {
+			projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
 		});
+		datadm.loadData(projects);
+	};
+	
+	Model.prototype.companyDataCustomRefresh = function(event){
+//		$.ajax({
+//			url: global.serverDomain + '/company/queryCompany',
+//			type: 'get',
+//			dataType:'jsonp',
+//			success: function(data) {
+//				buildCompanyData(data, this, funCtx);
+//				var companys = []; 
+//				$.each(data, function(i, c) {
+//					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
+//				});
+//				var source = event.source;
+//				source.loadData(companys);
+//			}
+//		});
+		
+		var url = global.serverDomain + '/company/queryCompany';
+		var param = {};
+		var funCtx = {
+			event: event
+		};
+		loadAjaxData(url, param, this, buildCompanyData, funCtx);
+	};
+	
+	var buildCompanyData = function(data, ctx, funCtx) {
+		var event = funCtx.event;
+		var companys = []; 
+		$.each(data, function(i, c) {
+			companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
+		});
+		var source = event.source;
+		source.loadData(companys);
 	};
 
 	
@@ -355,7 +371,7 @@ define(function(require){
 	};
 	
 	// 功能ajax请求
-	var loadAjaxData = function(url, param, ctx, successCallBack) {
+	var loadAjaxData = function(url, param, ctx, successCallBack, funCtx) {
 		$.ajax({
 			url : url,
 			type : 'get',
@@ -364,7 +380,7 @@ define(function(require){
 			success : function(data) {
 				setAndCheckComplete(ctx);
 				if (data.success) {
-					successCallBack(data.data, ctx);
+					successCallBack(data.data, ctx, funCtx);
 				} else {
 
 				}
@@ -470,157 +486,6 @@ define(function(require){
 		//loadCategoryBuy(param, this);
 		//loadNameBuy(param, this);
 		
-		
-//		this.comp('companyData').refreshData();
-
-//		$.ajax({
-//			url:serverUrl + '/report/sglCharts',
-//			type:'get',
-//			dataType:'jsonp',
-//			success:function(data) {
-//				var sjmc = [], sjl = [], sjsf = [], sjrz = [];
-//				$.each(data, function(i, c) {
-//					sjmc.push(c.sjmc);
-//					sjl.push(c.sjl);
-//					sjsf.push(c.sjsf);
-//					sjrz.push(c.sjrz);
-//				})
-//				
-//				var totalDiv = this.getElementByXid('div2');
-//				var parentDiv = this.getElementByXid('div1');
-//			
-//				//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-//				var resizeContainer = function () {
-//				    totalDiv.style.width = parentDiv.clientWidth+'px';
-//				    totalDiv.style.height = parentDiv.clientHeight+'px';
-//				};
-//				
-//				//设置容器高宽
-//				resizeContainer();
-//			
-//				var colors = ['#5793f3', '#d14a61', '#675bba'];
-//				
-//				var option = {
-//				    color: colors,
-//				    title: {
-//				    	text:'各年度燃料收购量质价',
-//				    	subtext: '量质价',
-//				    	x:'center'
-//				    },
-//				    tooltip: {
-//				        trigger: 'axis'
-//				    },
-//				    grid: {
-//				        right: '20%'
-//				    },
-//				    toolbox: {
-//				        feature: {
-//				            dataView: {show: true, readOnly: false},
-//				            restore: {show: true},
-//				            saveAsImage: {show: true}
-//				        }
-//				    },
-//				    legend: {
-//				    	left:'left',
-//				        data:['收购量','加权水分', '热值单价']
-//				    },
-//				    xAxis: [
-//				        {
-//				            type: 'category',
-//				            axisTick: {
-//				                alignWithLabel: true
-//				            },
-//				            data: sjmc
-//				        }
-//				    ],
-//				    yAxis: [
-//				        {
-//				            type: 'value',
-//				            name: '收购量',
-//				            min: 0,
-//				            max: 1500,
-//				            position: 'left',
-//				            nameLocation: 'middle',
-//				            axisLine: {
-//				                lineStyle: {
-//				                    color: colors[0]
-//				                }
-//				            },
-//				            axisLabel: {
-//				                formatter: function (value, index) {
-//								    return value + "\n 万元";
-//								}
-//				            }
-//				        },
-//				        {
-//				            type: 'value',
-//				            name: '热值单价',
-//				            min: 0,
-//				            max: 0.15,
-//				            position: 'right',
-//				            nameLocation: 'middle',
-//				            offset: 30,
-//				            axisLine: {
-//				                lineStyle: {
-//				                    color: colors[1]
-//				                }
-//				            },
-//				            axisLabel: {
-//				                formatter: function (value, index) {
-//								    return value + "\n 元/kCal";
-//								}
-//				            }
-//				        },
-//				        {
-//				            type: 'value',
-//				            name: '加权水分',
-//				            min: 0,
-//				            max: 60,
-//				            position: 'right',
-//				            nameLocation: 'middle',
-//				            axisLine: {
-//				                lineStyle: {
-//				                    color: colors[2]
-//				                }
-//				            },
-//				            axisLabel: {
-//				                formatter: '{value} %'
-//				            }
-//				        }
-//				    ],
-//				    series: [
-//				        {
-//				            name:'收购量',
-//				            type:'bar',
-//				            data: sjl
-//				        },
-//				        {
-//				            name:'加权水分',
-//				            type:'bar',
-//				            yAxisIndex: 2,
-//				            data:sjsf
-//				        },
-//				        {
-//				            name:'热值单价',
-//				            type:'bar',
-//				            yAxisIndex: 1,
-//				            data:sjrz
-//				        }
-//				    ]
-//				};
-//			    var myChart = echarts.init(totalDiv);
-//			    myChart.setOption(option);
-//			    
-//			    //用于使chart自适应高度和宽度
-//				window.onresize = function() {
-//				    //重置容器高宽
-//				    resizeContainer();
-//				    myChart.resize();
-//				};
-//				
-//			}
-//		})
-		
 	};
 
 	Model.prototype.monthSelectChange = function(event){
@@ -641,13 +506,23 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
+		
+		refreshPageChart(param, this);
+	};
+	
+	var refreshPageChart = function(param, ctx) {
+		chartCount = 3;
+		
+		//loadProjectBuy(param, ctx);
+		//loadCategoryBuy(param, ctx);
+		//loadNameBuy(param, ctx);
 	};
 
 	// 组装查询参数
 	var initSearchParam = function(ctx) {
 		var year = ctx.comp("yearSelect").val();
 		var month = ctx.comp("monthSelect").val();
-		var day = ctx.comp("").val();
+		var day = ctx.comp("daySelect").val();
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
 		
