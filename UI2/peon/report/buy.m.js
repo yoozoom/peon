@@ -511,6 +511,7 @@ define(function(require){
 	};
 	
 	var refreshPageChart = function(param, ctx) {
+		console.log(param);
 		chartCount = 3;
 		
 		//loadProjectBuy(param, ctx);
@@ -539,13 +540,11 @@ define(function(require){
 		var data = event.source;
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
-		console.log("year " + year + " month " + month);
 		if (!year || !month) {
 			return;
 		}
 		var ym = year + "" + month;
 		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
-		console.log(days);
 		var resultData = [];
 		for(var i = 1; i <= days; i++) {
 			resultData.push({
