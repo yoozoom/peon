@@ -5,6 +5,8 @@ define(function(require){
 	var global = require("$UI/peon/js/global");
 	
 	var sglItemData = ['收购量','加权水分', '热值单价'];
+	var completeCount = 0;
+	var chartCount = 1;
 	
 	var Model = function(){
 		this.callParent();
@@ -42,18 +44,6 @@ define(function(require){
 		};
 		
 		if (company) {
-//			$.ajax({
-//				url: global.serverDomain + 'project/queryProject',
-//				type: 'get',
-//				data: param,
-//				dataType: 'jsonp',
-//				success: function(data) {
-//					$.each(data, function(i, c) {
-//						projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
-//					});
-//					datadm.loadData(projects);
-//				}
-//			});
 			loadAjaxData(url, param, this, buildProjectData, funCtx);
 		} else {
 			datadm.loadData(projects);
@@ -70,22 +60,7 @@ define(function(require){
 		datadm.loadData(projects);
 	};
 	
-	Model.prototype.companyDataCustomRefresh = function(event){
-//		$.ajax({
-//			url: global.serverDomain + '/company/queryCompany',
-//			type: 'get',
-//			dataType:'jsonp',
-//			success: function(data) {
-//				buildCompanyData(data, this, funCtx);
-//				var companys = []; 
-//				$.each(data, function(i, c) {
-//					companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
-//				});
-//				var source = event.source;
-//				source.loadData(companys);
-//			}
-//		});
-		
+	Model.prototype.companyDataCustomRefresh = function(event){		
 		var url = global.serverDomain + '/company/queryCompany';
 		var param = {};
 		var funCtx = {
@@ -110,7 +85,10 @@ define(function(require){
 	var loadYearBuy = function(ctx) {
 		var param = {};
 		var url = global.serverDomain + 'sgl/eachYear';
-		loadAjaxData(url, param, ctx, buildYearBuyEcharts);
+		var funCtx = {
+			needCut: true
+		};
+		loadAjaxData(url, param, ctx, buildYearBuyEcharts, funCtx);
 	};
 	
 	var buildYearBuyEcharts = function(data, ctx) {
@@ -143,16 +121,17 @@ define(function(require){
 		var option = {
 		    title: {
 		    	text:'各年度燃料收购量质价',
-		    	x:'center'
 		    },
 		    tooltip: {
 		        trigger: 'axis'
 		    },
 		    grid: {
-		        right: '20%'
+		    	top: "20%",
+		        right: '26%',
+		        bottom: '10%'
 		    },
 		    legend: {
-		    	left:'left',
+		    	top: '6%',
 		        data:sglItemData
 		    },
 		    xAxis: [
@@ -171,7 +150,7 @@ define(function(require){
 		            min: 0,
 		            max: ysjl,
 		            position: 'left',
-		            nameLocation: 'middle',
+		            //nameLocation: 'middle',
 		            axisLine: {
 		                lineStyle: {
 		                    color: colors[0]
@@ -189,8 +168,8 @@ define(function(require){
 		            min: 0,
 		            max: ysjrz,
 		            position: 'right',
-		            nameLocation: 'middle',
-		            offset: 30,
+		            //nameLocation: 'middle',
+		            offset: 50,
 		            axisLine: {
 		                lineStyle: {
 		                    color: colors[1]
@@ -208,7 +187,7 @@ define(function(require){
 		            min: 0,
 		            max: ysjsf,
 		            position: 'right',
-		            nameLocation: 'middle',
+		            //nameLocation: 'middle',
 		            axisLine: {
 		                lineStyle: {
 		                    color: colors[2]
@@ -248,9 +227,14 @@ define(function(require){
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
-
-		var url = global.serverDomain + 'sgl/eachProject?date=' + date;
-		loadAjaxData(url, param, ctx, buildProjectBuyEcharts);
+		if (!param.date) {
+			param.date = date;
+		}
+		var url = global.serverDomain + 'sgl/eachProject';
+		var funCtx = {
+			needCut: true
+		};
+		loadAjaxData(url, param, ctx, buildProjectBuyEcharts, funCtx);
 	};
 	
 	var buildProjectBuyEcharts = function(data, ctx) {
@@ -288,6 +272,7 @@ define(function(require){
 		        }
 		    },
 		    legend: {
+		    	top: '4%',
 		        data: sglItemData
 		    },
 		    grid: {
@@ -332,13 +317,21 @@ define(function(require){
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
-
-		var url = global.serverDomain + 'sgl/eachCategory?date=' + date;
-		loadAjaxData(url, param, ctx, buildCategoryBuyEcharts);
+		if (!param.date) {
+			param.date = date;
+		}
+		var url = global.serverDomain + 'sgl/eachCategory';
+		var funCtx = {
+			needCut: true
+		};
+		loadAjaxData(url, param, ctx, buildCategoryBuyEcharts, funCtx);
 	};
 	
 	var buildCategoryBuyEcharts = function(data, ctx) {
-		buildPieEcharts(data, ctx, "div4", "div3");	
+		var chartCtx = {
+			title: "燃料品种收购量"
+		};
+		buildPieEcharts(data, ctx, "div4", "div3", chartCtx);	
 	};
 	
 	// 第3个图结束------------------------------------
@@ -348,13 +341,21 @@ define(function(require){
 	var loadNameBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
-
-		var url = global.serverDomain + 'sgl/eachName?date=' + date;
-		loadAjaxData(url, param, ctx, buildNameBuyEcharts);
+		if (!param.date) {
+			param.date = date;
+		}
+		var url = global.serverDomain + 'sgl/eachName';
+		var funCtx = {
+			needCut: true
+		};
+		loadAjaxData(url, param, ctx, buildNameBuyEcharts, funCtx);
 	};
 	
 	var buildNameBuyEcharts = function(data, ctx) {
-		buildPieEcharts(data, ctx, "div7", "div3");
+		var chartCtx = {
+			title: "燃料类别收购量"
+		};
+		buildPieEcharts(data, ctx, "div7", "div3", chartCtx);
 	};
 	// 第4个图结束------------------------------------
 	
@@ -378,7 +379,9 @@ define(function(require){
 			data : param,
 			dataType : 'jsonp',
 			success : function(data) {
-				setAndCheckComplete(ctx);
+				if (funCtx && funCtx.needCut) {
+					setAndCheckComplete(ctx);
+				}
 				if (data.success) {
 					successCallBack(data.data, ctx, funCtx);
 				} else {
@@ -414,7 +417,7 @@ define(function(require){
 		};
 	};
 	
-	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId) {
+	var buildPieEcharts = function(data, ctx, pieDivId, parentDivId, chartCtx) {
 		// 基础数据准备		
 		var itemNames = [];
 		var items = [];
@@ -426,15 +429,16 @@ define(function(require){
 			items.push(item);
 		});
 		
-		var option = getPieBuyOption(itemNames, items);
+		var option = getPieBuyOption(itemNames, items, chartCtx);
 
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
 	};
 	
-	var getPieBuyOption = function(itemNames, items) {
+	var getPieBuyOption = function(itemNames, items, chartCtx) {
+		var title = chartCtx.title;
 		var option = {
 		    title : {
-		        text: '饼图1',
+		        text: title,
 		        x:'left'
 		    },
 		    tooltip : {
@@ -442,13 +446,13 @@ define(function(require){
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
 		    },
 		    legend: {
-		        //orient: 'vertical',
 		        left: 'center',
+		        top: '10%',
 		        data: itemNames
 		    },
 		    series : [
 		        {
-		            name: '访问来源',
+		            name: '',
 		            type: 'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
@@ -466,12 +470,8 @@ define(function(require){
 		return option;
 	};
 	
-	var completeCount = 0;
-	var chartCount = 1;
-	
 	var setAndCheckComplete = function(ctx) {
 		completeCount++;
-		//console.log(completeCount);
 		if (completeCount >= chartCount) {
 			global.hidePopOver("popOver2", ctx);
 		}
@@ -482,26 +482,24 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取
-		//loadProjectBuy(param, this);
-		//loadCategoryBuy(param, this);
-		//loadNameBuy(param, this);
+		loadProjectBuy(param, this);
+		loadCategoryBuy(param, this);
+		loadNameBuy(param, this);
 		
 	};
 
 	Model.prototype.monthSelectChange = function(event){
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
-		//console.log("year " + year + " month " + month);
 		if (!year || !month) {
 			return;
 		}
-		var ym = year + "" + month;
-		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
-		//console.log(days);
 		this.comp('daysData').refreshData();
 	};
 
 	Model.prototype.searchBtnClick = function(event){
+		chartCount = 3;
+		completeCount = 0;
 		//请求数据并显示popOver组件
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
@@ -512,11 +510,10 @@ define(function(require){
 	
 	var refreshPageChart = function(param, ctx) {
 		console.log(param);
-		chartCount = 3;
 		
-		//loadProjectBuy(param, ctx);
-		//loadCategoryBuy(param, ctx);
-		//loadNameBuy(param, ctx);
+		loadProjectBuy(param, ctx);
+		loadCategoryBuy(param, ctx);
+		loadNameBuy(param, ctx);
 	};
 
 	// 组装查询参数
@@ -526,13 +523,15 @@ define(function(require){
 		var day = ctx.comp("daySelect").val();
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
+		var date = year + global.DateUtil.prefixNumStr(month) + global.DateUtil.prefixNumStr(day);
 		
 		return {
 			year: year,
 			month: month,
 			day: day,
-			company: company,
-			project: project
+			gsdm: company,
+			xmbdm: project,
+			date: date
 		};
 	};
 
@@ -543,7 +542,6 @@ define(function(require){
 		if (!year || !month) {
 			return;
 		}
-		var ym = year + "" + month;
 		var days = global.DateUtil.getDaysByYearAndMonth(year, month-1);
 		var resultData = [];
 		for(var i = 1; i <= days; i++) {

@@ -16,11 +16,12 @@ define(function(require){
 				if (month < 10) {
 					month = "0" + month;
 				}
-				console.log(year + month);
 				return (year + month);
 			},
-			prefixMonthStr: function(month) {
-				if (month < 10) {
+			prefixNumStr: function(month) {
+				if (month == 0){
+					return "";
+				} else if (month < 10) {
 					return "0" + month;
 				}
 				return month;

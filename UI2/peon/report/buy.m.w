@@ -89,7 +89,7 @@
             <h4 class="panel-title" xid="h43"><![CDATA[年度]]></h4>
           </div>  
           <div class="panel-collapse collapse in" xid="div6"> 
-            <div class="panel-body" xid="div5" style="height:400px;"/>
+            <div class="panel-body" xid="div5" style="height:450px;"/>
           </div> 
         </div> 
       </div>
@@ -98,7 +98,7 @@
         <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel"
           xid="panel2"> 
           <div class="panel-heading" xid="heading1"> 
-            <h4 class="panel-title" xid="h41"><![CDATA[项目详情]]></h4> 
+            <h4 class="panel-title" xid="h41"><![CDATA[各项目收购量]]></h4> 
           </div>  
           <div class="panel-collapse collapse in" xid="div1"> 
             <div class="panel-body" xid="div2" style="height:800px;"/>
@@ -110,9 +110,9 @@
         <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel"
           xid="panel3"> 
           <div class="panel-heading" xid="heading2"> 
-            <h4 class="panel-title" xid="h42"><![CDATA[选定统计时间排行]]></h4> 
+            <h4 class="panel-title" xid="h42"><![CDATA[项目详情]]></h4> 
           </div>  
-          <div class="panel-collapse collapse in" xid="div3"> 
+          <div class="panel-collapse collapse in" xid="div3" style="height:400px;"> 
             <div class="panel-body" xid="div4" style="height:200px;"/>  
             <div class="panel-body" xid="div7" style="height:200px;"/>
           </div> 
