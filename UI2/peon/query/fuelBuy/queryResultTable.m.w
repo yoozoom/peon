@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:163px;left:140px;height:auto;" onLoad="modelLoad"> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="rsData" idColumn="id" onCustomRefresh="rsDataCustomRefresh"><column name="id" type="Long" xid="xid2"></column>
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:163px;left:140px;height:auto;" onLoad="modelLoad" onParamsReceive="modelParamsReceive"> 
+  <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="rsData" idColumn="id" autoNew="true" onCustomRefresh="rsDataCustomRefresh"><column name="id" type="Long" xid="xid2"></column>
   <column name="gbsj" type="String" xid="xid1"></column>
   <column name="khxm" type="String" xid="xid3"></column>
   <column name="khlxmc" type="String" xid="xid4"></column>
@@ -82,4 +82,16 @@
    <div class="x-content-center x-pull-up" xid="div3">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
   </div> 
+    <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
+    xid="popOver2" opacity="0.9" dismissible="true"> 
+    <div class="x-popOver-overlay" xid="div11"/>  
+    <div class="x-popOver-content text-center" xid="div12"> 
+      <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
+        label="button" xid="button2" icon="icon-loading-a"> 
+        <i xid="i2" class="icon-loading-a" style="font-size:40px;"/>  
+        <span xid="span12"/> 
+      </a>  
+      <div xid="div13" bind-text="&quot;正在加载中，请稍候...&quot;"/> 
+    </div> 
+  </div>
 </div>

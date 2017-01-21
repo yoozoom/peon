@@ -360,16 +360,6 @@ define(function(require){
 	// 第4个图结束------------------------------------
 	
 	// ------------- common method ------------------
-	// 获取比较大值
-	var getMax = function(item, max) {
-		if (!max) {
-			max = item;
-		} 
-		if (max < item) {
-			max = item;
-		}
-		return max;
-	};
 	
 	// 功能ajax请求
 	var loadAjaxData = function(url, param, ctx, successCallBack, funCtx) {

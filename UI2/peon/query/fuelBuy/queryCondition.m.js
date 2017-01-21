@@ -19,17 +19,47 @@ define(function(require){
 	var buildParam = function(event, ctx) {
 		var zgs = ctx.comp("input3").val();
 		var xmb = ctx.comp("input5").val();
+		var lcmc = ctx.comp("input6").val();
+		var khmc = ctx.comp("input7").val();
+		var khbh = "";
+		if (khmc) {
+			khbh = khbhMap[khmc];
+		}
+		var rlmc = ctx.comp("input8").val();
+		var rlbh = "";
+		if (rlmc) {
+			rlbh = rlmcMap[rlmc];
+		}
+		var rllb = ctx.comp("select4").val();
+		var gblb = ctx.comp("select2").val();
+		var kssj = ctx.comp("input1").val();
+		if (kssj) {
+			kssj = kssj.split("-").join("");
+		}
+		var jssj = ctx.comp("input4").val();
+		if (jssj) {
+			jssj = jssj.split("-").join("");
+		}
 		
-		console.log(zgs);
-		console.log(xmb);
+		var param = {
+			gsdm: zgs,
+			xmbdm: xmb,
+			lcbh: lcmc,
+			khbh: khbh,
+			rlbh: rlbh,
+			rllb: rllb,
+			gblx: gblb,
+			gbkssj: kssj,
+			gbjssj: jssj
+		};
+		return param;
 	};
 
 	Model.prototype.queryBtnClick = function(event){
 		var param = buildParam(event, this);
-		//var url = "./queryResultTable.m.w";
-		//justep.Shell.showPage(require.toUrl(url));
-		
-		console.log(rlmcMap);
+		var url = "./queryResultTable.m.w";
+		console.log(param);
+		justep.Shell.showPage(require.toUrl(url), param);
 	};
 
 	Model.prototype.modelLoad = function(event){

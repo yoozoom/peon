@@ -7,6 +7,8 @@ define(function(require){
 	var isEnd = false;
 	var startIndex = 0;
 	var pageSize = 10;
+	var queryParam = {};
+	var lastNextComplete = true;
 
 	var Model = function(){
 		this.callParent();
@@ -16,19 +18,27 @@ define(function(require){
 		isEnd = false;
 	};
 	
+	var rsData = null;
+	
 	// 加载报表
-	var loadQueryData = function(event, param) {		
+	var loadQueryData = function(event, param, ctx) {		
 		var url = global.serverDomain + 'fuelBuy/query';
 		var funCtx = {
 			event: event,
+			rsData: rsData,
+			ctx: ctx
 		};
-		baseLoadAjaxData(url, param, null, loadQueryDataSuccessFun, funCtx);
+		baseLoadAjaxData(url, param, ctx, loadQueryDataSuccessFun, funCtx);
 	};
 	
 	var loadQueryDataSuccessFun = function(data, funCtx) {
+		global.hidePopOver("popOver2", funCtx.ctx);
 		var event = funCtx.event;
 		startIndex += pageSize;
-		allData.loadDataFromJson(event.source, true, data);
+		if (!rsData) {
+			rsData = event.source;
+		}
+		allData.loadDataFromJson(rsData, true, data);
 	};
 	
 	// 下拉报表
@@ -41,6 +51,7 @@ define(function(require){
 	};
 	
 	var loadNextDataSuccessFun = function(data, funCtx) {
+		lastNextComplete = true;
 		var ctx = funCtx.ctx;
 		if (data.length === 0) {
 			isEnd = true;
@@ -70,23 +81,23 @@ define(function(require){
 
 	Model.prototype.rsDataCustomRefresh = function(event){
 		// 1、加载数据. 每次刷新都会触发此方法		
-		var param = {
-			"pageSize":pageSize,
-			"startIndex": startIndex
-		};
+		queryParam.pageSize = pageSize;
+		queryParam.startIndex = startIndex;
 
-		loadQueryData(event, param);
+		loadQueryData(event, queryParam);
 		init();
 	};
 	
 	// 每次向上滑动会调用一次这个方法
-	Model.prototype.scrollView1PullUp = function(event){
+	Model.prototype.scrollView1PullUp = function(event) {
+		if (!lastNextComplete) {
+			return;
+		}
+		lastNextComplete = false;
 		if (!isEnd) {
-			var param = {
-				"pageSize": pageSize,
-				"startIndex": startIndex
-			};
-			loadNextData(param, this);
+			queryParam.pageSize = pageSize;
+			queryParam.startIndex = startIndex;
+			loadNextData(queryParam, this);
 			this.comp("scrollView1").noMoreLoadLabel = "加载更多...";
 		} else {
 			this.comp("scrollView1").noMoreLoadLabel = "已经到最后.";
@@ -95,7 +106,19 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
-		
+		rsData = this.comp("rsData");
+	};
+
+	Model.prototype.modelParamsReceive = function(event){
+		if (event.params) {
+			queryParam = event.params;
+		}	
+		queryParam.pageSize = pageSize;
+		queryParam.startIndex = startIndex;
+
+		global.showPopOver("popOver2", this);
+		loadQueryData(event, queryParam, this);
+		init();
 	};
 
 	return Model;
