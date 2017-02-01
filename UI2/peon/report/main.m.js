@@ -6,11 +6,6 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 	};
-
-	Model.prototype.button1Click = function(event){
-		var indexUrl = "./buy.m.w";
-		justep.Shell.showPage(require.toUrl(indexUrl));
-	};
 	
 	var loadMonthTotal = function(nowMonth, ctx) {
 		$.ajax({
@@ -18,7 +13,7 @@ define(function(require){
 			type : 'get',
 			dataType : 'jsonp',
 			success : function(data) {
-				console.log(data);
+				//console.log(data);
 				if (data.success) {
 					buildMonthTotalData(data, ctx);
 				} else {
@@ -84,6 +79,16 @@ define(function(require){
 
 	Model.prototype.modelActive = function(event){
 
+	};
+	
+	Model.prototype.button1Click = function(event){
+		var indexUrl = "./buy.m.w";
+		justep.Shell.showPage(require.toUrl(indexUrl));
+	};
+
+	Model.prototype.button2Click = function(event){
+		var indexUrl = "./sale.m.w";
+		justep.Shell.showPage(require.toUrl(indexUrl));
 	};
 
 	return Model;

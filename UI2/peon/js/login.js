@@ -1,8 +1,9 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	var global = require("$UI/peon/js/global");
 	
-	serverUrl = 'http://localhost:8090';
+	// serverUrl = 'http://localhost:8090';
 	
 	return {
 		
@@ -19,26 +20,28 @@ define(function(require){
 			this.validateUser(JSON.parse(su), sCallback, fCallback);
 		},
 		
+
 		validateUser : function(user, sCallback, fCallback) {
 			$.ajax({
-				  url: serverUrl + '/sso/check?userName=' + user['userName'] + '&password=' + user['password'],
-				  type:'get',
-				  dataType:'jsonp',
-				  success:function(data) {
-					  console.log(data);
-					  if(data.success) {
-						  if (sCallback && typeof sCallback == 'function')
-							  sCallback(data);
-					  } else {
-						  if (fCallback && typeof fCallback == 'function')
-							  fCallback(data);
-					  }
-				  },
-				  error:function(data) {
-					  console.log('系统异常');
-					  alert('系统异常, 请稍后再试');
-				  }
-				})
+				url : global.serverDomain + 'sso/check?userName='
+						+ user['userName'] + '&password=' + user['password'],
+				type : 'get',
+				dataType : 'jsonp',
+				success : function(data) {
+					console.log(data);
+					if (data.success) {
+						if (sCallback && typeof sCallback == 'function')
+							sCallback(data);
+					} else {
+						if (fCallback && typeof fCallback == 'function')
+							fCallback(data);
+					}
+				},
+				error : function(data) {
+					console.log('系统异常');
+					alert('系统异常, 请稍后再试');
+				}
+			});
 		},
 		
 		doLogin:function(uname, pwd, sCallback) {
@@ -56,7 +59,6 @@ define(function(require){
 			if (callback && typeof callback == 'function') callback();
 			justep.Shell.showPage("login");
 		}
-	}
-	
+	};
 	
 });

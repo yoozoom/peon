@@ -4,9 +4,9 @@ define(function(require){
 	var echarts = require("$UI/peon/plugin/echarts/dist/echarts.min");
 	var global = require("$UI/peon/js/global");
 	
-	var sglItemData = ['收购量','加权水分', '热值单价'];
+	var sjlItemData = ['销售量','加权水分', '热值单价'];
 	var completeCount = 0;
-	var chartCount = 1;		// 要加载完成显示的图个数
+	var chartCount = 1;
 	
 	var Model = function(){
 		this.callParent();
@@ -84,7 +84,7 @@ define(function(require){
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
 		var param = {};
-		var url = global.serverDomain + 'sgl/eachYear';
+		var url = global.serverDomain + 'sjl/eachYear';
 		var funCtx = {
 			needCut: true
 		};
@@ -98,7 +98,7 @@ define(function(require){
 		var sjsf = []; var maxsjsf = null;
 		var sjrz = []; var maxsjrz = null;
 		$.each(data, function(i, c) {
-			years.push(c.sjmc);
+			years.push(c.nf);
 			sjl.push(c.sjl);
 			sjsf.push(c.sjsf);
 			sjrz.push(c.sjrz);
@@ -120,7 +120,7 @@ define(function(require){
 		var colors = ['#5793f3', '#d14a61', '#675bba'];
 		var option = {
 		    title: {
-		    	text:'各年度燃料收购量质价',
+		    	text:'各年度燃料销售量质价',
 		    },
 		    tooltip: {
 		        trigger: 'axis'
@@ -132,7 +132,7 @@ define(function(require){
 		    },
 		    legend: {
 		    	top: '6%',
-		        data:sglItemData
+		        data:sjlItemData
 		    },
 		    xAxis: [
 		        {
@@ -146,7 +146,7 @@ define(function(require){
 		    yAxis: [
 		        {
 		            type: 'value',
-		            name: '收购量',
+		            name: sjlItemData[0],
 		            min: 0,
 		            max: ysjl,
 		            position: 'left',
@@ -164,7 +164,7 @@ define(function(require){
 		        },
 		        {
 		            type: 'value',
-		            name: '热值单价',
+		            name: sjlItemData[2],
 		            min: 0,
 		            max: ysjrz,
 		            position: 'right',
@@ -183,7 +183,7 @@ define(function(require){
 		        },
 		        {
 		            type: 'value',
-		            name: '加权水分',
+		            name: sjlItemData[1],
 		            min: 0,
 		            max: ysjsf,
 		            position: 'right',
@@ -200,18 +200,18 @@ define(function(require){
 		    ],
 		    series: [
 		        {
-		            name:sglItemData[0],
+		            name:sjlItemData[0],
 		            type:'bar',
 		            data: sjl
 		        },
 		        {
-		            name:sglItemData[1],
+		            name:sjlItemData[1],
 		            type:'bar',
 		            yAxisIndex: 2,
 		            data:sjsf
 		        },
 		        {
-		            name:sglItemData[2],
+		            name:sjlItemData[2],
 		            type:'bar',
 		            yAxisIndex: 1,
 		            data:sjrz
@@ -230,7 +230,7 @@ define(function(require){
 		if (!param.date) {
 			param.date = date;
 		}
-		var url = global.serverDomain + 'sgl/eachProject';
+		var url = global.serverDomain + 'sjl/eachProject';
 		var funCtx = {
 			needCut: true
 		};
@@ -263,7 +263,7 @@ define(function(require){
 	var getProjectBuyOption = function(projects, sjl, sjsf, sjrz) {
 		var option = {
 		    title: {
-		        text: '各项目收购量',
+		        text: '各项目销售量',
 		    },
 		    tooltip: {
 		        trigger: 'axis',
@@ -273,7 +273,7 @@ define(function(require){
 		    },
 		    legend: {
 		    	top: '4%',
-		        data: sglItemData
+		        data: sjlItemData
 		    },
 		    grid: {
 		        left: '3%',
@@ -292,17 +292,17 @@ define(function(require){
 		    },
 		    series: [
 		        {
-		            name: sglItemData[0],
+		            name: sjlItemData[0],
 		            type: 'bar',
 		            data: sjl
 		        },
 		        {
-		            name: sglItemData[1],
+		            name: sjlItemData[1],
 		            type: 'bar',
 		            data: sjsf
 		        },
 		        {
-		            name: sglItemData[2],
+		            name: sjlItemData[2],
 		            type: 'bar',
 		            data: sjrz
 		        }
@@ -320,7 +320,7 @@ define(function(require){
 		if (!param.date) {
 			param.date = date;
 		}
-		var url = global.serverDomain + 'sgl/eachCategory';
+		var url = global.serverDomain + 'sjl/eachCategory';
 		var funCtx = {
 			needCut: true
 		};
@@ -329,7 +329,7 @@ define(function(require){
 	
 	var buildCategoryBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-			title: "燃料品种收购量"
+			title: "燃料品种销售量"
 		};
 		buildPieEcharts(data, ctx, "div4", "div3", chartCtx);	
 	};
@@ -344,7 +344,7 @@ define(function(require){
 		if (!param.date) {
 			param.date = date;
 		}
-		var url = global.serverDomain + 'sgl/eachName';
+		var url = global.serverDomain + 'sjl/eachName';
 		var funCtx = {
 			needCut: true
 		};
@@ -353,7 +353,7 @@ define(function(require){
 	
 	var buildNameBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-			title: "燃料类别收购量"
+			title: "燃料类别销售量"
 		};
 		buildPieEcharts(data, ctx, "div7", "div3", chartCtx);
 	};

@@ -15,7 +15,7 @@
        <i xid="i4"></i>
        <span xid="span4"></span></a> </div>
      <div class="x-col" xid="col5">
-      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="销售" xid="button2" style="height:100%;width:100%;">
+      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="销售" xid="button2" style="height:100%;width:100%;" onClick="button2Click">
        <i xid="i5"></i>
        <span xid="span5"></span></a> </div> 
      <div class="x-col" xid="col6">
