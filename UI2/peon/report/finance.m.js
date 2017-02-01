@@ -4,7 +4,9 @@ define(function(require){
 	var echarts = require("$UI/peon/plugin/echarts/dist/echarts.min");
 	var global = require("$UI/peon/js/global");
 	
-	var sjlItemData = ['销售量','加权水分', '热值单价'];
+	var cwItemData = ['已收','已付','应收','应付'];
+	var cwyiItemData = ['已收','已付'];
+	
 	var completeCount = 0;
 	var chartCount = 1;
 	
@@ -84,7 +86,7 @@ define(function(require){
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
 		var param = {};
-		var url = global.serverDomain + 'sjl/eachYear';
+		var url = global.serverDomain + 'cw/eachYear';
 		var funCtx = {
 			needCut: true
 		};
@@ -94,45 +96,36 @@ define(function(require){
 	var buildYearBuyEcharts = function(data, ctx) {
 		// 构建数据
 		var years = [];
-		var sjl = []; var maxsjl = null;
-		var sjsf = []; var maxsjsf = null;
-		var sjrz = []; var maxsjrz = null;
+		var ysje = [];
+		var yfje = [];
 		$.each(data, function(i, c) {
 			years.push(c.nf);
-			sjl.push(c.sjl);
-			sjsf.push(c.sjsf);
-			sjrz.push(c.sjrz);
-			
-			maxsjl = global.NumUtil.getMax(c.sjl, maxsjl);
-			maxsjsf = global.NumUtil.getMax(c.sjsf, maxsjsf);
-			maxsjrz = global.NumUtil.getMax(c.sjrz, maxsjrz);
+			ysje.push(c.ysje);
+			yfje.push(c.yfje);
 		});
 		
-		var ysjl = (maxsjl * 1.3);
-		var ysjsf = (maxsjsf * 1.3);
-		var ysjrz = (maxsjrz * 1.3);
-		var option = getYearBuyOption(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz);
-
+		var option = getYearBuyOption(years, ysje, yfje);
+		console.log(option);
 		buildBaseEcharts("div5", "div6", ctx, option);
 	};
 	
-	var getYearBuyOption = function(years, sjl, sjsf, sjrz, ysjl, ysjsf, ysjrz) {
-		var colors = ['#5793f3', '#d14a61', '#675bba'];
+	var getYearBuyOption = function(years, ysje, yfje) {
+		var colors = ['#5793f3', '#d14a61'];
 		var option = {
 		    title: {
-		    	text:'各年度燃料销售量质价',
+		    	text:'各年度已收已付',
 		    },
 		    tooltip: {
 		        trigger: 'axis'
 		    },
 		    grid: {
 		    	top: "20%",
-		        right: '26%',
-		        bottom: '10%'
+		        bottom: '10%',
+		        left:'13%'
 		    },
 		    legend: {
 		    	top: '6%',
-		        data:sjlItemData
+		        data:cwyiItemData
 		    },
 		    xAxis: [
 		        {
@@ -143,78 +136,27 @@ define(function(require){
 		            data: years
 		        }
 		    ],
-		    yAxis: [
-		        {
-		            type: 'value',
-		            name: sjlItemData[0],
-		            min: 0,
-		            max: ysjl,
-		            position: 'left',
-		            //nameLocation: 'middle',
-		            axisLine: {
-		                lineStyle: {
-		                    color: colors[0]
-		                }
-		            },
-		            axisLabel: {
-		                formatter: function (value, index) {
-						    return value + "\n 万元";
-						}
-		            }
-		        },
-		        {
-		            type: 'value',
-		            name: sjlItemData[2],
-		            min: 0,
-		            max: ysjrz,
-		            position: 'right',
-		            //nameLocation: 'middle',
-		            offset: 50,
-		            axisLine: {
-		                lineStyle: {
-		                    color: colors[1]
-		                }
-		            },
-		            axisLabel: {
-		                formatter: function (value, index) {
-						    return value + "\n 元/kCal";
-						}
-		            }
-		        },
-		        {
-		            type: 'value',
-		            name: sjlItemData[1],
-		            min: 0,
-		            max: ysjsf,
-		            position: 'right',
-		            //nameLocation: 'middle',
-		            axisLine: {
-		                lineStyle: {
-		                    color: colors[2]
-		                }
-		            },
-		            axisLabel: {
-		                formatter: '{value} %'
-		            }
-		        }
-		    ],
+		    yAxis: {
+	            type: 'value',
+	            name: '金额',
+	            min: 0,
+	            axisLabel: {
+	                formatter: function(value) {
+	                	var val100 = value / 10000;
+	                	return val100 + "\n 万元";
+	                }
+	            }
+		    },
 		    series: [
 		        {
-		            name:sjlItemData[0],
+		            name:cwyiItemData[0],
 		            type:'bar',
-		            data: sjl
+		            data:ysje
 		        },
 		        {
-		            name:sjlItemData[1],
+		            name:cwyiItemData[1],
 		            type:'bar',
-		            yAxisIndex: 2,
-		            data:sjsf
-		        },
-		        {
-		            name:sjlItemData[2],
-		            type:'bar',
-		            yAxisIndex: 1,
-		            data:sjrz
+		            data:yfje
 		        }
 		    ]
 		};
@@ -230,7 +172,7 @@ define(function(require){
 		if (!param.date) {
 			param.date = date;
 		}
-		var url = global.serverDomain + 'sjl/eachProject';
+		var url = global.serverDomain + 'cw/eachProject';
 		var funCtx = {
 			needCut: true
 		};
@@ -243,16 +185,18 @@ define(function(require){
 		var chartsHeight = dataSize * 19;
 		
 		var projects = [];
-		var sjl = [];
-		var sjsf = []; 
-		var sjrz = []; 
+		var yfje = [];
+		var ysje = []; 
+		var yifje = []; 
+		var yisje = []; 
 		$.each(data, function(i, c) {
 			projects.push(c.xmbmc);
-			sjl.push(c.sjl);
-			sjsf.push(c.sjsf);
-			sjrz.push(c.sjrz);
+			yfje.push(c.yfje);
+			ysje.push(c.ysje);
+			yifje.push(c.yifje);
+			yisje.push(c.yisje);
 		});
-		var option = getProjectBuyOption(projects, sjl, sjsf, sjrz);
+		var option = getProjectBuyOption(projects, yfje, ysje, yifje, yisje);
 		
 		var totalDiv = ctx.getElementByXid('div2');
 		totalDiv.style.height = chartsHeight + "px";	// 动态设置div高度
@@ -260,10 +204,10 @@ define(function(require){
 	};
 	
 	//
-	var getProjectBuyOption = function(projects, sjl, sjsf, sjrz) {
+	var getProjectBuyOption = function(projects, yfje, ysje, yifje, yisje) {
 		var option = {
 		    title: {
-		        text: '各项目销售量',
+		        text: '各项目财务',
 		    },
 		    tooltip: {
 		        trigger: 'axis',
@@ -273,7 +217,7 @@ define(function(require){
 		    },
 		    legend: {
 		    	top: '4%',
-		        data: sjlItemData
+		        data: cwItemData
 		    },
 		    grid: {
 		        left: '3%',
@@ -284,7 +228,13 @@ define(function(require){
 		    xAxis: {
 		        type: 'value',
 		        position: 'top',
-		        boundaryGap: [0, 0.01]
+		        boundaryGap: [0, 0.01],
+	        	axisLabel:{
+	        		formatter: function(value) {
+	                	var val100 = value / 10000;
+	                	return val100 + "\n 万元";
+	                }
+	        	}
 		    },
 		    yAxis: {
 		        type: 'category',
@@ -292,19 +242,24 @@ define(function(require){
 		    },
 		    series: [
 		        {
-		            name: sjlItemData[0],
+		            name: cwItemData[0],
 		            type: 'bar',
-		            data: sjl
+		            data: yisje
 		        },
 		        {
-		            name: sjlItemData[1],
+		            name: cwItemData[1],
 		            type: 'bar',
-		            data: sjsf
+		            data: yifje
 		        },
 		        {
-		            name: sjlItemData[2],
+		            name: cwItemData[2],
 		            type: 'bar',
-		            data: sjrz
+		            data: ysje
+		        },
+		        {
+		            name: cwItemData[3],
+		            type: 'bar',
+		            data: yfje
 		        }
 		    ]
 		};
@@ -320,7 +275,7 @@ define(function(require){
 		if (!param.date) {
 			param.date = date;
 		}
-		var url = global.serverDomain + 'sjl/eachCategory';
+		var url = global.serverDomain + 'cw/eachAmount';
 		var funCtx = {
 			needCut: true
 		};
@@ -329,35 +284,12 @@ define(function(require){
 	
 	var buildCategoryBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-			title: "燃料品种销售量"
+			title: "应付金额占比"
 		};
 		buildPieEcharts(data, ctx, "div4", "div3", chartCtx);	
 	};
 	
 	// 第3个图结束------------------------------------
-	
-	// 第2个饼图
-	// 第4个图开始------------------------------------
-	var loadNameBuy = function(param, ctx) {
-		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
-		if (!param.date) {
-			param.date = date;
-		}
-		var url = global.serverDomain + 'sjl/eachName';
-		var funCtx = {
-			needCut: true
-		};
-		loadAjaxData(url, param, ctx, buildNameBuyEcharts, funCtx);
-	};
-	
-	var buildNameBuyEcharts = function(data, ctx) {
-		var chartCtx = {
-			title: "燃料类别销售量"
-		};
-		buildPieEcharts(data, ctx, "div7", "div3", chartCtx);
-	};
-	// 第4个图结束------------------------------------
 	
 	// ------------- common method ------------------
 	
@@ -412,10 +344,10 @@ define(function(require){
 		var itemNames = [];
 		var items = [];
 		$.each(data, function(i, c) {
-			itemNames.push(c.sjmc);
+			itemNames.push(c.rldlmc);
 			var item = {};
-			item.name = c.sjmc;
-			item.value = c.sjl;
+			item.name = c.rldlmc;
+			item.value = c.jsje;
 			items.push(item);
 		});
 		
@@ -473,9 +405,7 @@ define(function(require){
 		loadYearBuy(this);
 		var param = {};	//选择获取
 		loadProjectBuy(param, this);
-		loadCategoryBuy(param, this);
-		loadNameBuy(param, this);
-		
+		loadCategoryBuy(param, this);		
 	};
 
 	Model.prototype.monthSelectChange = function(event){
@@ -488,7 +418,7 @@ define(function(require){
 	};
 
 	Model.prototype.searchBtnClick = function(event){
-		chartCount = 3;
+		chartCount = 2;
 		completeCount = 0;
 		//请求数据并显示popOver组件
 		global.showPopOver("popOver2", this);
@@ -503,7 +433,6 @@ define(function(require){
 		
 		loadProjectBuy(param, ctx);
 		loadCategoryBuy(param, ctx);
-		loadNameBuy(param, ctx);
 	};
 
 	// 组装查询参数

@@ -91,5 +91,10 @@ define(function(require){
 		justep.Shell.showPage(require.toUrl(indexUrl));
 	};
 
+	Model.prototype.button3Click = function(event){
+		var indexUrl = "./finance.m.w";
+		justep.Shell.showPage(require.toUrl(indexUrl));
+	};
+
 	return Model;
 });
