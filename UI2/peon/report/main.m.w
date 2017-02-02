@@ -23,12 +23,12 @@
        <i xid="i6"></i>
        <span xid="span6"></span></a> </div> 
      <div class="x-col" xid="col7">
-      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="破碎" xid="button4" style="height:100%;width:100%;">
+      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="破碎" xid="button4" style="height:100%;width:100%;" onClick="button4Click">
        <i xid="i7"></i>
        <span xid="span7"></span></a> </div> 
       
   <div class="x-col" xid="col8">
-      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="盘存" xid="button5" style="height:100%;width:100%;">
+      <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="盘存" xid="button5" style="height:100%;width:100%;" onClick="button5Click">
        <i xid="i8"></i>
        <span xid="span8"></span></a> </div></div> 
     <h4 xid="h41">总汇信息</h4>

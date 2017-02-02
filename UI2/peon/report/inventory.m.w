@@ -6,10 +6,10 @@
   
   <!--需要赋值的组件mainData -->  
    
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:296px;left:82px;"
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:275px;left:15px;height:auto;"
     onLoad="modelLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="daysData" idColumn="value" onCustomRefresh="daysDataCustomRefresh">
+      xid="daysData" idColumn="value">
       <column name="value" type="Integer" xid="xid1"/>  
       <column name="name" type="Integer" xid="xid2"/>
     </div>
@@ -31,7 +31,7 @@
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 
-      <div component="$UI/system/components/justep/titleBar/titleBar" title="财务图表"
+      <div component="$UI/system/components/justep/titleBar/titleBar" title="盘存图表"
         class="x-titlebar"> 
         <div class="x-titlebar-left"> 
           <a component="$UI/system/components/justep/button/button" label=""
@@ -41,7 +41,7 @@
             <span/> 
           </a> 
         </div>  
-        <div class="x-titlebar-title">财务图表</div>  
+        <div class="x-titlebar-title">盘存图表</div>  
         <div class="x-titlebar-right reverse"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link"
             label="查询" xid="searchBtn" icon="linear linear-textsize" onClick="searchBtnClick"> 
@@ -62,11 +62,6 @@
           <select component="$UI/system/components/justep/select/select" bind-optionsCaption="月份"
             class="form-control" xid="monthSelect" optionsAutoLoad="true" bind-optionsValue="fValue"
             bind-optionsLabel="fName" bind-options="$model.getItems('month')" onChange="monthSelectChange"></select> 
-        </div>  
-        <div class="x-col" xid="col1"> 
-          <select component="$UI/system/components/justep/select/select" bind-optionsCaption="日期"
-            class="form-control" xid="daySelect" optionsAutoLoad="true" bind-optionsValue="value"
-            bind-optionsLabel="name" bind-options="daysData"/>
         </div>  
         <!-- 子公司下拉框 -->  
         <div class="x-col" xid="col3"> 
@@ -98,7 +93,7 @@
         <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel"
           xid="panel2"> 
           <div class="panel-heading" xid="heading1"> 
-            <h4 class="panel-title" xid="h41"><![CDATA[各项目已收已付应收应付]]></h4> 
+            <h4 class="panel-title" xid="h41"><![CDATA[各项目盘存]]></h4> 
           </div>  
           <div class="panel-collapse collapse in" xid="div1"> 
             <div class="panel-body" xid="div2" style="height:800px;"/>
@@ -110,7 +105,7 @@
         <div class="panel panel-default" component="$UI/system/components/bootstrap/panel/panel"
           xid="panel3"> 
           <div class="panel-heading" xid="heading2"> 
-            <h4 class="panel-title" xid="h42"><![CDATA[应付金额占比]]></h4> 
+            <h4 class="panel-title" xid="h42"><![CDATA[盘存占比]]></h4> 
           </div>  
           <div class="panel-collapse collapse in" xid="div3" style="height:400px;"> 
             <div class="panel-body" xid="div4" style="height:200px;"/>  

@@ -96,5 +96,15 @@ define(function(require){
 		justep.Shell.showPage(require.toUrl(indexUrl));
 	};
 
+	Model.prototype.button4Click = function(event){
+		var indexUrl = "./crush.m.w";
+		justep.Shell.showPage(require.toUrl(indexUrl));
+	};
+
+	Model.prototype.button5Click = function(event){
+		var indexUrl = "./inventory.m.w";
+		justep.Shell.showPage(require.toUrl(indexUrl));
+	};
+
 	return Model;
 });
