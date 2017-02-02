@@ -2,8 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	
-	//window.globalServerDomain = "http://localhost:8090/peon-server/";
-	window.globalServerDomain = "http://192.168.0.110:8090/peon-server/";
+	window.globalServerDomain = "http://localhost:8090/peon-server/";
+	//window.globalServerDomain = "http://192.168.0.110:8090/peon-server/";
 	
 	return {
 		// 全局域名
@@ -20,7 +20,7 @@ define(function(require){
 				return (year + month);
 			},
 			prefixNumStr: function(month) {
-				if (month == 0){
+				if (month === 0){
 					return "";
 				} else if (month < 10) {
 					return "0" + month;
