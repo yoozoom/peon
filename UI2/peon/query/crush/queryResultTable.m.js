@@ -22,7 +22,7 @@ define(function(require){
 	
 	// 加载报表
 	var loadQueryData = function(event, param, ctx) {		
-		var url = global.serverDomain + 'fuelStock/query';
+		var url = global.serverDomain + 'crush/query';
 		var funCtx = {
 			event: event,
 			rsData: rsData,
@@ -43,7 +43,7 @@ define(function(require){
 	
 	// 下拉报表
 	var loadNextData = function(param, ctx) {
-		var url = global.serverDomain + 'fuelStock/query';
+		var url = global.serverDomain + 'crush/query';
 		var funCtx = {
 			ctx: ctx,
 		};

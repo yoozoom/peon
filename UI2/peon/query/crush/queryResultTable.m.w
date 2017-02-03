@@ -3,17 +3,16 @@
   <div component="$UI/system/components/justep/model/model" xid="model" style="top:163px;left:140px;height:auto;" onLoad="modelLoad" onParamsReceive="modelParamsReceive"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="rsData" idColumn="id" autoNew="true" onCustomRefresh="rsDataCustomRefresh">
   <column name="id" type="Long" xid="xid2"></column>
-  <column name="kcrq" type="String" xid="xid1"></column>
-  <column name="kczl" type="Decimal" xid="xid3"></column>
-  <column name="slkc" type="Decimal" xid="xid4"></column>
-  <column name="zlkc" type="Decimal" xid="xid5"></column>
+  <column name="sbmc" type="String" xid="xid3"></column>
+  <column name="psl" type="Decimal" xid="xid4"></column>
   <column name="gsmc" type="String" xid="xid16"></column>
   <column name="xmbmc" type="String" xid="xid17"></column>
-  <column name="lcmc" type="String" xid="xid18"></column></div></div>  
+  <column name="lcmc" type="String" xid="xid18"></column>
+  <column name="rq" type="String" xid="xid1"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
-        <div component="$UI/system/components/justep/titleBar/titleBar" title="燃料库存台账查询"
+        <div component="$UI/system/components/justep/titleBar/titleBar" title="破碎量查询"
           class="x-titlebar">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
@@ -23,7 +22,7 @@
               <span></span> 
             </a> 
           </div>  
-          <div class="x-titlebar-title">燃料库存台账查询</div>  
+          <div class="x-titlebar-title">破碎量查询</div>  
           <div class="x-titlebar-right reverse"> 
           </div>
         </div> 
@@ -34,13 +33,12 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/fragment/list/listTable" xid="listTable1">
    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="20">
-    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
+    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:800px;">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1"><![CDATA[整料库存量]]></th> 
-       <th xid="col2"><![CDATA[碎料库存量]]></th> 
-  <th xid="col3"><![CDATA[库存总量]]></th>
-  <th xid="col4"><![CDATA[子公司]]></th>
+       <th xid="col1" style="width:100px;"><![CDATA[破碎设备]]></th> 
+       <th xid="col2" style="width:50px;"><![CDATA[破碎量]]></th> 
+  <th xid="col4" style="width:150px;"><![CDATA[子公司]]></th>
   <th xid="col5"><![CDATA[项目部]]></th>
   <th xid="col6"><![CDATA[料场名称]]></th>
   <th xid="col7"><![CDATA[时间]]></th>
@@ -48,14 +46,13 @@
      <tbody class="x-list-template" xid="listTemplate1">
       <tr class="info" xid="tr2">
        <td xid="td1">
-        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("zlkc")'></div></td> 
+        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("sbmc")'></div></td> 
        <td xid="td2">
-        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref='ref("slkc")'></div></td> 
-  <td xid="td3"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output3" bind-ref='ref("kczl")'></div></td>
+        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref='ref("psl")'></div></td> 
   <td xid="td4"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output4" bind-ref='ref("gsmc")'></div></td>
   <td xid="td5"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output5" bind-ref='ref("xmbmc")'></div></td>
   <td xid="td6"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output6" bind-ref='ref("lcmc")'></div></td>
-  <td xid="td7"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output7" bind-ref='ref("kcrq")'></div></td>
+  <td xid="td7"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output7" bind-ref='ref("rq")'></div></td>
   </tr> </tbody> </table> </div> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
