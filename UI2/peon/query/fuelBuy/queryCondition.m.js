@@ -193,7 +193,7 @@ define(function(require){
 		source.loadData(companys);
 	};
 	
-		Model.prototype.companySelectChange = function(event){
+	Model.prototype.companySelectChange = function(event){
 		this.comp('projectSelect').val('');
 		this.comp('projectData').refreshData();
 	};

@@ -9,7 +9,17 @@
   <data xid="default2">[{&quot;name&quot;:&quot;收购&quot;,&quot;value&quot;:1},{&quot;name&quot;:&quot;直接销售&quot;,&quot;value&quot;:2}]</data></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="paramData" idColumn="id"><column name="id" type="String" xid="xid5"></column>
   <column name="startDate" type="Date" xid="xid6"></column>
-  <column name="endDate" type="Date" xid="xid7"></column></div></div>  
+  <column name="endDate" type="Date" xid="xid7"></column></div>
+  <div component="$UI/system/components/justep/data/data" xid="companyData" idColumn="fID" autoLoad="true" onCustomRefresh="companyDataCustomRefresh">
+   <column label="ID" name="fID" type="String" xid="default7"></column>
+   <column label="公司ID" name="fValue" type="String" xid="default8"></column>
+   <column label="公司显示" name="fName" type="String" xid="default9"></column>
+   <data xid="default11">[]</data></div>
+  <div component="$UI/system/components/justep/data/data" xid="projectData" idColumn="fID" autoLoad="true" onCustomRefresh="projectDataCustomRefresh">
+   <column label="ID" name="fID" type="String" xid="default4"></column>
+   <column label="项目ID" name="fValue" type="String" xid="default5"></column>
+   <column label="项目显示" name="fName" type="String" xid="default6"></column>
+   <data xid="default12">[]</data></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -31,11 +41,13 @@
     <div class="x-panel-content" xid="content1">
   <div class="list-group" xid="listGroup2">
     
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelInput3">
-   <label class="x-label" xid="label6"><![CDATA[子公司]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input3"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
-   <label class="x-label" xid="label7"><![CDATA[项目部]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input5"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit6">
+   <label class="x-label" xid="label3"><![CDATA[子公司]]></label>
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="companySelect" bind-options="companyData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="子公司" optionsAutoLoad="false" onChange="companySelectChange"></select></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit7">
+   <label class="x-label" xid="label11"><![CDATA[项目部]]></label>
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="projectSelect" bind-options="projectData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="项目部" optionsAutoLoad="false"></select></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
    <label class="x-label" xid="label8"><![CDATA[料场名称]]></label>
    <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input6"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelInput1">
    <label class="x-label" xid="label1"><![CDATA[时间]]></label>
