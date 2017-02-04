@@ -17,9 +17,12 @@ define(function(require){
 	};
 	
 	var buildParam = function(event, ctx) {
-		var zgs = ctx.comp("input3").val();
-		var xmb = ctx.comp("input5").val();
+//		var zgs = ctx.comp("input3").val();
+//		var xmb = ctx.comp("input5").val();
 		var lcmc = ctx.comp("input6").val();
+		
+		var zgs = ctx.comp("companySelect").val();
+		var xmb = ctx.comp("projectSelect").val();
 		var khmc = ctx.comp("input7").val();
 		var khbh = "";
 		if (khmc) {
@@ -94,7 +97,7 @@ define(function(require){
 			dataType : 'jsonp',
 			success : function(data) {
 				if (data.success) {
-					successCallBack(data.data, funCtx);
+					successCallBack(data.data, ctx, funCtx);
 				} else {
 
 				}
@@ -102,7 +105,8 @@ define(function(require){
 		});	
 	};
 	
-	var loadCustomerCallBack = function(data, funCtx) {
+	// 客户，燃料自动补全
+	var loadCustomerCallBack = function(data, ctx, funCtx) {
 		var response = funCtx.response;
 		khbhMap = {};
         response($.map(data, function(item) {
@@ -114,7 +118,7 @@ define(function(require){
         }));
 	};
 	
-	var loadFuelvarietyCallBack = function(data, funCtx) {
+	var loadFuelvarietyCallBack = function(data, ctx, funCtx) {
 		var response = funCtx.response;
 		rlmcMap = {};
         response($.map(data, function(item) {
@@ -169,7 +173,60 @@ define(function(require){
 		});
 	};
 	
+	// 公司，项目，料场级联
+	Model.prototype.companyDataCustomRefresh = function(event){
+		var url = global.serverDomain + '/company/queryCompany';
+		var param = {};
+		var funCtx = {
+			event: event
+		};
+		loadAjaxData(url, param, this, buildCompanyData, funCtx);
+	};
 	
+	var buildCompanyData = function(data, ctx, funCtx) {
+		var event = funCtx.event;
+		var companys = []; 
+		$.each(data, function(i, c) {
+			companys.push({'fValue':c.gsdm, 'fName':c.gsmc});
+		});
+		var source = event.source;
+		source.loadData(companys);
+	};
+	
+		Model.prototype.companySelectChange = function(event){
+		this.comp('projectSelect').val('');
+		this.comp('projectData').refreshData();
+	};
+
+	Model.prototype.projectDataCustomRefresh = function(event){
+		var projects = [];
+		var datadm = event.source;
+		var company = this.comp("companySelect").val();
+		var param = {
+			gsdm: company
+		};
+		
+		var url = global.serverDomain + 'project/queryProject';
+		var funCtx = {
+			event: event
+		};
+		
+		if (company) {
+			loadAjaxData(url, param, this, buildProjectData, funCtx);
+		} else {
+			datadm.loadData(projects);
+		}
+	};
+	
+	var buildProjectData = function (data, ctx, funCtx) {
+		var event = funCtx.event;
+		var datadm = event.source;
+		var projects = [];
+		$.each(data, function(i, c) {
+			projects.push({'fValue':c.xmbdm, 'fName':c.xmbmc});
+		});
+		datadm.loadData(projects);
+	};
 
 	return Model;
 });
