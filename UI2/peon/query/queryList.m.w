@@ -13,10 +13,10 @@
      <li class="list-group-item" xid="li2" bind-click="li2Click">燃料收购台账查询
       <span class="pull-right text-muted" xid="span30">
        <i xid="i17" class="icon-ios7-arrow-forward"></i></span> </li> 
-     <li class="list-group-item" xid="li3">燃料销售台账查询
+     <li class="list-group-item" xid="li3" bind-click="li3Click">燃料销售台账查询
       <span class="pull-right text-muted" xid="span37">
        <i xid="i18" class="icon-ios7-arrow-forward"></i></span> </li> 
-     <li class="list-group-item" xid="li5">燃料库存台账查询
+     <li class="list-group-item" xid="li5" bind-click="li5Click">燃料库存台账查询
       <span class="pull-right text-muted" xid="span33">
        <i xid="i21" class="icon-ios7-arrow-forward"></i></span> </li> 
   <li class="list-group-item" xid="li1" bind-click="li1Click">破碎量查询
