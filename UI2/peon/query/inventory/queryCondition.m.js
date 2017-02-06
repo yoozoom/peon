@@ -19,10 +19,11 @@ define(function(require){
 	var buildParam = function(event, ctx) {
 //		var zgs = ctx.comp("input3").val();
 //		var xmb = ctx.comp("input5").val();
-		var lcmc = ctx.comp("input6").val();
+//		var lcmc = ctx.comp("input6").val();
 		
 		var zgs = ctx.comp("companySelect").val();
 		var xmb = ctx.comp("projectSelect").val();
+		var lcbh = ctx.comp("stockgroundSelect").val();
 //		var khmc = ctx.comp("input7").val();
 //		var khbh = "";
 //		if (khmc) {
@@ -43,7 +44,7 @@ define(function(require){
 		var param = {
 			gsdm: zgs,
 			xmbdm: xmb,
-			lcbh: lcmc,
+			lcbh: lcbh,
 			rlbh: rlbh,
 			rllb: rllb,
 			rq: kssj
@@ -219,6 +220,41 @@ define(function(require){
 		});
 		datadm.loadData(projects);
 	};	
+
+	Model.prototype.projectSelectChange = function(event){
+		this.comp('stockgroundSelect').val('');
+		this.comp('stockgroundData').refreshData();
+	};
+
+	Model.prototype.stockgroundDataCustomRefresh = function(event){
+		var stockgrounds = [];
+		var datadm = event.source;
+		var xmbbh = this.comp("projectSelect").val();
+		var param = {
+			xmbbh: xmbbh
+		};
+		
+		var url = global.serverDomain + 'stockground/queryStockground';
+		var funCtx = {
+			event: event
+		};
+		
+		if (xmbbh) {
+			loadAjaxData(url, param, this, buildStockgroundData, funCtx);
+		} else {
+			datadm.loadData(stockgrounds);
+		}
+	};
+	
+	var buildStockgroundData = function (data, ctx, funCtx) {
+		var event = funCtx.event;
+		var datadm = event.source;
+		var stockgrounds = [];
+		$.each(data, function(i, c) {
+			stockgrounds.push({'fValue':c.lcbh, 'fName':c.lcmc});
+		});
+		datadm.loadData(stockgrounds);
+	};
 
 	return Model;
 });

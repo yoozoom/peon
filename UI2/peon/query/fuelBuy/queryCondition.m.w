@@ -19,7 +19,12 @@
    <column label="ID" name="fID" type="String" xid="default4"></column>
    <column label="项目ID" name="fValue" type="String" xid="default5"></column>
    <column label="项目显示" name="fName" type="String" xid="default6"></column>
-   <data xid="default12">[]</data></div></div>  
+   <data xid="default12">[]</data></div>
+  <div component="$UI/system/components/justep/data/data" xid="stockgroundData" idColumn="fID" autoLoad="true" onCustomRefresh="stockgroundDataCustomRefresh">
+   <column label="ID" name="fID" type="String" xid="column3"></column>
+   <column label="项目ID" name="fValue" type="String" xid="column1"></column>
+   <column label="项目显示" name="fName" type="String" xid="column2"></column>
+   <data xid="default3">[]</data></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -46,10 +51,11 @@
    <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="companySelect" bind-options="companyData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="子公司" optionsAutoLoad="false" onChange="companySelectChange"></select></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit7">
    <label class="x-label" xid="label11"><![CDATA[项目部]]></label>
-   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="projectSelect" bind-options="projectData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="项目部" optionsAutoLoad="false"></select></div>
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="projectSelect" bind-options="projectData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="项目部" optionsAutoLoad="false" onChange="projectSelectChange"></select></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
    <label class="x-label" xid="label8"><![CDATA[料场名称]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input6"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
+   <select component="$UI/system/components/justep/select/select" class="form-control x-edit" xid="stockgroundSelect" bind-options="stockgroundData" bind-optionsValue="fValue" bind-optionsLabel="fName" bind-optionsCaption="料场名称" optionsAutoLoad="false"></select></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
    <label class="x-label" xid="label9"><![CDATA[客户名称]]></label>
    <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input7" bind-click="input7Click"></input></div><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit5">
    <label class="x-label" xid="label10"><![CDATA[燃料名称]]></label>
