@@ -120,8 +120,9 @@
       </div> 
     </div> 
   </div>  
+  <!-- -->
   <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
-    xid="popOver2" opacity="0.9" dismissible="true"> 
+    xid="popOver2" opacity="0.9" dismissible="false"> 
     <div class="x-popOver-overlay" xid="div11"/>  
     <div class="x-popOver-content text-center" xid="div12"> 
       <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
@@ -132,4 +133,9 @@
       <div xid="div3" bind-text="&quot;正在加载中，请稍候...&quot;"/> 
     </div> 
   </div> 
+   
+   <!--  
+<div class="x-contents-content" xid="popContent">
+   <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer3" src="$UI/peon/pop.m.w"></div></div>
+-->   
 </div>

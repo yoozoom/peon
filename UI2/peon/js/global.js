@@ -70,14 +70,28 @@ define(function(require) {
 		// 打开蒙版
 		showPopOver : function(xid, ctx) {
 			var popOver2 = ctx.comp(xid);
-			popOver2.show();
+			if (popOver2) {
+				popOver2.show();
+			}
 		},
 		// 关闭蒙版
 		hidePopOver : function(xid, ctx) {
 			var popOver2 = ctx.comp(xid);
-			popOver2.hide();
+			if (popOver2) {
+				popOver2.hide();
+			}
 		},
-
+		// 检查是否是当前page
+		checkCurrentPage: function(ctx, value, key) {
+			if(!key) {
+				key = "compoHid";
+			}
+			if (ctx.getElementByXid(key)) {
+				return ctx.getElementByXid(key).value == value;
+			} else {
+				return false;
+			}
+		},
 		// Num相关工具类
 		NumUtil : {
 			// 获取较大的值

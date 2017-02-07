@@ -41,14 +41,16 @@ define(function(require){
 	}
 	
 	var buildMonthTotalData = function(data, ctx) {
-		ctx.getElementByXid("span1").innerText = data.data.sgl;
-		ctx.getElementByXid("span21").innerText = data.data.xsl;
-		ctx.getElementByXid("span25").innerText = data.data.ysje;
-		ctx.getElementByXid("span27").innerText = data.data.yfje;
-		ctx.getElementByXid("span109").innerText = data.data.ysk;
-		ctx.getElementByXid("span210").innerText = data.data.yfk;
-		ctx.getElementByXid("span18").innerText = data.data.psl;
-		ctx.getElementByXid("span22").innerText = data.data.pcl;
+		if (ctx.getElementByXid("span1")) {
+			ctx.getElementByXid("span1").innerText = data.data.sgl;
+			ctx.getElementByXid("span21").innerText = data.data.xsl;
+			ctx.getElementByXid("span25").innerText = data.data.ysje;
+			ctx.getElementByXid("span27").innerText = data.data.yfje;
+			ctx.getElementByXid("span109").innerText = data.data.ysk;
+			ctx.getElementByXid("span210").innerText = data.data.yfk;
+			ctx.getElementByXid("span18").innerText = data.data.psl;
+			ctx.getElementByXid("span22").innerText = data.data.pcl;
+		}
 	};
 	
 	var buildMonthTopData = function(data, ctx) {

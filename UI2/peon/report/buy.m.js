@@ -6,7 +6,7 @@ define(function(require){
 	
 	var sglItemData = ['收购量','加权水分', '热值单价'];
 	var completeCount = 0;
-	var chartCount = 1;		// 要加载完成显示的图个数
+	var chartCount = 4;		// 要加载完成显示的图个数
 	
 	var Model = function(){
 		this.callParent();
@@ -467,8 +467,14 @@ define(function(require){
 		}
 	};
 	
+	var initCxt = function() {
+		completeCount = 0;
+		chartCount = 4;	
+	};
+	
 	// page load
 	Model.prototype.modelLoad = function(event){
+		initCxt();
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取

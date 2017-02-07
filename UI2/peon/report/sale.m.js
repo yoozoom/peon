@@ -373,7 +373,9 @@ define(function(require){
 					setAndCheckComplete(ctx);
 				}
 				if (data.success) {
-					successCallBack(data.data, ctx, funCtx);
+					if (global.checkCurrentPage(ctx, "sale", "compoHid")) {
+						successCallBack(data.data, ctx, funCtx);
+					}
 				} else {
 
 				}
