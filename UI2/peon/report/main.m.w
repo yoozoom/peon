@@ -50,8 +50,8 @@
         <span xid="span26">本月应付金额</span>
         <span xid="span27"></span></td> </tr> 
       <tr xid="tr14">
-       <td xid="td12">
-        <span xid="span107">本月已购总量</span>
+       <td xid="td12" style="background-color:white;">
+        <span xid="span107">本月已收总量</span>
         <span xid="span109"></span></td> 
        <td xid="td13">
         <span xid="span200">本月已付总量</span>

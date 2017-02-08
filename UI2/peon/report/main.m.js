@@ -42,14 +42,14 @@ define(function(require){
 	
 	var buildMonthTotalData = function(data, ctx) {
 		if (ctx.getElementByXid("span1")) {
-			ctx.getElementByXid("span1").innerText = data.data.sgl;
-			ctx.getElementByXid("span21").innerText = data.data.xsl;
-			ctx.getElementByXid("span25").innerText = data.data.ysje;
-			ctx.getElementByXid("span27").innerText = data.data.yfje;
-			ctx.getElementByXid("span109").innerText = data.data.ysk;
-			ctx.getElementByXid("span210").innerText = data.data.yfk;
-			ctx.getElementByXid("span18").innerText = data.data.psl;
-			ctx.getElementByXid("span22").innerText = data.data.pcl;
+			ctx.getElementByXid("span1").innerText = data.data.sgl + "万吨";
+			ctx.getElementByXid("span21").innerText = data.data.xsl + "万吨";
+			ctx.getElementByXid("span25").innerText = data.data.ysje + "万元";
+			ctx.getElementByXid("span27").innerText = data.data.yfje + "万吨";
+			ctx.getElementByXid("span109").innerText = data.data.ysk + "万元";
+			ctx.getElementByXid("span210").innerText = data.data.yfk + "万元";
+			ctx.getElementByXid("span18").innerText = data.data.psl + "万吨";
+			ctx.getElementByXid("span22").innerText = data.data.pcl + "万吨";
 		}
 	};
 	
@@ -62,7 +62,7 @@ define(function(require){
 				topListData.add({
 					gsdm: array_element.gsdm,
 					gsmc: array_element.gsmc,
-					sgl: array_element.sgl
+					sgl: array_element.sgl + "万吨"
 				});
 			}
 		}
@@ -70,6 +70,7 @@ define(function(require){
 
 	Model.prototype.modelLoad = function(event){
 		var nowMonth = global.DateUtil.getNowYearMonth();
+		// fixme
 		nowMonth = "201609";
 		loadMonthTotal(nowMonth, this);
 		loadMonthTop10(nowMonth, this);

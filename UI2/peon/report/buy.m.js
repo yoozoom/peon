@@ -224,6 +224,8 @@ define(function(require){
 	
 	// 各项目线图
 	// 第2个图开始------------------------------------
+	
+	// 各项目收购量，SQL条件 年月日+子公司名称
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
@@ -314,6 +316,7 @@ define(function(require){
 	
 	// 第一个饼图
 	// 第3个图开始------------------------------------
+	// 燃料类别收购量 SQL条件：年月日，子公司项目
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
@@ -329,7 +332,8 @@ define(function(require){
 	
 	var buildCategoryBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-			title: "燃料品种收购量"
+//			title: "燃料品种收购量"
+			title: "燃料类别收购量"
 		};
 		buildPieEcharts(data, ctx, "div4", "div3", chartCtx);	
 	};
@@ -338,6 +342,7 @@ define(function(require){
 	
 	// 第2个饼图
 	// 第4个图开始------------------------------------
+	// 燃料品种收购量 SQL条件：年月日 + 子公司
 	var loadNameBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
 		date = "201609";
@@ -353,7 +358,8 @@ define(function(require){
 	
 	var buildNameBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-			title: "燃料类别收购量"
+//			title: "燃料类别收购量"
+			title: "燃料品种收购量"
 		};
 		buildPieEcharts(data, ctx, "div7", "div3", chartCtx);
 	};
@@ -467,14 +473,18 @@ define(function(require){
 		}
 	};
 	
-	var initCxt = function() {
+	var initCxt = function(ctx) {
 		completeCount = 0;
-		chartCount = 4;	
+		chartCount = 4;
+		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
+		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
+		ctx.comp('daysData').refreshData();
+		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
 	};
 	
 	// page load
 	Model.prototype.modelLoad = function(event){
-		initCxt();
+		initCxt(this);
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取
@@ -500,13 +510,21 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
-		
+	
+		if(!param.year || !param.month || !param.day) {
+			alert('日期不能为空！');
+			global.hidePopOver("popOver2", this);
+			return;
+		}else if(!param.gsdm) {
+			alert('子公司代码不能为空！');
+			global.hidePopOver("popOver2", this);
+			return;
+		}
 		refreshPageChart(param, this);
 	};
 	
 	var refreshPageChart = function(param, ctx) {
 		console.log(param);
-		
 		loadProjectBuy(param, ctx);
 		loadCategoryBuy(param, ctx);
 		loadNameBuy(param, ctx);

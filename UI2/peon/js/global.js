@@ -14,6 +14,14 @@ define(function(require) {
 				var now = new Date();
 				return now.getFullYear();	
 			},
+			getNowMonth : function() {
+				var now = new Date();
+				return now.getMonth() + 1;
+			},
+			getNowDate : function() {
+				var now = new Date();
+				return now.getDate();
+			},
 			getNowYearMonth : function() {
 				var now = new Date();
 				var year = now.getFullYear();
