@@ -8,6 +8,9 @@ define(function(require) {
 	return {
 		// 全局域名
 		serverDomain : window.globalServerDomain,
+		ajaxTimeout : 3 * 60 * 1000,	// ajax请求超时时间，默认3分钟
+		// 常量
+		SYSTEM_ERROR_MSG : "网络异常",
 		// date工具类
 		DateUtil : {
 			getNowYear : function() {
