@@ -7,7 +7,7 @@ define(function(require){
 	var cwItemData = ['盘存量'];
 	
 	var completeCount = 0;
-	var chartCount = 1;
+	var chartCount = 3;
 	
 	var Model = function(){
 		this.callParent();
@@ -263,7 +263,6 @@ define(function(require){
 	// 第3个图结束------------------------------------
 	
 	// ------------- common method ------------------
-	
 	// 功能ajax请求
 	var loadAjaxData = function(url, param, ctx, successCallBack, funCtx) {
 		$.ajax({
@@ -271,14 +270,22 @@ define(function(require){
 			type : 'get',
 			data : param,
 			dataType : 'jsonp',
+			timeout : global.ajaxTimeout,
 			success : function(data) {
-				if (funCtx && funCtx.needCut) {
-					setAndCheckComplete(ctx);
-				}
 				if (data.success) {
-					successCallBack(data.data, ctx, funCtx);
+					if (global.checkCurrentPage(ctx, "inventory", "compoHid")) {
+						successCallBack(data.data, ctx, funCtx);
+					}
 				} else {
 
+				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				if (funCtx && funCtx.needCut) {
+					setAndCheckComplete(ctx);
 				}
 			}
 		});	
@@ -370,8 +377,18 @@ define(function(require){
 		}
 	};
 	
+	var initCxt = function(ctx) {
+		completeCount = 0;
+		chartCount = 3;
+//		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
+//		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
+//		ctx.comp('daysData').refreshData();
+//		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
+	};
+	
 	// page load
 	Model.prototype.modelLoad = function(event){
+		initCxt(this);
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取

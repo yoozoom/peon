@@ -65,16 +65,25 @@ define(function(require){
 	
 	var baseLoadAjaxData = function(url, param, ctx, successFun, funCtx){
 		$.ajax({
-			url:url,
-			type:'get',
+			url: url,
+			type: 'get',
 			data: param,
-			dataType:'jsonp',
-			success:function(data) {
+			dataType: 'jsonp',
+			timeout : global.ajaxTimeout,
+			success: function(data) {
 				if (data.success) {
-					successFun(data.data, funCtx);
+					if (global.checkCurrentPage(ctx, "fuelBuy", "compoHid")) {
+						successFun(data.data, funCtx);
+					}
 				} else {
 				
 				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				global.hidePopOver("popOver2", ctx);
 			}
 		});
 	};
@@ -84,7 +93,7 @@ define(function(require){
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
-		loadQueryData(event, queryParam);
+		loadQueryData(event, queryParam, this);
 		init();
 	};
 	

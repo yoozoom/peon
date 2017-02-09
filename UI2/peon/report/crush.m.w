@@ -104,11 +104,12 @@
             <div class="panel-body" xid="div2" style="height:800px;"/>
           </div> 
         </div> 
-      </div>  
+      </div>
+      <input type="hidden" value="crush" xid="compoHid"></input>
       </div> 
   </div>  
   <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
-    xid="popOver2" opacity="0.9" dismissible="true"> 
+    xid="popOver2" opacity="0.9" dismissible="false"> 
     <div class="x-popOver-overlay" xid="div11"/>  
     <div class="x-popOver-content text-center" xid="div12"> 
       <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"

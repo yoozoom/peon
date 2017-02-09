@@ -118,6 +118,7 @@
           </div> 
         </div> 
       </div> 
+      <input type="hidden" value="buy" xid="compoHid"></input>
     </div> 
   </div>  
   <!-- -->

@@ -7,7 +7,7 @@ define(function(require){
 	var cwyiItemData = ['破碎量'];
 	
 	var completeCount = 0;
-	var chartCount = 1;
+	var chartCount = 2;
 	
 	var Model = function(){
 		this.callParent();
@@ -237,14 +237,22 @@ define(function(require){
 			type : 'get',
 			data : param,
 			dataType : 'jsonp',
+			timeout : global.ajaxTimeout,
 			success : function(data) {
-				if (funCtx && funCtx.needCut) {
-					setAndCheckComplete(ctx);
-				}
 				if (data.success) {
-					successCallBack(data.data, ctx, funCtx);
+					if (global.checkCurrentPage(ctx, "crush", "compoHid")) {
+						successCallBack(data.data, ctx, funCtx);
+					}
 				} else {
 
+				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				if (funCtx && funCtx.needCut) {
+					setAndCheckComplete(ctx);
 				}
 			}
 		});	
@@ -283,8 +291,18 @@ define(function(require){
 		}
 	};
 	
+	var initCxt = function(ctx) {
+		completeCount = 0;
+		chartCount = 2;
+//		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
+//		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
+//		ctx.comp('daysData').refreshData();
+//		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
+	};
+	
 	// page load
 	Model.prototype.modelLoad = function(event){
+		initCxt(this);
 		global.showPopOver("popOver2", this);
 		loadYearBuy(this);
 		var param = {};	//选择获取

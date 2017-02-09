@@ -374,14 +374,22 @@ define(function(require){
 			type : 'get',
 			data : param,
 			dataType : 'jsonp',
+			timeout : global.ajaxTimeout,
 			success : function(data) {
-				if (funCtx && funCtx.needCut) {
-					setAndCheckComplete(ctx);
-				}
 				if (data.success) {
-					successCallBack(data.data, ctx, funCtx);
+					if (global.checkCurrentPage(ctx, "buy", "compoHid")) {
+						successCallBack(data.data, ctx, funCtx);
+					}
 				} else {
 
+				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				if (funCtx && funCtx.needCut) {
+					setAndCheckComplete(ctx);
 				}
 			}
 		});	
