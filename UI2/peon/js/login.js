@@ -2,9 +2,7 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var global = require("$UI/peon/js/global");
-	
-	// serverUrl = 'http://localhost:8090';
-	
+		
 	return {
 		
 		uk:"zpzk_login_user",
@@ -56,8 +54,12 @@ define(function(require){
 		
 		doLogout:function(callback) {
 			localStorage.removeItem(this.uk);
-			if (callback && typeof callback == 'function') callback();
+			if (callback && typeof callback == 'function') {
+				callback();
+			}
+			//justep.Shell.closePage("main");
 			justep.Shell.showPage("login");
+			justep.Shell.closePage("main");
 		}
 	};
 	

@@ -5,14 +5,17 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 	};
-
-	
-	Model.prototype.modelActive = function(event){
-		this.comp("mainContent").active();
-	};
 	
 	Model.prototype.modelLoad = function(event){
-		
+
+	};
+	
+	Model.prototype.modelParamsReceive = function(event){
+		if (event.params) {
+			if (event.params.from == "login") {
+				this.comp("mainContent").active();
+			}
+		}
 	};
 	
 	return Model;

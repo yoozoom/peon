@@ -35,7 +35,10 @@ define(function(require){
 			} else {
 				localStorage.removeItem(login.unk);
 			}
-			justep.Shell.showPage("main");
+			var params = {
+				from : "login"
+			};
+			justep.Shell.showPage("main", params);
 		});
 	};
 	Model.prototype.modelLoad = function(event){
