@@ -25,6 +25,7 @@ define(function(require){
 						+ user['userName'] + '&password=' + user['password'],
 				type : 'get',
 				dataType : 'jsonp',
+				timeout : 10000,
 				success : function(data) {
 					console.log(data);
 					if (data.success) {
@@ -38,6 +39,9 @@ define(function(require){
 				error : function(data) {
 					console.log('系统异常');
 					alert('系统异常, 请稍后再试');
+				},
+				complete : function(XHR, TS){
+
 				}
 			});
 		},

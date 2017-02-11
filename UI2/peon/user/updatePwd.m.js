@@ -59,7 +59,7 @@ define(function(require){
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
-		var ck = confirm("确认要退出吗？");
+		var ck = confirm("确认要退出吗？", "提示");
 		if (ck) {
 			login.doLogout();
 		}

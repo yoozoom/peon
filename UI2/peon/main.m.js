@@ -7,7 +7,15 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
-
+		var self = this;
+		if (justep.Browser.isX5App) {
+			CommonUtils.attachDoubleClickExitApp(function() {
+				if (self.comp('contents1').getActiveIndex() === 0) {
+					return true;
+				}
+				return false;
+			});
+		}
 	};
 	
 	Model.prototype.modelParamsReceive = function(event){

@@ -1,22 +1,24 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	require("$UI/system/lib/cordova/cordova");
+	require("cordova!cordova-plugin-screen-orientation");
 	var allData = require("$UI/peon/js/loadData");
 	var global = require("$UI/peon/js/global");
 	
-	var isEnd = false;
+//	var isEnd = false;
 	var startIndex = 0;
 	var pageSize = 10;
 	var queryParam = {};
-	var lastNextComplete = true;
+//	var lastNextComplete = true;
 
 	var Model = function(){
 		this.callParent();
 	};
 	
-	var init = function() {
-		isEnd = false;
-	};
+//	var init = function() {
+//		isEnd = false;
+//	};
 	
 	var rsData = null;
 	
@@ -85,7 +87,7 @@ define(function(require){
 		queryParam.startIndex = startIndex;
 
 		loadQueryData(event, queryParam);
-		init();
+//		init();
 	};
 	
 	// 每次向上滑动会调用一次这个方法
@@ -105,7 +107,12 @@ define(function(require){
 		this.comp("scrollView1").noMoreLoadLabel = "已经到最后.";
 	};
 
-	Model.prototype.modelLoad = function(event){
+	Model.prototype.modelLoad = function(event) {
+		try {
+			cordova.plugins.screenorientation.setOrientation('landscape');
+		} catch (e) {
+		
+		}
 		rsData = this.comp("rsData");
 	};
 
@@ -118,7 +125,16 @@ define(function(require){
 
 		global.showPopOver("popOver2", this);
 		loadQueryData(event, queryParam, this);
-		init();
+//		init();
+	};
+	
+	Model.prototype.gotoBack = function(event){
+		try {
+			cordova.plugins.screenorientation.setOrientation('portrait');
+		} catch (e) {
+		
+		}
+		justep.Shell.closePage();
 	};
 
 	return Model;

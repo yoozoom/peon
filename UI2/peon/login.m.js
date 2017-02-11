@@ -23,6 +23,7 @@ define(function(require){
 		this.comp('passwordInput').val('');
 		
 		var sn = this.comp('checkbox1').val();
+
 		login.doLogin(name, password, function() {
 			var user = {};
 			user.userName = name;

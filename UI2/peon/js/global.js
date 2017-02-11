@@ -2,7 +2,7 @@ define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 
-	window.globalServerDomain = "http://localhost:8090/peon-server/";
+	window.globalServerDomain = "http://30.34.201.249:8090/peon-server/";
 	// window.globalServerDomain = "http://192.168.0.110:8090/peon-server/";
 
 	return {
