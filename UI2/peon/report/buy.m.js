@@ -425,13 +425,20 @@ define(function(require){
 		// 基础数据准备		
 		var itemNames = [];
 		var items = [];
-		$.each(data, function(i, c) {
-			itemNames.push(c.sjmc);
-			var item = {};
-			item.name = c.sjmc;
-			item.value = c.sjl;
-			items.push(item);
-		});
+		
+		if(data && data.length > 0) {
+			$.each(data, function(i, c) {
+				itemNames.push(c.sjmc);
+				var item = {};
+				item.name = c.sjmc;
+				item.value = c.sjl;
+				items.push(item);
+			});
+		} else {
+			chartCtx.title = chartCtx.title + "(无)";
+		}
+		
+		
 		
 		var option = getPieBuyOption(itemNames, items, chartCtx);
 
@@ -523,11 +530,12 @@ define(function(require){
 			alert('日期不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;
-		}else if(!param.gsdm) {
-			alert('子公司代码不能为空！');
-			global.hidePopOver("popOver2", this);
-			return;
 		}
+//		else if(!param.gsdm) {
+//			alert('子公司代码不能为空！');
+//			global.hidePopOver("popOver2", this);
+//			return;
+//		}
 		refreshPageChart(param, this);
 	};
 	
