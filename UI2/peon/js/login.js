@@ -37,8 +37,8 @@ define(function(require){
 					}
 				},
 				error : function(data) {
-					console.log('系统异常');
 					alert('系统异常, 请稍后再试');
+					justep.Shell.showPage("login");
 				},
 				complete : function(XHR, TS){
 
@@ -61,9 +61,8 @@ define(function(require){
 			if (callback && typeof callback == 'function') {
 				callback();
 			}
-			//justep.Shell.closePage("main");
 			justep.Shell.showPage("login");
-			justep.Shell.closePage("main");
+			//justep.Shell.closePage("main");
 		}
 	};
 	
