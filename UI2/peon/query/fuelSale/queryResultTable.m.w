@@ -78,7 +78,7 @@
   <td xid="td14"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output14" bind-ref='ref("jsje")'></div></td></tr> </tbody> </table> </div> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div>
-    <input type="hidden" value="fuelBuy" xid="compoHid"></input>
+    <input type="hidden" value="fuelSale" xid="compoHid"></input>
     </div>
   </div> 
     <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"

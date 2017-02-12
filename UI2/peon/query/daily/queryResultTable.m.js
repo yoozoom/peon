@@ -71,12 +71,21 @@ define(function(require){
 			type:'get',
 			data: param,
 			dataType:'jsonp',
+			timeout : global.ajaxTimeout,
 			success:function(data) {
 				if (data.success) {
-					successFun(data.data, funCtx);
+					if (global.checkCurrentPage(ctx, "daily", "compoHid")) {
+						successFun(data.data, funCtx);
+					}
 				} else {
 				
 				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				global.hidePopOver("popOver2", ctx);
 			}
 		});
 	};
@@ -86,7 +95,7 @@ define(function(require){
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
-		loadQueryData(event, queryParam);
+		loadQueryData(event, queryParam, this);
 //		init();
 	};
 	
@@ -108,12 +117,6 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event) {
-
-//		try {
-//			cordova.plugins.screenorientation.setOrientation('landscape');
-//		} catch (e) {
-//		
-//		}
 		global.screenorientationX();
 		rsData = this.comp("rsData");
 	};
@@ -131,11 +134,6 @@ define(function(require){
 	};
 	
 	Model.prototype.gotoBack = function(event){
-//		try {
-//			cordova.plugins.screenorientation.setOrientation('portrait');
-//		} catch (e) {
-//		
-//		}
 		global.screenorientationY();
 		justep.Shell.closePage();
 	};

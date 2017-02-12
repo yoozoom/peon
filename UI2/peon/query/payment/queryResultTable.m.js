@@ -69,13 +69,21 @@ define(function(require){
 			type:'get',
 			data: param,
 			dataType:'jsonp',
-			success:function(data) {
+			timeout : global.ajaxTimeout,
+			success: function(data) {
 				if (data.success) {
-					console.log(data.data);
-					successFun(data.data, funCtx);
+					if (global.checkCurrentPage(ctx, "payment", "compoHid")) {
+						successFun(data.data, funCtx);
+					}
 				} else {
 				
 				}
+			},
+			error : function(XHR, msg, e) {
+				alert(global.SYSTEM_ERROR_MSG);
+			},
+			complete : function(XHR, TS){
+				global.hidePopOver("popOver2", ctx);
 			}
 		});
 	};
@@ -85,7 +93,7 @@ define(function(require){
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
-		loadQueryData(event, queryParam);
+		loadQueryData(event, queryParam, this);
 		init();
 	};
 	

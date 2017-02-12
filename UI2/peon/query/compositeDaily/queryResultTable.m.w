@@ -100,10 +100,12 @@
   <td xid="td21"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output21" bind-ref='ref("pssm")'></div></td>
   <td xid="td22"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output22" bind-ref='ref("rzsm")'></div></td></tr> </tbody> </table> </div> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">
-    <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
+    <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div>
+    <input type="hidden" value="fuelBuy" xid="compoHid"></input>
+    </div>
   </div> 
     <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
-    xid="popOver2" opacity="0.9" dismissible="true"> 
+    xid="popOver2" opacity="0.9" dismissible="false"> 
     <div class="x-popOver-overlay" xid="div11"/>  
     <div class="x-popOver-content text-center" xid="div12"> 
       <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
