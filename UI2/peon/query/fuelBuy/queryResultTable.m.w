@@ -47,6 +47,9 @@
     <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
+      <th xid="col5"><![CDATA[子公司]]></th> 
+      <th xid="col6"><![CDATA[项目部]]></th> 
+      <th xid="col7"><![CDATA[料场名称]]></th> 
        <th xid="col1"><![CDATA[过磅时间]]></th> 
        <th xid="col2"><![CDATA[客户名称]]></th> 
   <th xid="col3"><![CDATA[客户类型]]></th>
@@ -63,10 +66,11 @@
   <th xid="col14"><![CDATA[结算金额]]></th></tr> </thead> 
      <tbody class="x-list-template" xid="listTemplate1">
       <tr class="info" xid="tr2">
-       <td xid="td1">
-        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("gbsj")'></div></td> 
-       <td xid="td2">
-        <div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref='ref("khxm")'></div></td> 
+  <td xid="td15"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("gsmc")'></div></td> 
+  <td xid="td16"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("xmbmc")'></div></td> 
+  <td xid="td17"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("lcmc")'></div></td> 
+  <td xid="td1"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref='ref("gbsj")'></div></td> 
+  <td xid="td2"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref='ref("khxm")'></div></td> 
   <td xid="td3"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output3" bind-ref='ref("khlxmc")'></div></td>
   <td xid="td4"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output4" bind-ref='ref("hyd")'></div></td>
   <td xid="td5"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output5" bind-ref='ref("rlmc")'></div></td>

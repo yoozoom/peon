@@ -108,6 +108,8 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event) {
+		startIndex = 0;
+		pageSize = 10;
 		try {
 			cordova.plugins.screenorientation.setOrientation('landscape');
 		} catch (e) {

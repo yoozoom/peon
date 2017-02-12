@@ -25,6 +25,10 @@ define(function(require){
 	Model.prototype.queryBtnClick = function(event){
 		var param = buildParam(event, this);
 		var url = "./queryResultTable.m.w";
+		if (!param.jrsj) {
+			alert("日期不能为空");
+			return;
+		}
 		console.log(param);
 		justep.Shell.showPage(require.toUrl(url), param);
 	};

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:17px;left:60px;height:auto;" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:291px;left:16px;" onLoad="modelLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="rlTypeData" idColumn="name"><column label="" name="name" type="String" xid="xid1"></column>
   <column name="value" type="String" xid="xid2"></column>
   <data xid="default1">[{&quot;name&quot;:&quot;销售结算&quot;,&quot;value&quot;:&quot;1&quot;},{&quot;name&quot;:&quot;收购结算&quot;,&quot;value&quot;:&quot;2&quot;}]</data></div>

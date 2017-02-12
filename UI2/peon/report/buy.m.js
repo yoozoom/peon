@@ -526,7 +526,7 @@ define(function(require){
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
 	
-		if(!param.year || !param.month || !param.day) {
+		if(!param.year) {
 			alert('日期不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;

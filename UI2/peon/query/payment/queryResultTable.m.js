@@ -107,6 +107,8 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
+		startIndex = 0;
+		pageSize = 10;
 		rsData = this.comp("rsData");
 	};
 

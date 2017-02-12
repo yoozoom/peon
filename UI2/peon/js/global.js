@@ -5,7 +5,7 @@ define(function(require) {
 //	window.globalServerDomain = "http://30.34.201.249:8090/peon-server/";
 	// window.globalServerDomain = "http://192.168.0.110:8090/peon-server/";
 	// benny 
-	window.globalServerDomain = "http://192.168.1.102:8090/peon-server/";
+	window.globalServerDomain = "http://192.168.1.107:8090/peon-server/";
 
 
 	return {
