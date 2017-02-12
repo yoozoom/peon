@@ -25,7 +25,7 @@ define(function(require){
 						+ user['userName'] + '&password=' + user['password'],
 				type : 'get',
 				dataType : 'jsonp',
-				timeout : 10000,
+				timeout : 5000,
 				success : function(data) {
 					console.log(data);
 					if (data.success) {

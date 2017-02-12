@@ -1,8 +1,8 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	require("$UI/system/lib/cordova/cordova");
-	require("cordova!cordova-plugin-screen-orientation");
+//	require("$UI/system/lib/cordova/cordova");
+//	require("cordova!cordova-plugin-screen-orientation");
 	var allData = require("$UI/peon/js/loadData");
 	var global = require("$UI/peon/js/global");
 	
@@ -108,11 +108,12 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event) {
-		try {
-			cordova.plugins.screenorientation.setOrientation('landscape');
-		} catch (e) {
-		
-		}
+//		try {
+//			cordova.plugins.screenorientation.setOrientation('landscape');
+//		} catch (e) {
+//		
+//		}
+		global.screenorientationX();
 		rsData = this.comp("rsData");
 	};
 
@@ -129,11 +130,12 @@ define(function(require){
 	};
 	
 	Model.prototype.gotoBack = function(event){
-		try {
-			cordova.plugins.screenorientation.setOrientation('portrait');
-		} catch (e) {
-		
-		}
+//		try {
+//			cordova.plugins.screenorientation.setOrientation('portrait');
+//		} catch (e) {
+//		
+//		}
+		global.screenorientationY();
 		justep.Shell.closePage();
 	};
 
