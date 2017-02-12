@@ -39,7 +39,7 @@
     <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:1000px;">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1"><![CDATA[项目公司]]></th> 
+       <th xid="col1" style="width:100px;"><![CDATA[项目公司]]></th> 
        <th xid="col15"><![CDATA[燃料品种]]></th><th xid="col2"><![CDATA[净重（t）]]></th> 
   <th xid="col3"><![CDATA[结算重量（t）]]></th>
   <th xid="col4"><![CDATA[水分（%）]]></th>
