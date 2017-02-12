@@ -30,6 +30,10 @@ define(function(require){
 
 	Model.prototype.queryBtnClick = function(event){
 		var param = buildParam(event, this);
+		if(!param.gbsj) {
+			alert('月度时间不能为空');
+			return;
+		}
 		var url = "./queryResultTable.m.w";
 		console.log(param);
 		justep.Shell.showPage(require.toUrl(url), param);
