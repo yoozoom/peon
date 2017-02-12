@@ -48,10 +48,10 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/fragment/list/listTable" xid="listTable1">
    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="20">
-    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
+    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:3200px;">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1"><![CDATA[项目]]></th> 
+       <th xid="col1" style="width:100px;"><![CDATA[项目]]></th> 
        <th xid="col15"><![CDATA[昨日实际破碎量（吨）]]></th><th xid="col2"><![CDATA[本月累积破碎量（吨）]]></th> 
   <th xid="col3"><![CDATA[本年累积破碎量（吨）]]></th>
   <th xid="col4"><![CDATA[昨日破碎料转运量（吨）]]></th>

@@ -38,20 +38,20 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/fragment/list/listTable" xid="listTable1">
    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="20">
-    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
+    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:2000px">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1"><![CDATA[项目]]></th> 
-       <th xid="col15"><![CDATA[天气情况]]></th><th xid="col2"><![CDATA[破碎量(吨）]]></th> 
+       <th xid="col1" style="width:80px"><![CDATA[项目]]></th> 
+       <th xid="col15" style="width:80px"><![CDATA[天气情况]]></th><th xid="col2"><![CDATA[破碎量(吨）]]></th> 
   <th xid="col3"><![CDATA[整料库存（吨）]]></th>
   <th xid="col4"><![CDATA[碎料库存（吨）]]></th>
   <th xid="col5"><![CDATA[库存总量（吨）]]></th>
   <th xid="col6"><![CDATA[未交接碎料（吨）]]></th>
-  <th xid="col7"><![CDATA[机组状态]]></th>
+  <th xid="col7" style="width:120px"><![CDATA[机组状态]]></th>
   <th xid="col8"><![CDATA[破碎量低于200吨说明]]></th>
   <th xid="col9"><![CDATA[加权平均热值结算金额（元）]]></th>
   <th xid="col10"><![CDATA[热值低于2000大卡说明]]></th>
-  <th xid="col11"><![CDATA[设备运行情况]]></th></tr> </thead> 
+  <th xid="col11" style="width:120px"><![CDATA[设备运行情况]]></th></tr> </thead> 
      <tbody class="x-list-template" xid="listTemplate1">
       <tr class="info" xid="tr2">
        <td xid="td1">

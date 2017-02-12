@@ -36,7 +36,7 @@
     <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:800px;">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1" style="width:100px;"><![CDATA[破碎设备]]></th> 
+       <th xid="col1" style="width:150px;"><![CDATA[破碎设备]]></th> 
        <th xid="col2" style="width:50px;"><![CDATA[破碎量]]></th> 
   <th xid="col4" style="width:150px;"><![CDATA[子公司]]></th>
   <th xid="col5"><![CDATA[项目部]]></th>
