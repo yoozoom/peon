@@ -1,3 +1,11 @@
 .x-panel > .x-panel-content {
 	margin : 10px;
 }
+.x-popPicker[type=date] .x-popPicker-content .x-day{
+	display: none;
+}
+ 
+.x-popPicker[type=date] .x-popPicker-content .x-year,
+.x-popPicker[type=date] .x-popPicker-content .x-month{
+    width: 50%;
+}
