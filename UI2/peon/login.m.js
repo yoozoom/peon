@@ -2,9 +2,9 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
-	var login = require("$UI/peon/js/login");
 	
-	//window.globalServerDomain = "http://localhost:8090/peon-server/";
+	var global = require("$UI/peon/js/global");
+	var login = require("$UI/peon/js/login");
 	
 	var Model = function(){
 		this.callParent();
@@ -17,6 +17,11 @@ define(function(require){
 	
 	// 点击登入按钮
 	Model.prototype.loginBtnClick = function(event){
+		if (!global.Network.checkNetwork()) {
+			alert('网络未连接，请检查网络');
+			return
+		}
+	
 		var name = this.comp('nameInput').val();
 		var password = this.comp('passwordInput').val();
 		
