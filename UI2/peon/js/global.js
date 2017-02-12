@@ -1,6 +1,13 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	
+	require("$UI/system/lib/cordova/cordova");
+	require("cordova!cordova-plugin-screen-orientation");
+	require("cordova!cordova-plugin-network-information");
+
+//	window.globalServerDomain = "http://30.34.202.0:8090/peon-server/";
+//	window.globalServerDomain = "http://localhost:8090/peon-server/";
 
 //	window.globalServerDomain = "http://30.34.201.249:8090/peon-server/";
 	// window.globalServerDomain = "http://192.168.0.110:8090/peon-server/";
@@ -14,6 +21,20 @@ define(function(require) {
 		ajaxTimeout : 3 * 60 * 1000,	// ajax请求超时时间，默认3分钟
 		// 常量
 		SYSTEM_ERROR_MSG : "网络异常",
+		// 网络对象相关
+		Network : {
+			checkNetwork: function () {
+				try {
+					var networkState = navigator.connection.type;
+			        if (networkState == Connection.NONE) {
+			        	return false;
+			        }
+				} catch (x) {
+					console.log(x);
+				}
+		        return true;
+	        }
+		},
 		// date工具类
 		DateUtil : {
 			getNowYear : function() {
@@ -93,6 +114,24 @@ define(function(require) {
 			var popOver2 = ctx.comp(xid);
 			if (popOver2) {
 				popOver2.hide();
+			}
+		},
+		// 强制横屏
+		screenorientationX : function() {
+			console.log("global x");
+			try {
+				cordova.plugins.screenorientation.setOrientation('landscape');
+			} catch (e) {
+				console.log(e);
+			}
+		},
+		// 强制竖屏
+		screenorientationY : function() {
+			console.log("global y");
+			try {
+				cordova.plugins.screenorientation.setOrientation('portrait');
+			} catch (e) {
+				console.log(e);
 			}
 		},
 		// 检查是否是当前page

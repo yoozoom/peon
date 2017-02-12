@@ -43,22 +43,22 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/fragment/list/listTable" xid="listTable1">
    <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="rsData" limit="20">
-    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
+    <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1" style="width:1000px;">
      <thead xid="thead1">
       <tr class="danger" xid="tr1">
-       <th xid="col1"><![CDATA[过磅时间]]></th> 
-       <th xid="col2"><![CDATA[客户名称]]></th> 
-  <th xid="col3"><![CDATA[过磅类型]]></th>
-  <th xid="col5"><![CDATA[燃料名称]]></th>
-  <th xid="col6"><![CDATA[燃料类型]]></th>
-  <th xid="col7"><![CDATA[过磅重量]]></th>
-  <th xid="col8"><![CDATA[扣杂]]></th>
-  <th xid="col9"><![CDATA[实测灰分]]></th>
-  <th xid="col10"><![CDATA[实测水分]]></th>
-  <th xid="col11"><![CDATA[单位热值]]></th>
-  <th xid="col12"><![CDATA[结算重量]]></th>
-  <th xid="col13"><![CDATA[结算单价]]></th>
-  <th xid="col14"><![CDATA[结算金额]]></th></tr> </thead> 
+       <th xid="col1" style="width:200;"><![CDATA[过磅时间]]></th> 
+       <th xid="col2" style="width:200;"><![CDATA[客户名称]]></th> 
+  <th xid="col3" style="width:200;"><![CDATA[过磅类型]]></th>
+  <th xid="col5" style="width:200;"><![CDATA[燃料名称]]></th>
+  <th xid="col6" style="width:200;"><![CDATA[燃料类型]]></th>
+  <th xid="col7" style="width:200;"><![CDATA[过磅重量]]></th>
+  <th xid="col8" style="width:200;"><![CDATA[扣杂]]></th>
+  <th xid="col9" style="width:200;"><![CDATA[实测灰分]]></th>
+  <th xid="col10" style="width:200;"><![CDATA[实测水分]]></th>
+  <th xid="col11" style="width:200;"><![CDATA[单位热值]]></th>
+  <th xid="col12" style="width:200;"><![CDATA[结算重量]]></th>
+  <th xid="col13" style="width:200;"><![CDATA[结算单价]]></th>
+  <th xid="col14" style="width:200;"><![CDATA[结算金额]]></th></tr> </thead> 
      <tbody class="x-list-template" xid="listTemplate1">
       <tr class="info" xid="tr2">
        <td xid="td1">
