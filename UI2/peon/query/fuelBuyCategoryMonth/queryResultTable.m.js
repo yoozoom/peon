@@ -16,6 +16,7 @@ define(function(require){
 	
 	var init = function() {
 		isEnd = false;
+		lastNextComplete = true;
 	};
 	
 	var rsData = null;
@@ -99,6 +100,7 @@ define(function(require){
 	
 	// 每次向上滑动会调用一次这个方法
 	Model.prototype.scrollView1PullUp = function(event) {
+	
 		if (!lastNextComplete) {
 			return;
 		}
@@ -130,6 +132,10 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		loadQueryData(event, queryParam, this);
 		init();
+	};
+
+	Model.prototype.scrollView1PullDown = function(event){
+		return;
 	};
 
 	return Model;

@@ -3,7 +3,8 @@ define(function(require){
 	var justep = require("$UI/system/lib/justep");
 
 	return {
-		loadDataFromFile : function(url, objData, operation) {			
+		loadDataFromFile : function(url, objData, operation) {	
+			if(!data || data.length <= 0) return;
 			if (operation) { objData.clear();}
 			$.ajaxSettings.async = false;
 			$.getJSON(url, function(data) {
@@ -12,6 +13,7 @@ define(function(require){
 		},
 		
 		loadDataFromJson : function(objData, operation, data) {
+			if(!data || data.length <= 0) return;
 			if (operation) { objData.clear();}
 			objData.loadData(data);
 		}

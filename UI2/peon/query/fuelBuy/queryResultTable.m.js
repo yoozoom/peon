@@ -16,6 +16,7 @@ define(function(require){
 	
 	var init = function() {
 		isEnd = false;
+		lastNextComplete = true;
 	};
 	
 	var rsData = null;
