@@ -11,7 +11,7 @@ define(function(require){
 		var self = this;
 		if (justep.Browser.isX5App) {
 			CommonUtils.attachDoubleClickExitApp(function() {
-				if (self.comp('contents1').getActiveIndex() === 0) {
+				if (self.comp('contents1') && self.comp('contents1').getActiveIndex() === 0) {
 					return true;
 				}
 				return false;
