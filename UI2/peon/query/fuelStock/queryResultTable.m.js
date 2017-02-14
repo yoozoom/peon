@@ -15,6 +15,8 @@ define(function(require){
 	};
 	
 	var init = function() {
+		startIndex = 0;
+		pageSize = 10;
 		isEnd = false;
 		lastNextComplete = true;
 	};
@@ -90,12 +92,12 @@ define(function(require){
 	};
 
 	Model.prototype.rsDataCustomRefresh = function(event){
+		init();
 		// 1、加载数据. 每次刷新都会触发此方法		
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
 		loadQueryData(event, queryParam, this);
-		init();
 	};
 	
 	// 每次向上滑动会调用一次这个方法
@@ -116,8 +118,7 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
-		startIndex = 0;
-		pageSize = 10;
+		init();
 		rsData = this.comp("rsData");
 	};
 

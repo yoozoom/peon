@@ -16,9 +16,10 @@ define(function(require){
 		this.callParent();
 	};
 	
-//	var init = function() {
-//		isEnd = false;
-//	};
+	var init = function() {
+		startIndex = 0;
+		pageSize = 10;
+	};
 	
 	var rsData = null;
 	
@@ -91,12 +92,12 @@ define(function(require){
 	};
 
 	Model.prototype.rsDataCustomRefresh = function(event){
+		init();
 		// 1、加载数据. 每次刷新都会触发此方法		
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
 		loadQueryData(event, queryParam, this);
-//		init();
 	};
 	
 	// 每次向上滑动会调用一次这个方法
@@ -117,6 +118,7 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event) {
+		init();
 		global.screenorientationX();
 		rsData = this.comp("rsData");
 	};
@@ -130,7 +132,7 @@ define(function(require){
 
 		global.showPopOver("popOver2", this);
 		loadQueryData(event, queryParam, this);
-//		init();
+		init();
 	};
 	
 	Model.prototype.gotoBack = function(event){

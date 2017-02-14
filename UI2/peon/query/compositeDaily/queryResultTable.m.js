@@ -4,19 +4,17 @@ define(function(require){
 	var allData = require("$UI/peon/js/loadData");
 	var global = require("$UI/peon/js/global");
 	
-	var isEnd = false;
 	var startIndex = 0;
 	var pageSize = 10;
 	var queryParam = {};
-	var lastNextComplete = true;
 
 	var Model = function(){
 		this.callParent();
 	};
 	
 	var init = function() {
-		isEnd = false;
-		lastNextComplete = true;
+		startIndex = 0;
+		pageSize = 10;
 	};
 	
 	var rsData = null;
@@ -90,12 +88,12 @@ define(function(require){
 	};
 
 	Model.prototype.rsDataCustomRefresh = function(event){
+		init();
 		// 1、加载数据. 每次刷新都会触发此方法		
 		queryParam.pageSize = pageSize;
 		queryParam.startIndex = startIndex;
 
 		loadQueryData(event, queryParam, this);
-		init();
 	};
 	
 	// 每次向上滑动会调用一次这个方法
@@ -116,8 +114,7 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
-		startIndex = 0;
-		pageSize = 10;
+		init();
 		rsData = this.comp("rsData");
 	};
 
