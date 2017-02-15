@@ -2,8 +2,9 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var login = require("$UI/peon/js/login");
+	var global = require("$UI/peon/js/global");
 	
-	serverUrl = 'http://localhost:8090';
+	serverUrl = global.serverDomain;
 	
 	var Model = function(){
 		this.callParent();
