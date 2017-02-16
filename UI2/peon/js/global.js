@@ -60,6 +60,16 @@ define(function(require) {
 				}
 				return month;
 			},
+			getDateYMD: function(year, month, day) {
+				var rs = year;
+				if (year && month) {
+					rs += this.prefixNumStr(month);
+					if (day) {
+						rs += this.prefixNumStr(day);
+					}
+				}
+				return rs;
+			},
 			getDaysByYearAndMonth : function(year, month) {
 				return 32 - new Date(year, month, 32).getDate();
 			},
