@@ -8,7 +8,7 @@
    <div class="x-panel-content" xid="content2">
     <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
      <div class="x-col" xid="col2">
-      <img src="$UI/peon/img/logo.png" alt="" xid="image1" height="133px;"></img></div> </div> 
+      <img src="$UI/peon/img/logo.png" alt="" xid="image1" height="100%" style="width:100%;"></img></div> </div> 
     <div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
       <div class="x-col" xid="col4">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="收购量" xid="button1" style="height:100%;width:100%;" onClick="button1Click">
