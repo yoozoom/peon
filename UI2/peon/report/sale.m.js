@@ -490,6 +490,12 @@ define(function(require){
 		            type: 'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
+		            label: {
+		                normal: {
+		                    show: true,
+		                    formatter : "{b}\n{d}%"
+		                }
+		            },
 		            data:items,
 		            itemStyle: {
 		                emphasis: {

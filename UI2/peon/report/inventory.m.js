@@ -220,7 +220,12 @@ define(function(require){
 		    xAxis: {
 		        type: 'value',
 		        position: 'top',
-		        boundaryGap: [0, 0.01]
+		        boundaryGap: [0, 0.01],
+		        axisLabel: {
+	                formatter: function (value, index) {
+					    return value + "\n 万吨";
+					}
+	            }
 		    },
 		    yAxis: {
 		        type: 'category',
@@ -359,6 +364,12 @@ define(function(require){
 		            type: 'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
+		            label: {
+		                normal: {
+		                    show: true,
+		                    formatter : "{b}\n{d}%"
+		                }
+		            },
 		            data:items,
 		            itemStyle: {
 		                emphasis: {
