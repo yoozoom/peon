@@ -284,11 +284,41 @@ define(function(require){
 		        bottom: '3%',
 		        containLabel: true
 		    },
-		    xAxis: {
-		        type: 'value',
-		        position: 'top',
-		        boundaryGap: [0, 0.01]
-		    },
+		    xAxis: [
+		        {
+		            type: 'value',
+		            name: '收购量',
+		            position: 'top',
+		            nameLocation: 'start',
+		            axisLabel: {
+		                formatter: function (value, index) {
+						    return value + "\n 万元";
+						}
+		            }
+		        },
+		        {
+		            type: 'value',
+		            name: '热值单价',
+		            position: 'bottom',
+		            nameLocation: 'start',
+		            offset: 42,
+		            axisLabel: {
+		                formatter: function (value, index) {
+						    return value + "\n 元/kCal";
+						}
+		            }
+		        },
+		        {
+		            type: 'value',
+		            name: '加权水分',
+		            position: 'bottom',
+		            nameLocation: 'start',
+		            offset: 10,
+		            axisLabel: {
+		                formatter: '{value} %'
+		            }
+		        }
+		    ],
 		    yAxis: {
 		        type: 'category',
 		        data: projects

@@ -411,7 +411,7 @@ define(function(require){
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
 		if(!param.year || !param.month) {
-			alert('日期不能为空！');
+			alert('年月不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;
 		}
@@ -433,7 +433,8 @@ define(function(require){
 
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
-		var date = year + global.DateUtil.prefixNumStr(month);
+		
+		var date = global.DateUtil.getDateYMD(year, month);
 		
 		return {
 			year: year,

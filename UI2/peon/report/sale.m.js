@@ -23,6 +23,7 @@ define(function(require){
 
 	Model.prototype.yearSelectChange = function(event){
 		this.comp('monthSelect').val('');
+		this.comp('daySelect').val('');
 	};
 	
 	Model.prototype.companySelectChange = function(event){
@@ -281,11 +282,41 @@ define(function(require){
 		        bottom: '3%',
 		        containLabel: true
 		    },
-		    xAxis: {
-		        type: 'value',
-		        position: 'top',
-		        boundaryGap: [0, 0.01]
-		    },
+		    xAxis:[
+		        {
+		            type: 'value',
+		            name: '收购量',
+		            position: 'top',
+		            nameLocation: 'start',
+		            axisLabel: {
+		                formatter: function (value, index) {
+						    return value + "\n 万元";
+						}
+		            }
+		        },
+		        {
+		            type: 'value',
+		            name: '热值单价',
+		            position: 'bottom',
+		            nameLocation: 'start',
+		            offset: 42,
+		            axisLabel: {
+		                formatter: function (value, index) {
+						    return value + "\n 元/kCal";
+						}
+		            }
+		        },
+		        {
+		            type: 'value',
+		            name: '加权水分',
+		            position: 'bottom',
+		            nameLocation: 'start',
+		            offset: 10,
+		            axisLabel: {
+		                formatter: '{value} %'
+		            }
+		        }
+		    ],
 		    yAxis: {
 		        type: 'category',
 		        data: projects
@@ -503,6 +534,7 @@ define(function(require){
 	Model.prototype.monthSelectChange = function(event){
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
+		this.comp('daySelect').val('');
 		if (!year || !month) {
 			return;
 		}
@@ -516,16 +548,11 @@ define(function(require){
 		global.showPopOver("popOver2", this);
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
-		if(!param.year || !param.month || !param.day) {
-			alert('日期不能为空！');
+		if(!param.year) {
+			alert('年份不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;
 		}
-//		else if(!param.gsdm) {
-//			alert('子公司代码不能为空！');
-//			global.hidePopOver("popOver2", this);
-//			return;
-//		}
 		
 		refreshPageChart(param, this);
 	};
@@ -545,7 +572,7 @@ define(function(require){
 		var day = ctx.comp("daySelect").val();
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
-		var date = year + global.DateUtil.prefixNumStr(month) + global.DateUtil.prefixNumStr(day);
+		var date = global.DateUtil.getDateYMD(year, month, day);
 		
 		return {
 			year: year,
