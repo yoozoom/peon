@@ -229,7 +229,7 @@ define(function(require){
 	// 各项目收购量，SQL条件 年月日+子公司名称
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -350,7 +350,7 @@ define(function(require){
 	// 燃料类别收购量 SQL条件：年月日，子公司项目
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -376,7 +376,7 @@ define(function(require){
 	// 燃料品种收购量 SQL条件：年月日 + 子公司
 	var loadNameBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+		//date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}

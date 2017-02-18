@@ -85,8 +85,7 @@ define(function(require){
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
 		var date = global.DateUtil.getNowYear();
-		console.log(date);
-		date = "2016";
+		//date = "2016";
 		var param = {
 			date : date
 		};
@@ -165,7 +164,7 @@ define(function(require){
 	// 第2个图开始------------------------------------
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+		//date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -247,7 +246,7 @@ define(function(require){
 	// 第3个图开始------------------------------------
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
