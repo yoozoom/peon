@@ -121,5 +121,9 @@ define(function(require){
 		datadm.loadData(projects);
 	};
 	
+	Model.prototype.backBtnClick = function(event){
+		justep.Shell.closePage();
+	};
+	
 	return Model;
 });

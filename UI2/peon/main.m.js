@@ -8,10 +8,9 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
-		var self = this;
 		if (justep.Browser.isX5App) {
 			CommonUtils.attachDoubleClickExitApp(function() {
-				if (self.comp('contents1') && self.comp('contents1').getActiveIndex() === 0) {
+				if (window.location.hash.indexOf("!main") > 0) {
 					return true;
 				}
 				return false;
