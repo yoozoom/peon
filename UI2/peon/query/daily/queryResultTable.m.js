@@ -119,7 +119,7 @@ define(function(require){
 
 	Model.prototype.modelLoad = function(event) {
 		init();
-		global.screenorientationX();
+//		global.screenorientationX();
 		rsData = this.comp("rsData");
 	};
 
@@ -136,7 +136,7 @@ define(function(require){
 	};
 	
 	Model.prototype.gotoBack = function(event){
-		global.screenorientationY();
+//		global.screenorientationY();
 		justep.Shell.closePage();
 	};
 
