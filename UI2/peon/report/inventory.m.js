@@ -85,8 +85,7 @@ define(function(require){
 	// 各年度线图
 	var loadYearBuy = function(ctx) {
 		var date = global.DateUtil.getNowYear();
-		console.log(date);
-		date = "2016";
+		//date = "2016";
 		var param = {
 			date : date
 		};
@@ -165,7 +164,7 @@ define(function(require){
 	// 第2个图开始------------------------------------
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+		//date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -220,7 +219,12 @@ define(function(require){
 		    xAxis: {
 		        type: 'value',
 		        position: 'top',
-		        boundaryGap: [0, 0.01]
+		        boundaryGap: [0, 0.01],
+		        axisLabel: {
+	                formatter: function (value, index) {
+					    return value + "\n 万吨";
+					}
+	            }
 		    },
 		    yAxis: {
 		        type: 'category',
@@ -242,7 +246,7 @@ define(function(require){
 	// 第3个图开始------------------------------------
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -359,6 +363,12 @@ define(function(require){
 		            type: 'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
+		            label: {
+		                normal: {
+		                    show: true,
+		                    formatter : "{b}\n{d}%"
+		                }
+		            },
 		            data:items,
 		            itemStyle: {
 		                emphasis: {
@@ -411,7 +421,7 @@ define(function(require){
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
 		if(!param.year || !param.month) {
-			alert('日期不能为空！');
+			alert('年月不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;
 		}
@@ -433,7 +443,8 @@ define(function(require){
 
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
-		var date = year + global.DateUtil.prefixNumStr(month);
+		
+		var date = global.DateUtil.getDateYMD(year, month);
 		
 		return {
 			year: year,

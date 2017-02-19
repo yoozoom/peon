@@ -25,6 +25,7 @@ define(function(require){
 
 	Model.prototype.yearSelectChange = function(event){
 		this.comp('monthSelect').val('');
+		this.comp('daySelect').val('');
 	};
 	
 	Model.prototype.companySelectChange = function(event){
@@ -137,7 +138,7 @@ define(function(require){
 		    ],
 		    yAxis: {
 	            type: 'value',
-	            name: '金额',
+	            name: '万吨',
 	            min: 0
 		    },
 		    series: [
@@ -156,7 +157,7 @@ define(function(require){
 	// 第2个图开始------------------------------------
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-		date = "201609";
+		//date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -211,7 +212,11 @@ define(function(require){
 		    xAxis: {
 		        type: 'value',
 		        position: 'top',
-		        boundaryGap: [0, 0.01]
+		        axisLabel: {
+	                formatter: function (value, index) {
+					    return value + "\n 万吨";
+					}
+	            }
 		    },
 		    yAxis: {
 		        type: 'category',
@@ -312,6 +317,7 @@ define(function(require){
 	Model.prototype.monthSelectChange = function(event){
 		var year = this.comp('yearSelect').val();
 		var month = this.comp('monthSelect').val();
+		this.comp('daySelect').val('');
 		if (!year || !month) {
 			return;
 		}
@@ -326,7 +332,7 @@ define(function(require){
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
 		if(!param.year) {
-			alert('日期不能为空！');
+			alert('年份不能为空！');
 			global.hidePopOver("popOver2", this);
 			return;
 		}
@@ -347,7 +353,8 @@ define(function(require){
 		var day = ctx.comp("daySelect").val();
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
-		var date = year + global.DateUtil.prefixNumStr(month) + global.DateUtil.prefixNumStr(day);
+//		var date = year + global.DateUtil.prefixNumStr(month) + global.DateUtil.prefixNumStr(day);
+		var date = global.DateUtil.getDateYMD(year, month, day);
 		
 		return {
 			year: year,

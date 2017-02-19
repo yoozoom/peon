@@ -7,6 +7,7 @@ define(function(require) {
 	require("cordova!cordova-plugin-network-information");
 
 //	window.globalServerDomain = "http://30.34.202.0:8090/peon-server/";
+
 //	window.globalServerDomain = "http://30.34.202.123:8090/peon-server/";
 	window.globalServerDomain = "http://192.168.1.103:8090/peon-server/";
 //	window.globalServerDomain = "http://30.34.202.118:8090/peon-server/";
@@ -61,6 +62,16 @@ define(function(require) {
 					return "0" + month;
 				}
 				return month;
+			},
+			getDateYMD: function(year, month, day) {
+				var rs = year;
+				if (year && month) {
+					rs += this.prefixNumStr(month);
+					if (day) {
+						rs += this.prefixNumStr(day);
+					}
+				}
+				return rs;
 			},
 			getDaysByYearAndMonth : function(year, month) {
 				return 32 - new Date(year, month, 32).getDate();
