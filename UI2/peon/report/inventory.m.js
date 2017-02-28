@@ -285,7 +285,7 @@ define(function(require){
 				}
 			},
 			error : function(XHR, msg, e) {
-				alert(global.SYSTEM_ERROR_MSG);
+				justep.Util.hint(global.SYSTEM_ERROR_MSG, {type: 'danger'});
 			},
 			complete : function(XHR, TS){
 				if (funCtx && funCtx.needCut) {
@@ -421,7 +421,7 @@ define(function(require){
 		//popOver2.hide();//请求完成后隐藏popOver组件
 		var param = initSearchParam(this);
 		if(!param.year || !param.month) {
-			alert('年月不能为空！');
+			justep.Util.hint("年月不能为空！", {type: 'danger'});
 			global.hidePopOver("popOver2", this);
 			return;
 		}

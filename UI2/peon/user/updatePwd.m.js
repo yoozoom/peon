@@ -13,26 +13,26 @@ define(function(require){
 	Model.prototype.updatePwdBtnClick = function(event){
 		var pwdInput = this.comp("passwordInput").val();
 		if (!pwdInput) {
-			alert("请输入原密码");
+			justep.Util.hint("请输入原密码！", {type: 'danger'});
 			return;
 		}
 		
 		var n1 = this.comp("password1").val();
 		var n2 = this.comp("password3").val();
 		if (!n1 || !n2 || n2 != n1) {
-			alert("两次输入密码不一致");
+			justep.Util.hint("两次输入密码不一致！", {type: 'danger'});
 			return;
 		}
 		
 		if (pwdInput == n1) {
-			alert("新密码不能与旧密码相同");
+			justep.Util.hint("新密码不能与旧密码相同！", {type: 'danger'});
 			return;
 		}
 		
 		var su = localStorage.getItem(login.uk);
 		var jsu = JSON.parse(su);
 		if (!su || !jsu) {
-			alert("登录信息失效，请重新登录");
+			justep.Util.hint("登录信息失效，请重新登录！", {type: 'danger'});
 			justep.Shell.showPage("login");
 			return;
 		}
@@ -48,10 +48,10 @@ define(function(require){
 		  success:function(data) {
 			  console.log(data);
 			  if (!data.success) {
-				  alert(data.message);
+				  justep.Util.hint(data.message, {type: 'danger'});
 				  return;
 			  } else {
-				  alert('修改密码成功，请重新登录');
+				  justep.Util.hint("修改密码成功，请重新登录！", {type: 'danger'});
 				  localStorage.removeItem(login.uk);
 				  justep.Shell.showPage("login");
 			  }

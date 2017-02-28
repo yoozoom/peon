@@ -79,7 +79,7 @@ define(function(require){
 				}
 			},
 			error : function(XHR, msg, e) {
-				alert(global.SYSTEM_ERROR_MSG);
+				justep.Util.hint(global.SYSTEM_ERROR_MSG, {type: 'danger'});
 			},
 			complete : function(XHR, TS){
 				global.hidePopOver("popOver2", ctx);

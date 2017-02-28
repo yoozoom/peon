@@ -31,7 +31,7 @@ define(function(require){
 	Model.prototype.queryBtnClick = function(event){
 		var param = buildParam(event, this);
 		if(!param.gbsj) {
-			alert('月度时间不能为空');
+			justep.Util.hint("月度不能为空！", {type: 'danger'});
 			return;
 		}
 		var url = "./queryResultTable.m.w";

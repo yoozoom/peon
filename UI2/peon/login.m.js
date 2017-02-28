@@ -16,20 +16,26 @@ define(function(require){
 	};
 	
 	// 点击登入按钮
-	Model.prototype.loginBtnClick = function(event){
-		if (!global.Network.checkNetwork()) {
-			alert('网络未连接，请检查网络');
-			return
-		}
-	
+	Model.prototype.loginBtnClick = function(event) {
 		var name = this.comp('nameInput').val();
 		var password = this.comp('passwordInput').val();
 		
-		this.comp('passwordInput').val('');
+		if (!name || !password) {
+			justep.Util.hint("账号密码不能为空！", {type: 'danger', parent: this.getRootNode()});
+			return
+		}
+		
+		if (!global.Network.checkNetwork()) {
+			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: this.getRootNode()});
+			return
+		}
+
+		//justep.Util.hint("新密码输入不一致！", {type: 'danger', parent: this.getRootNode()});
+		global.showPopOver("popOver2", this);
 		
 		var sn = this.comp('checkbox1').val();
 
-		login.doLogin(name, password, function() {
+		login.doLogin(name, password, this, function() {
 			var user = {};
 			user.userName = name;
 			user.password = password;
@@ -55,6 +61,12 @@ define(function(require){
 			this.comp('nameInput').val(un);
 			this.comp('nameInput').val('');
 		}
+		global.hidePopOver("popOver2", this);
 	};
+
+	Model.prototype.modelModelConstruct = function(event){
+		global.showPopOver("popOver2", this);
+	};
+
 	return Model;
 });

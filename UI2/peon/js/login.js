@@ -25,7 +25,7 @@ define(function(require){
 						+ user['userName'] + '&password=' + user['password'],
 				type : 'get',
 				dataType : 'jsonp',
-				timeout : 5000,
+				timeout : 2000,
 				success : function(data) {
 					console.log(data);
 					if (data.success) {
@@ -37,22 +37,25 @@ define(function(require){
 					}
 				},
 				error : function(data) {
-					alert('系统异常, 请稍后再试');
+					justep.Util.hint("系统异常, 请稍后再试！", {type: 'danger', parent: user.ctx.getRootNode()});
 					justep.Shell.showPage("login");
 				},
-				complete : function(XHR, TS){
-
+				complete : function(XHR, TS) {
+					if (user.ctx) {
+						global.hidePopOver("popOver2", user.ctx);
+					}
 				}
 			});
 		},
 		
-		doLogin:function(uname, pwd, sCallback) {
+		doLogin:function(uname, pwd, ctx, sCallback) {
 			var usr = {
 				'userName':uname,
-				'password':pwd
+				'password':pwd,
+				'ctx': ctx
 			};
 			this.validateUser(usr, sCallback, function(data) {
-				alert(data.message);
+				justep.Util.hint(data.message, {type: 'danger', parent: ctx.getRootNode()});
 			});
 		},
 		
@@ -62,7 +65,6 @@ define(function(require){
 				callback();
 			}
 			justep.Shell.showPage("login");
-			//justep.Shell.closePage("main");
 		}
 	};
 	

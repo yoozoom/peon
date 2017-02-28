@@ -26,7 +26,7 @@ define(function(require){
 		var param = buildParam(event, this);
 		var url = "./queryResultTable.m.w";
 		if (!param.jrsj) {
-			alert("日期不能为空");
+			justep.Util.hint("日期不能为空！", {type: 'danger'});
 			return;
 		}
 		console.log(param);

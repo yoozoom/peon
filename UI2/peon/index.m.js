@@ -50,7 +50,7 @@ define(function(require){
 	
 	Model.prototype.modelLoad = function(event) {
 		if (!global.Network.checkNetwork()) {
-			alert('网络未连接，请检查网络');
+			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: user.ctx.getRootNode()});
 			justep.Shell.showPage("login");
 			return
 		}

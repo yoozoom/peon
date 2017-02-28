@@ -7,8 +7,8 @@ define(function(require) {
 	require("cordova!cordova-plugin-network-information");
 
 
-	window.globalServerDomain = "http://30.34.201.250:8090/peon-server/";
-//	window.globalServerDomain = "http://30.34.202.118:8090/peon-server/";
+//	window.globalServerDomain = "http://www.gexinyuan.com.cn:8080/peon-server/";
+	window.globalServerDomain = "http://127.0.0.1:8090/peon-server/";
 
 	return {
 		// 全局域名
