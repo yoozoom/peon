@@ -60,10 +60,10 @@ define(function(require){
 	};
 
 	Model.prototype.logoutBtnClick = function(event){
-		var ck = confirm("确认要退出吗？", "提示");
-		if (ck) {
+		var onOk = function() {
 			login.doLogout();
 		}
+		justep.Util.confirm("确认要退出吗？", onOk);
 	};
 	
 	return Model;
