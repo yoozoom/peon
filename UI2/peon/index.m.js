@@ -50,8 +50,7 @@ define(function(require){
 	
 	Model.prototype.modelLoad = function(event) {
 		if (!global.Network.checkNetwork()) {
-			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: user.ctx.getRootNode()});
-			justep.Shell.showPage("login");
+			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger'});
 			return
 		}
 		
@@ -65,7 +64,7 @@ define(function(require){
 			justep.Shell.showPage("main");
 		}, function() {
 			console.log("to login");
-			justep.Shell.showPage("login");
+//			justep.Shell.showPage("login");
 //			var indexUrl = "./login.m.w";
 //			justep.Shell.showPage(require.toUrl(indexUrl));
 		});
