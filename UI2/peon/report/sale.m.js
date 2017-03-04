@@ -450,6 +450,7 @@ define(function(require){
 		// 基础数据准备		
 		var itemNames = [];
 		var items = [];
+		var sum = 0;
 		
 		if(data && data.length > 0) {
 			$.each(data, function(i, c) {
@@ -458,13 +459,14 @@ define(function(require){
 				item.name = c.sjmc;
 				item.value = c.sjl;
 				items.push(item);
+				sum = global.NumUtil.add(sum, item.value);
 			});
+			chartCtx.title = chartCtx.title + "(合计：" + sum + "万吨)";
 		} else {
 			chartCtx.title = chartCtx.title + "(无)";
 		}
 		
 		var option = getPieBuyOption(itemNames, items, chartCtx);
-
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
 	};
 	

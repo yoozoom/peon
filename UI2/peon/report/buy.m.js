@@ -229,7 +229,6 @@ define(function(require){
 	// 各项目收购量，SQL条件 年月日+子公司名称
 	var loadProjectBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -363,7 +362,6 @@ define(function(require){
 	
 	var buildCategoryBuyEcharts = function(data, ctx) {
 		var chartCtx = {
-//			title: "燃料品种收购量"
 			title: "燃料类别收购量"
 		};
 		buildPieEcharts(data, ctx, "div4", "div3", chartCtx);	
@@ -456,6 +454,7 @@ define(function(require){
 		// 基础数据准备		
 		var itemNames = [];
 		var items = [];
+		var sum = 0;
 		
 		if(data && data.length > 0) {
 			$.each(data, function(i, c) {
@@ -464,15 +463,14 @@ define(function(require){
 				item.name = c.sjmc;
 				item.value = c.sjl;
 				items.push(item);
+				sum = global.NumUtil.add(sum, item.value);
 			});
+			chartCtx.title = chartCtx.title + "(合计：" + sum + "万吨)";
 		} else {
 			chartCtx.title = chartCtx.title + "(无)";
 		}
 		
-		
-		
 		var option = getPieBuyOption(itemNames, items, chartCtx);
-
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
 	};
 	
@@ -587,7 +585,6 @@ define(function(require){
 		var day = ctx.comp("daySelect").val();
 		var company = ctx.comp("companySelect").val();
 		var project = ctx.comp("projectSelect").val();
-		//var date = year + global.DateUtil.prefixNumStr(month) + global.DateUtil.prefixNumStr(day);
 		var date = global.DateUtil.getDateYMD(year, month, day);
 		
 		return {

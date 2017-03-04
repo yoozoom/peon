@@ -161,6 +161,10 @@ define(function(require) {
 					max = item;
 				}
 				return max;
+			},
+			add : function(a, b) {
+				var s = (parseFloat(a * 100) + parseFloat(b * 100))/100;
+				return s;
 			}
 		}
 	};

@@ -21,28 +21,6 @@ define(function(require){
 				"index" : {
 					url : require.toUrl('index.m.w')
 				}
-//				,
-//				"reportIndex" : {
-//					url : require.toUrl('./report/index.m.w')
-//				},
-//				"class" : {
-//					url : require.toUrl('./class.w')
-//				},
-//				"detail" : {
-//					url : require.toUrl('./detail.w')
-//				},
-//				"search" : {
-//					url : require.toUrl('./search.w')
-//				},
-//				"cart" : {
-//					url : require.toUrl('./cart.w')
-//				},
-//				"order" : {
-//					url : require.toUrl('./order.w')
-//				},
-//				"success" : {
-//					url : require.toUrl('./success.w')
-//				}
 			}
 		});
 		shellImpl.useDefaultExitHandler = false;
@@ -58,15 +36,9 @@ define(function(require){
 		// 如果没有账号和密码则跳转至登录页面
 		login.checkLogin(function() {
 			console.log("to main");
-//			var indexUrl = "./main.m.w";
-//			justep.Shell.showPage(require.toUrl(indexUrl));
-//			justep.Shell.loadPage("main");
 			justep.Shell.showPage("main");
 		}, function() {
 			console.log("to login");
-//			justep.Shell.showPage("login");
-//			var indexUrl = "./login.m.w";
-//			justep.Shell.showPage(require.toUrl(indexUrl));
 		});
 	};
 

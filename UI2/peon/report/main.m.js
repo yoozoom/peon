@@ -13,7 +13,6 @@ define(function(require){
 			type : 'get',
 			dataType : 'jsonp',
 			success : function(data) {
-				//console.log(data);
 				if (data.success) {
 					buildMonthTotalData(data, ctx);
 				} else {
@@ -72,14 +71,6 @@ define(function(require){
 		var nowMonth = global.DateUtil.getNowYearMonth();
 		loadMonthTotal(nowMonth, this);
 		loadMonthTop10(nowMonth, this);
-	};
-
-	Model.prototype.modelModelConstructDone = function(event){
-
-	};
-
-	Model.prototype.modelActive = function(event){
-
 	};
 	
 	Model.prototype.button1Click = function(event){
