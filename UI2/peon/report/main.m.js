@@ -7,6 +7,7 @@ define(function(require){
 		this.callParent();
 	};
 	
+	// 将此页面全部代码移动到了main的第一个页面中，用来提高加载性能
 	var loadMonthTotal = function(nowMonth, ctx) {
 		$.ajax({
 			url : global.serverDomain + 'index/monthTotal?month=' + nowMonth,
@@ -19,7 +20,7 @@ define(function(require){
 
 				}
 			}
-		})
+		});
 	};
 	
 
@@ -36,8 +37,8 @@ define(function(require){
 
 				}
 			}
-		})
-	}
+		});
+	};
 	
 	var buildMonthTotalData = function(data, ctx) {
 		if (ctx.getElementByXid("span1")) {

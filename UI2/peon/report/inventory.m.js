@@ -246,7 +246,6 @@ define(function(require){
 	// 第3个图开始------------------------------------
 	var loadCategoryBuy = function(param, ctx) {
 		var date = global.DateUtil.getNowYearMonth();
-//		date = "201609";
 		if (!param.date) {
 			param.date = date;
 		}
@@ -300,7 +299,7 @@ define(function(require){
 		// 目标div
 		var totalDiv = ctx.getElementByXid(eid);
 		var parentDiv = ctx.getElementByXid(pid);
-	
+		
 		//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
 		var resizeContainer = function () {
 		    totalDiv.style.width = parentDiv.clientWidth+'px';
@@ -308,7 +307,9 @@ define(function(require){
 		};
 		
 		//设置容器高宽
-		resizeContainer();
+		if (ctx && ctx.type != global.EchartType.PIE) {
+			resizeContainer();
+		}
 		
 		var myChart = echarts.init(totalDiv);
 		myChart.setOption(option);
@@ -342,6 +343,7 @@ define(function(require){
 		}
 		
 		var option = getPieBuyOption(itemNames, items, chartCtx);
+		ctx.type = global.EchartType.PIE;
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
 	};
 	
@@ -399,8 +401,6 @@ define(function(require){
 		chartCount = 3;
 		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
 		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
-//		ctx.comp('daysData').refreshData();
-//		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
 	};
 	
 	// page load
@@ -435,7 +435,8 @@ define(function(require){
 	
 	var refreshPageChart = function(param, ctx) {
 		console.log(param);
-		
+		ctx.comp('accordion1').show(0);
+		ctx.comp('accordion2').show(0);
 		loadProjectBuy(param, ctx);
 		loadCategoryBuy(param, ctx);
 	};

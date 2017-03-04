@@ -166,6 +166,9 @@ define(function(require) {
 				var s = (parseFloat(a * 100) + parseFloat(b * 100))/100;
 				return s;
 			}
+		},
+		EchartType : {
+			PIE : "pie"
 		}
 	};
 });

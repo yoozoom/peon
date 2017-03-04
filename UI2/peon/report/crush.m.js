@@ -302,7 +302,7 @@ define(function(require){
 		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
 		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
 		ctx.comp('daysData').refreshData();
-		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
+		//ctx.comp("daySelect").val(global.DateUtil.getNowDate());
 	};
 	
 	// page load
@@ -342,7 +342,7 @@ define(function(require){
 	
 	var refreshPageChart = function(param, ctx) {
 		console.log(param);
-		
+		ctx.comp('accordion1').show(0);
 		loadProjectBuy(param, ctx);
 	};
 

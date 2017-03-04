@@ -35,7 +35,7 @@ define(function(require){
 		// 页面加载，获取保存用户名密码
 		// 如果没有账号和密码则跳转至登录页面
 		login.checkLogin(function() {
-			console.log("to main");
+			justep.Util.hint("页面跳转中...", {type: 'info', delay:1000});
 			justep.Shell.showPage("main");
 		}, function() {
 			console.log("to login");

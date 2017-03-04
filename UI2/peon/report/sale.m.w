@@ -112,9 +112,9 @@
           <div class="panel-heading" xid="heading2"> 
             <h4 class="panel-title" xid="h42"><![CDATA[项目详情]]></h4> 
           </div>  
-          <div class="panel-collapse collapse in" xid="div3" style="height:400px;"> 
-            <div class="panel-body" xid="div4" style="height:200px;"/>  
-            <div class="panel-body" xid="div7" style="height:200px;"/>
+          <div class="panel-collapse collapse in" xid="div3"> 
+            <div class="panel-body" xid="div4" style="height:400px;"/>  
+            <div class="panel-body" xid="div7" style="height:400px;"/>
           </div> 
         </div> 
       </div> 

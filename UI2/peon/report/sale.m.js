@@ -433,7 +433,9 @@ define(function(require){
 		};
 		
 		//设置容器高宽
-		resizeContainer();
+		if (ctx && ctx.type != global.EchartType.PIE) {
+			resizeContainer();
+		}
 		
 		var myChart = echarts.init(totalDiv);
 		myChart.setOption(option);
@@ -467,6 +469,7 @@ define(function(require){
 		}
 		
 		var option = getPieBuyOption(itemNames, items, chartCtx);
+		ctx.type = global.EchartType.PIE;
 		buildBaseEcharts(pieDivId, parentDivId, ctx, option);
 	};
 	
@@ -525,7 +528,7 @@ define(function(require){
 		ctx.comp('yearSelect').val(global.DateUtil.getNowYear());
 		ctx.comp('monthSelect').val(global.DateUtil.getNowMonth());
 		ctx.comp('daysData').refreshData();
-		ctx.comp("daySelect").val(global.DateUtil.getNowDate());
+		//ctx.comp("daySelect").val(global.DateUtil.getNowDate());
 	};
 	
 	// page load
@@ -567,6 +570,8 @@ define(function(require){
 	
 	var refreshPageChart = function(param, ctx) {
 		console.log(param);
+		ctx.comp('accordion1').show(0);
+		ctx.comp('accordion2').show(0);
 		
 		loadProjectBuy(param, ctx);
 		loadCategoryBuy(param, ctx);
