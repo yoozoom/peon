@@ -2,12 +2,14 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var CommonUtils = require("$UI/system/components/justep/common/utils");
-	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
-	var global = require("$UI/peon/js/global");
+	//var ShellImpl = require('$UI/system/lib/portal/shellImpl');
+	//var global = require("$UI/peon/js/global");
 	
 	var Model = function(){
 		this.callParent();
 	};
+	
+	//alert("index-main");
 	
 	Model.prototype.modelLoad = function(event){
 		if (justep.Browser.isX5App) {
@@ -124,6 +126,10 @@ define(function(require){
 		if (to >= 1) {
 			this.comp('windowContainer' + (to + 1)).load();
 		}
+	};
+	
+	Model.prototype.modelModelConstruct = function(event){
+		
 	};
 	
 	return Model;

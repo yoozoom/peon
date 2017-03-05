@@ -1,7 +1,7 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
+	//var ShellImpl = require('$UI/system/lib/portal/shellImpl');
 	
 	var global = require("$UI/peon/js/global");
 	var login = require("$UI/peon/js/login");

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:131px;left:126px;" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:131px;left:126px;" onLoad="modelLoad" onModelConstruct="modelModelConstruct"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="topListData" idColumn="gsdm"><column name="sgl" type="Double" xid="xid1"></column>
   <column name="gsmc" type="String" xid="xid8"></column>
   <column name="gsdm" type="String" xid="xid9"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
    <div class="x-panel-content" xid="content2">
-    <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1" style="padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;">
-     <div class="x-col" xid="col2">
-      <img src="$UI/peon/img/logo.png" alt="" xid="image1" height="100%" style="width:100%;"></img></div> </div> 
-    <div component="$UI/system/components/justep/row/row" class="x-row" xid="row2" style="padding:5px 0px 0px 0px;margin:5px 0px 0px 0px;">
+    <!-- -->
+    <img src="$UI/peon/img/logo.png" alt="" xid="image1" height="15%" style="width:100%;"></img><div component="$UI/system/components/justep/row/row" class="x-row" xid="row2" style="padding:5px 0px 0px 0px;margin:5px 0px 0px 0px;">
       <div class="x-col" xid="col4">
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="收购量" xid="button1" style="height:100%;width:100%;" onClick="button1Click">
        <i xid="i4"></i>
@@ -31,7 +29,11 @@
       <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="盘存" xid="button5" style="height:100%;width:100%;" onClick="button5Click">
        <i xid="i8"></i>
        <span xid="span8"></span></a> </div></div> 
-    <hr xid="hr1" style="padding:15px 0px 0px 0px;margin:15px 0px 0px 0px;"></hr><h4 xid="h41">总汇信息</h4>
+       
+       <!-- -->
+    
+    
+    <hr xid="hr1" style="padding:15px 0px 0px 0px;margin:15px 0px 0px 0px;"></hr><h4 xid="h41"><![CDATA[总汇信息]]></h4>
     <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table1">
      <tbody class="x-list-template" xid="listTemplate2">
       <tr xid="tr4">

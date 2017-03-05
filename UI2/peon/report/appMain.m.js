@@ -7,6 +7,8 @@ define(function(require){
 		this.callParent();
 	};
 	
+	//alert("main-main");
+	
 	// 将此页面全部代码移动到了main的第一个页面中，用来提高加载性能
 	var loadMonthTotal = function(nowMonth, ctx) {
 		$.ajax({
@@ -69,6 +71,7 @@ define(function(require){
 	};
 
 	Model.prototype.modelLoad = function(event){
+		//justep.Util.hint("send ajax", {type: 'danger'});
 		var nowMonth = global.DateUtil.getNowYearMonth();
 		loadMonthTotal(nowMonth, this);
 		loadMonthTop10(nowMonth, this);
@@ -97,6 +100,10 @@ define(function(require){
 	Model.prototype.button5Click = function(event){
 		var indexUrl = "./inventory.m.w";
 		justep.Shell.showPage(require.toUrl(indexUrl));
+	};
+
+	Model.prototype.modelModelConstruct = function(event){
+
 	};
 
 	return Model;
