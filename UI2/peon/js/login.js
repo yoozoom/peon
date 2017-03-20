@@ -7,17 +7,6 @@ define(function(require){
 		
 		uk:"zpzk_login_user",
 		unk:"zpzk_login_user_name",
-		
-		checkLogin:function(sCallback, fCallback) {
-			var su = localStorage.getItem(this.uk);
-			if(!su) {
-				if (fCallback && typeof fCallback == 'function') fCallback();
-				return;
-			}
-			
-			this.validateUser(JSON.parse(su), sCallback, fCallback);
-		},
-		
 
 		validateUser : function(user, sCallback, fCallback) {
 			$.ajax({
@@ -29,11 +18,13 @@ define(function(require){
 				success : function(data) {
 					console.log(data);
 					if (data.success) {
-						if (sCallback && typeof sCallback == 'function')
+						if (sCallback && typeof sCallback == 'function') {
 							sCallback(data);
+						}
 					} else {
-						if (fCallback && typeof fCallback == 'function')
+						if (fCallback && typeof fCallback == 'function') {
 							fCallback(data);
+						}
 					}
 				},
 				error : function(data) {
@@ -46,6 +37,17 @@ define(function(require){
 					}
 				}
 			});
+		},
+		
+		checkLogin:function(sCallback, fCallback) {
+			var su = localStorage.getItem(this.uk);
+			if(!su) {
+				if (fCallback && typeof fCallback == 'function') {
+					fCallback();
+				}
+				return;
+			}
+			this.validateUser(JSON.parse(su), sCallback, fCallback);
 		},
 		
 		doLogin:function(uname, pwd, ctx, sCallback) {

@@ -17,6 +17,11 @@ define(function(require){
 	
 	// 点击登入按钮
 	Model.prototype.loginBtnClick = function(event) {
+		if (!global.Network.checkNetwork()) {
+			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: this.getRootNode()});
+			return
+		}
+		
 		var name = this.comp('nameInput').val();
 		var password = this.comp('passwordInput').val();
 		
@@ -25,12 +30,6 @@ define(function(require){
 			return
 		}
 		
-		if (!global.Network.checkNetwork()) {
-			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: this.getRootNode()});
-			return
-		}
-
-		//justep.Util.hint("新密码输入不一致！", {type: 'danger', parent: this.getRootNode()});
 		global.showPopOver("popOver2", this);
 		
 		var sn = this.comp('checkbox1').val();
