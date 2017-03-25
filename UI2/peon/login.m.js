@@ -18,7 +18,7 @@ define(function(require){
 	// 点击登入按钮
 	Model.prototype.loginBtnClick = function(event) {
 		if (!global.Network.checkNetwork()) {
-			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger', parent: this.getRootNode()});
+			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger'});
 			return
 		}
 		
@@ -26,7 +26,7 @@ define(function(require){
 		var password = this.comp('passwordInput').val();
 		
 		if (!name || !password) {
-			justep.Util.hint("账号密码不能为空！", {type: 'danger', parent: this.getRootNode()});
+			justep.Util.hint("账号密码不能为空！", {type: 'danger'});
 			return
 		}
 		

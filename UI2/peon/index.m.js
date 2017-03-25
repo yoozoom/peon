@@ -28,7 +28,6 @@ define(function(require){
 			justep.Util.hint("网络未连接，请检查网络！", {type: 'danger'});
 			return;
 		}
-		
 		// 页面加载，获取保存用户名密码
 		// 如果没有账号和密码则跳转至登录页面
 		login.checkLogin(
@@ -39,9 +38,6 @@ define(function(require){
 			function() {
 				justep.Shell.showPage("login");
 		});
-	};
-
-	Model.prototype.modelModelConstruct = function(event){
 	};
 
 	return Model;

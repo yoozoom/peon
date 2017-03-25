@@ -28,7 +28,7 @@ define(function(require){
 					}
 				},
 				error : function(data) {
-					justep.Util.hint("系统异常, 请稍后再试！", {type: 'danger', parent: user.ctx.getRootNode()});
+					justep.Util.hint("系统异常, 请稍后再试！", {type: 'danger'});
 					justep.Shell.showPage("login");
 				},
 				complete : function(XHR, TS) {
@@ -57,7 +57,7 @@ define(function(require){
 				'ctx': ctx
 			};
 			this.validateUser(usr, sCallback, function(data) {
-				justep.Util.hint(data.message, {type: 'danger', parent: ctx.getRootNode()});
+				justep.Util.hint(data.message, {type: 'danger'});
 			});
 		},
 		
